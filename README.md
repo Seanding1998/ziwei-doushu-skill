@@ -70,8 +70,9 @@ AI 按 `SKILL.md` 的八步工作流调用本仓库的脚本，最后产出一�
 
 ## 快速开始
 
-**环境要求**：**Python 3.8+，且具备以下之一** —— Node.js 18+（iztro）／`pip install x-iztro`。
-两条排盘引擎路任装其一即可用（Windows / macOS / Linux 均可）。
+**环境要求**：**Python 3.8+，且具备以下之一** —— Node.js 18+（iztro）／`pip install -r requirements.txt`（x-iztro）。
+两条排盘引擎路任装其一即可用（Windows / macOS / Linux 均可）；`requirements.txt` 里全是**可选**依赖，
+有 Node 就不必装它。
 
 ```bash
 git clone https://github.com/<你的用户名>/ziwei-doushu-skill.git
@@ -80,6 +81,8 @@ cd ziwei-doushu-skill
 # 首次：按需给两条引擎路都铺好（先 pip install x-iztro，失败再 npm install iztro）
 python scripts/ziwei.py deps
 ```
+
+也可以直接 `pip install -r requirements.txt` 只装 Python 路（不需要 Node），或 `npm install` 只装 Node 路。
 
 `deps` 只做一次，之后离线可用。pip 失败会退回 npm（受限网络下依次尝试默认缓存 → 目录内本地缓存 → 环境代理）；
 也可用环境变量覆盖可执行文件：`ZIWEI_NODE` / `ZIWEI_NPM`。
@@ -313,7 +316,12 @@ docs/
 
 **Q：结果和其他排盘软件不一致？**
 先看 [排盘口径声明](#排盘口径声明重要)——年柱分界、四化表、大限起法、闰月与早晚子时都可能造成差异。
-`pillar` 命令专门用来对照农历年与立春两套年柱。
+`pillar` 命令专门用来对照农历年与立春两套年柱。另外可以自己验：`python scripts/ziwei.py engines --compare 200`
+让两条引擎各排 200 张随机盘逐字段对拍（应为 0 差异）。
+
+**Q：`--year` 给了出生之前的年份会怎样？**
+会被**忽略并给出告警**（`meta.warnings`），不会拿退化结果糊过去。理由是两条引擎对「出生前流年」这种越界输入
+的处理并不一致（一端给甲子、另一端给癸未），所以脚本在出口处统一丢弃并明确告知——请改用在出生年及之后的年份。
 
 **Q：能直接用来算命吗？**
 请看下面的免责声明。本项目的定位是**结构化工具与流程演示**，不是断言任何人的命运。

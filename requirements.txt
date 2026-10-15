@@ -1,0 +1,16 @@
+# ziwei-doushu —— Python 侧依赖（**全部可选**）
+#
+# 排盘引擎二选一即可，不需要两个都装：
+#   · 有 Node.js 18+  →  用 iztro（见 package.json）；不装本文件里的任何东西也能跑
+#   · 没有 Node       →  pip install -r requirements.txt，走 x-iztro
+#                        （Rust 核心 + Python 绑定，零运行时依赖）
+#
+# 装完之后 `python scripts/ziwei.py engines` 会打印两条路的可用状态，
+# 以及 auto 会选哪一条；`engines --compare N` 可以让两条引擎各排 N 张盘逐字段对拍。
+#
+# 关于 x-iztro：
+#   · 与 JS 版 iztro 逐字段一致（上游自述 716,314 个 golden case，本项目也独立对拍验证）
+#   · 需要 Python 3.10+
+#   · 预编译 wheel 覆盖 Linux x86_64/aarch64 (manylinux)、macOS universal2、Windows x64；
+#     musl/Alpine 与 32 位平台没有 wheel，需要 Rust 工具链从源码编译
+x-iztro==0.6.1

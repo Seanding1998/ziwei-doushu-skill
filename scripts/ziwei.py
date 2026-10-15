@@ -460,8 +460,16 @@ def _leap_cases(months: list[dict]) -> tuple[list[dict], int]:
 
 
 def _leap_request(case: dict, rng: random.Random) -> dict:
+    """
+    ⚠️ 流年必须落在出生**之后**。闰月穷举会命中 2025 / 2028 这些「未来年份」的出生日期，
+    而旧版把年份写死成 `randint(2024, 2030)`，于是造出「出生前流年」这种越界请求：
+    两条引擎对它的处理不同（node 给甲子、python 给癸未），对拍器因此报出一堆**假不一致**
+    （实测全量 468 例里 23 例，100% 是这个原因）。现在按出生年下推。
+    """
+    birth_year = int(str(case["date"])[:4])
+    lo = max(2024, birth_year + 1)
     return {"date": case["date"], "calendar": "solar", "timeIndex": case["timeIndex"],
-            "gender": case["gender"], "years": [rng.randint(2024, 2030)],
+            "gender": case["gender"], "years": [rng.randint(lo, lo + 6)],
             "fixLeap": case["fixLeap"]}
 
 

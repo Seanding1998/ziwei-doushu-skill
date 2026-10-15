@@ -447,9 +447,25 @@ def build_chart(
         )
 
     # 5) 流年
+    #
+    # ⚠️ 「出生前的流年」是越界输入：两条引擎对它的处理不同（node 给甲子、python 给癸未），
+    # 与其把这个退化结果原样外发，不如**统一在这里丢弃并明确告知**。用盘面自己的公历
+    # 生日年份判定，所以 solar / lunar 两种输入口径都成立。
     horoscope = []
     by_branch = {p["branch"]: p for p in palaces}
+    try:
+        _birth_year = int(str(a.get("solarDate") or "")[:4])
+    except ValueError:
+        _birth_year = None
+    _pre_birth = [h["year"] for h in a["horoscope"] if _birth_year and h["year"] < _birth_year]
+    if _pre_birth:
+        warnings.append(
+            "已忽略出生前的流年：" + "、".join(str(y) for y in _pre_birth) +
+            f"（早于出生年 {_birth_year}）。请改用在出生年及之后的年份。"
+        )
     for h in a["horoscope"]:
+        if _birth_year and h["year"] < _birth_year:
+            continue
         yb = h["yearly"]["ganzhi"][1]
         landed = by_branch.get(yb)
         soul_limit_b = h["soulLimit"]["branch"] if h.get("soulLimit") else None
