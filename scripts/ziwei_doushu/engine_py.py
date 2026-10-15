@@ -299,8 +299,14 @@ def run(req: dict[str, Any]) -> dict[str, Any]:
                                          is_leap_month=False, fix_leap=fix_leap,
                                          language="zh-CN")
         else:
+            # ⚠️ 必须与 engine.js 第 74 行**逐字对齐**：
+            #     astro.astrolabeBySolarDate(date, tx, gender, true, 'zh-CN')
+            # solar 路把 fixLeap **写死为 true**（用 iztro 的默认值），请求里的
+            # fixLeap 只作用于 lunar 路。曾把请求里的 fixLeap 透传到这里，
+            # 结果「出生日期落在闰月内」的盘在两引擎间整盘平移一宫
+            # （实测 2006-09-19 早子时女：node 命宫酉 / python 命宫申）。
             astrolabe = factory.by_solar(str(date), time_index, gender_key,
-                                         fix_leap=fix_leap, language="zh-CN")
+                                         fix_leap=True, language="zh-CN")
     except Exception as e:  # noqa: BLE001 — 引擎抛错也是「结果」，不是崩溃
         return {"ok": False, "error": "X_IZTRO_THREW", "message": str(e)}
 

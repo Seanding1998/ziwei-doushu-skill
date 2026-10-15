@@ -49,7 +49,7 @@ AI 按 `SKILL.md` 的八步工作流调用本仓库的脚本，最后产出一�
 - 十七项常见格局的**构成条件判定**（成不成格由 AI 裁断，脚本只回答条件是否满足）
 - 机器自检：十二宫名唯一、十四主星齐备、禄存与羊陀相邻、行向与限序一致
 - 结构化 JSON / 人读树状盘 / Markdown 表格 / 四柱双口径对照
-- 双引擎逐字段比对（`engines --compare N`）：随机盘回归，不一致数应为 0
+- 双引擎逐字段比对：`engines --compare N` 随机盘回归 + `engines --leap-sweep A-B` 确定性闰月穷举，不一致数应为 0
 - AI 填结构化分析 → 脚本渲染 HTML（内嵌 CSS、十二宫方阵、格局表、逐宫、大限流年、结论与建议、技术留痕折叠区）
 - 三道脚本闸门 + 一道独立审查闸门
 
@@ -103,6 +103,12 @@ python scripts/ziwei.py engines
 # 逐字段比对 astrolabe 结构，输出不一致条数与首个差异样例
 python scripts/ziwei.py engines --compare 200
 
+# 确定性闰月穷举（随机抽样抽到「阳历生日落在闰月内」的概率约 1%，所以它查不出
+# solar 路 fixLeap 写不写死这类口径差）：按天扫 1995–2030，找出**每一个闰月**，
+# 覆盖其第 1/中间/最后一天 × 时辰{早子,午,晚子} × 性别{男,女} × fixLeap{true,false}
+# 比对结果与覆盖数见 compare.coverage.leapSweep*，mismatches 必须为 0
+python scripts/ziwei.py engines --leap-sweep 1995-2030
+
 # 指定引擎（auto 之外的显式选择）
 python scripts/ziwei.py chart --date 1990-06-07 --tx 4 --gender 男 --engine python
 python scripts/ziwei.py chart --date 1990-06-07 --tx 4 --gender 男 --engine node
@@ -111,6 +117,12 @@ python scripts/ziwei.py chart --date 1990-06-07 --tx 4 --gender 男 --engine nod
 `astrolabe` 的字段结构是**引擎契约**：两条路产出逐字段相同的结构，上层归一化代码对它们一视同仁。
 唯一例外是 `jieqiPillar`（立春口径四柱）——只有 node 路的 lunar-lite 能提供，
 python 路如实返回 `null` 并在 `meta.engineNotes` 写明，**不伪造**；`pillar` 子命令会自动回退到 node 取该字段。
+
+> **怎么自己验证两条引擎一致**：`--compare 200` 是随机抽样，够快但**覆盖不到闰月**
+> （阳历生日落在闰月内的概率约 1%）；要卡死口径差就跑 `--leap-sweep 1995-2030`，
+> 它按天扫描、把每个闰月的首/中/末日 × 早子·午·晚子 × 男女 × `fixLeap` 两取值全部对拍，
+> 输出 `compare.coverage.leapSweep*` 里的覆盖数与 `mismatches`（必须为 0）。
+> 两个参数可以合用：`python scripts/ziwei.py engines --compare 200 --leap-sweep 1995-2030`。
 
 > 注：`node_modules/iztro` 与 `x-iztro` 均遵循各自原始 MIT 许可；本仓库自身许可见 [许可证](#许可证)。
 
@@ -330,8 +342,10 @@ that only judges the interpretive layer.
 **Engine selection**: two interchangeable chart-casting engines, no path removed — `x-iztro` (Python,
 preferred by `auto`, in-process, no Node needed) and `iztro` 2.6.2 (Node, the original path).
 Both emit a byte-for-byte identical `astrolabe` contract; run `python scripts/ziwei.py engines --compare 200`
-to assert it over 200 random charts. The single field only the Node path can supply is `jieqiPillar`
-(solar-term four pillars) — the Python path returns `null` and says so in `meta.engineNotes`.
+to assert it over 200 random charts, and `python scripts/ziwei.py engines --leap-sweep 1995-2030`
+for a **deterministic leap-month sweep** (random sampling hits a leap-month birthday only ~1% of the
+time, so it cannot catch solar-path convention drift). The single field only the Node path can supply
+is `jieqiPillar` (solar-term four pillars) — the Python path returns `null` and says so in `meta.engineNotes`.
 
 **Requirements**: Python 3.8+, plus either Node.js 18+ (iztro) or `pip install x-iztro`.
 Run `python scripts/ziwei.py deps` once, then see [快速开始](#快速开始) for usage.

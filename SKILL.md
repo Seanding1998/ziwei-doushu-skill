@@ -55,7 +55,14 @@ python scripts/ziwei.py deps
 ```bash
 python scripts/ziwei.py engines              # 哪条可用、版本、auto 选谁
 python scripts/ziwei.py engines --compare 200 # 两条引擎各排 200 张随机盘，逐字段比对（不一致应为 0）
+python scripts/ziwei.py engines --leap-sweep 1995-2030  # 确定性闰月穷举对拍（见下）
 ```
+
+- **两条引擎一致的验证方式**（改引擎映射后必跑）：`--compare N` 是随机抽样，抽到
+  「阳历生日落在闰月内」的概率约 1%，所以它**查不出 solar 路 `fixLeap` 写不写死**这类口径差。
+  要卡死就用 `--leap-sweep A-B`（不传则不跑，不影响普通 `--compare` 的耗时）：按天扫 A–B 年、
+  从 `lunarDate` 的「闰」字找出**每一个闰月**，覆盖其第 1/中间/最后一天 × 早子·午·晚子 × 男女
+  × `fixLeap{true,false}`，结果见 `compare.coverage.leapSweep*`，`mismatches` 必须为 0。
 
 - 引擎选择：全局参数 **`--engine auto|python|node`**，各子命令都接受。默认 `auto`＝先 `python`（`x-iztro`）再 `node`（`iztro`）。
 - 也可用环境变量覆盖可执行文件：`ZIWEI_NODE` / `ZIWEI_NPM`。
