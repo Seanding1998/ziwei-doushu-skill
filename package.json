@@ -3,5 +3,7 @@
   "private": true,
   "dependencies": {
     "iztro": "2.6.2"
-  }
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "description": "紫微斗数排盘与解盘 skill：可计算的全部交脚本，AI 只做判断"
 }
