@@ -1,6 +1,6 @@
 # 术语表、公式与 API 速查
 
-> 供 `calc.js` / `pillar.js` / `dump.js` 的维护与结果复核使用。**不用于解读**（解读见 `interpretation.md`）。
+> 供 `engine.js` / `engine_py.py` / `ziwei_doushu/engines.py` 的维护与结果复核使用。**不用于解读**（解读见 `interpretation.md`）。
 
 ---
 
@@ -101,7 +101,24 @@
 
 ---
 
-## 4. iztro 2.6.2 API 备忘（脚本已用到的部分）
+## 4. 排盘引擎：两条路，同一份契约
+
+引擎的探测与调用全部收敛在 `scripts/ziwei_doushu/engines.py`（`detect()` / `run()`），
+`chart.py`、`ziwei.py` 都不再直接 spawn node。**auto 优先级：先 python（x-iztro），再 node（iztro）。**
+
+| | python 路 | node 路 |
+|---|---|---|
+| 实现 | `ziwei_doushu/engine_py.py` → `x_iztro` | `scripts/engine.js` → `iztro` |
+| 形态 | 同进程调用（无子进程、不依赖 Node） | `node engine.js`，stdin/stdout JSON |
+| 安装 | `pip install x-iztro` | `npm install iztro@2.6.2`（`ziwei.py deps`） |
+| 版本 | 0.6.1（cp310-abi3 wheel） | 2.6.2 |
+| 立春口径四柱 `jieqiPillar` | **无**（如实 `null` + `notes`） | 有（lunar-lite） |
+
+两者产出的 `astrolabe` 结构**逐字段相同**（`engines --compare N` 就是把这条性质当断言跑）。
+x-iztro 自述「`to_json()` 输出 iztro 的每一个键、值相同」，所以 `engine_py.py` 只做键名映射与
+空串→`null` 折叠，**不含任何一条安星公式**。
+
+### 4.1 iztro 2.6.2 API 备忘（脚本已用到的部分）
 
 ```js
 const { astro } = require('iztro');
@@ -110,6 +127,7 @@ const { astro } = require('iztro');
 astro.astrolabeBySolarDate('1990-6-7', 4, '男', true, 'zh-CN')
 //   参数: 公历日期, 时辰序号0-12, 性别, 是否修正闰月, 语言
 astro.astrolabeByLunarDate('1998-1-2', 6, '男', false, true, 'zh-CN')
+//                          农历日期, 时辰, 性别, 是否闰月, 是否修正闰月, 语言
 
 // astrolabe 常用字段
 a.solarDate a.lunarDate a.chineseDate          // 四柱（农历年口径）
@@ -135,10 +153,55 @@ h.yearly.…  h.monthly.…  h.daily.…  h.hourly.…
 // ⚠️ a.palace(index) 的索引口径易错，建议一律用 a.palaces.find(p => p.earthlyBranch === b)
 ```
 
+### 4.2 x-iztro 0.6.1 API 备忘（python 路用到的部分）
+
+```python
+from x_iztro import astro
+
+a = astro.Astro()                       # 工厂
+a.by_solar('1990-6-7', 4, 'male',       # ⚠️ 性别是 'male'/'female'，不是「男/女」
+           fix_leap=True, language='zh-CN')
+a.by_lunar('1998-1-2', 6, 'male',
+           is_leap_month=False,         # 与引擎契约一致：闰月一律 False
+           fix_leap=True, language='zh-CN')
+
+a.solar_date a.lunar_date a.chinese_date a.five_elements_class
+a.soul a.body a.sign a.zodiac a.time a.time_range a.time_index
+a.earthly_branch_of_soul_palace / a.earthly_branch_of_body_palace
+a.palaces                       # 列表，非函数
+a.decadal_list()                # DecadalListItem 列表（12 条）
+a.to_json()                     # 与 iztro 逐键逐值一致的 JSON 字符串
+
+p = a.palaces[0]
+p.name p.heavenly_stem p.earthly_branch p.is_body_palace
+p.major_stars p.minor_stars p.adjective_stars   # Star 对象：.name .brightness .mutagen .scope
+p.changsheng12 p.boshi12 p.suiqian12 p.jiangqian12
+p.decadal.range                 # (5, 14) 元组
+
+h = a.horoscope(target_date='2026-6-15', target_time_index=4)   # ⚠️ 两个参数都要给，
+                                                                #   省略会取「此刻」
+h.age.nominal_age h.age.heavenly_stem h.age.earthly_branch
+h.decadal.heavenly_stem h.decadal.earthly_branch h.decadal.mutagen h.decadal.palace_names h.decadal.stars
+h.yearly.…  h.monthly.…  h.daily.…  h.hourly.…
+# ⚠️ 星的 brightness / mutagen 缺省是**空串**不是 None；映射时要折叠成 null 才与 node 路一致
+
+# ⚠️ 没有立春口径四柱（jieqiPillar）：该字段只有 node 路的 lunar-lite 有。
+#    engine_py 一律返回 None，并在 notes 里写明「jieqiPillar 需 node 引擎」。
+```
+
 ---
 
 ## 5. 依赖与信任
 
-- 依赖：`iztro@2.6.2`（npm，MIT），装在本 skill 的 `node_modules/`，**不装全局、不装进工作区**。
-- 脚本全部为本地纯计算，**不联网、不读工作区外文件**（仅 `dump.js --file` 会读你指定的文件）。
-- `ensure-deps.*` 会执行 `npm install`（联网）。首次使用前请知悉；受限网络下会依次尝试默认缓存 → skill 内本地缓存 → 显式代理 `127.0.0.1:7897`。
+- **两条引擎路，任装其一即可排盘**（`auto` 先 python 后 node）：
+  - `x-iztro`（PyPI，MIT）：Python 路，0.6.1 起为 cp310-abi3 wheel（py3.10+ 通用）。
+    自述与 iztro **逐字段一致**，并带 716,314 条 golden cases 的发布前回归。
+  - `iztro@2.6.2`（npm，MIT）：Node 路，装在本 skill 的 `node_modules/`，
+    **不装全局、不装进工作区**。
+- `python scripts/ziwei.py deps` 会**按需给两条路都铺好**：先 `pip install x-iztro`，
+  失败再 `npm install iztro`；最后打印两条路各自的可用状态。
+- 脚本全部为本地纯计算，**不联网、不读工作区外文件**（仅引擎排盘与 `deps` 安装会联网）。
+- `deps` 会执行 `pip install` / `npm install`（联网）。首次使用前请知悉；
+  npm 受限网络下依次尝试默认缓存 → skill 内本地缓存 → 环境代理。
+- 离线校验用 `python scripts/ziwei.py engines --compare N`：两条引擎各排 N 张随机盘
+  **逐字段比对**，不一致数应为 0。这既是回归，也是「两条路可互换」的可执行证明。

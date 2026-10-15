@@ -44,10 +44,12 @@ AI 按 `SKILL.md` 的八步工作流调用本仓库的脚本，最后产出一�
 **能做什么**
 
 - 公历/农历输入、真太阳时校正（给经度）、早晚子时、闰月两派口径
+- **多引擎自动选择**：有什么就用什么 —— `x-iztro`（Python，auto 首选）／`iztro`（Node），产出同一份逐字段契约
 - 十二宫、十四主星、辅佐煞杂曜、庙旺、生年四化、离心/向心自化、三方四正、夹宫、大限/小限/流年岁数表
 - 十七项常见格局的**构成条件判定**（成不成格由 AI 裁断，脚本只回答条件是否满足）
 - 机器自检：十二宫名唯一、十四主星齐备、禄存与羊陀相邻、行向与限序一致
 - 结构化 JSON / 人读树状盘 / Markdown 表格 / 四柱双口径对照
+- 双引擎逐字段比对（`engines --compare N`）：随机盘回归，不一致数应为 0
 - AI 填结构化分析 → 脚本渲染 HTML（内嵌 CSS、十二宫方阵、格局表、逐宫、大限流年、结论与建议、技术留痕折叠区）
 - 三道脚本闸门 + 一道独立审查闸门
 
@@ -68,18 +70,49 @@ AI 按 `SKILL.md` 的八步工作流调用本仓库的脚本，最后产出一�
 
 ## 快速开始
 
-**环境要求**：Python 3.8+ 与 Node.js 18+（Windows / macOS / Linux 均可）。
+**环境要求**：**Python 3.8+，且具备以下之一** —— Node.js 18+（iztro）／`pip install x-iztro`。
+两条排盘引擎路任装其一即可用（Windows / macOS / Linux 均可）。
 
 ```bash
 git clone https://github.com/<你的用户名>/ziwei-doushu-skill.git
 cd ziwei-doushu-skill
 
-# 首次：安装排盘引擎（iztro 2.6.2，装到本目录的 node_modules，不写全局）
+# 首次：按需给两条引擎路都铺好（先 pip install x-iztro，失败再 npm install iztro）
 python scripts/ziwei.py deps
 ```
 
-`deps` 只做一次，之后离线可用。受限网络下会依次尝试默认缓存 → 目录内本地缓存 → 环境代理；
+`deps` 只做一次，之后离线可用。pip 失败会退回 npm（受限网络下依次尝试默认缓存 → 目录内本地缓存 → 环境代理）；
 也可用环境变量覆盖可执行文件：`ZIWEI_NODE` / `ZIWEI_NPM`。
+
+### 多引擎：有什么就用什么
+
+**不替换任何既有路径**：原来的 `iztro`（Node）原样保留，新增 `x-iztro`（Python）作为并列的一条路。
+
+| 路 | 组件 | 形态 | 安装 |
+|---|---|---|---|
+| `python` | `x-iztro` | 同进程调用，无子进程、不依赖 Node | `pip install x-iztro` |
+| `node` | `iztro@2.6.2` | `node engine.js`，stdin/stdout JSON | `python scripts/ziwei.py deps` |
+
+**auto 优先级：先 python，再 node。** 两条都没有时报 `NO_ENGINE` 并给出安装指引。
+
+```bash
+# 探测：哪条可用、版本、auto 会选谁
+python scripts/ziwei.py engines
+
+# 双引擎回归：各排 200 张随机盘（随机日期/时辰/性别，覆盖闰月、早晚子时、六种五行局）
+# 逐字段比对 astrolabe 结构，输出不一致条数与首个差异样例
+python scripts/ziwei.py engines --compare 200
+
+# 指定引擎（auto 之外的显式选择）
+python scripts/ziwei.py chart --date 1990-06-07 --tx 4 --gender 男 --engine python
+python scripts/ziwei.py chart --date 1990-06-07 --tx 4 --gender 男 --engine node
+```
+
+`astrolabe` 的字段结构是**引擎契约**：两条路产出逐字段相同的结构，上层归一化代码对它们一视同仁。
+唯一例外是 `jieqiPillar`（立春口径四柱）——只有 node 路的 lunar-lite 能提供，
+python 路如实返回 `null` 并在 `meta.engineNotes` 写明，**不伪造**；`pillar` 子命令会自动回退到 node 取该字段。
+
+> 注：`node_modules/iztro` 与 `x-iztro` 均遵循各自原始 MIT 许可；本仓库自身许可见 [许可证](#许可证)。
 
 ---
 
@@ -109,6 +142,7 @@ python scripts/ziwei.py pillar --date 2000-04-22 --time 19:30 --lng 116.41 --gen
 | `--time` + `--lng` | 给钟点与出生地经度，脚本做**真太阳时校正**后定时辰（强烈建议） |
 | `--gender` | `男` / `女` |
 | `--year` | 要看流年的公历年份，可多个：`--year 2026,2027` |
+| `--engine` | 排盘引擎：`auto`（默认，先 python 再 node）／`python`（x-iztro）／`node`（iztro） |
 | `--pretty` | JSON 缩进输出 |
 
 > **出生地不是可选项。** 真太阳时校正会实打实挪动时辰——同一钟点在不同经度可能差一到两个时辰，
@@ -167,10 +201,10 @@ references/
   report-schema.md            analysis JSON 字段契约、字数下限、语言闸门禁用词
   report-template.md          报告语气规范、伦理模板、交稿自检清单
   review-gate.md              独立审查的规则与可直接复制的提示词
-  glossary.md                 排盘公式、术语表、iztro API 备忘、依赖信任说明
+  glossary.md                 排盘公式、术语表、iztro / x-iztro API 备忘、依赖信任说明
 scripts/
-  ziwei.py                    统一 CLI：deps / chart / tree / md / pillar
-  engine.js                   iztro 计算引擎（Python 经 stdin/stdout 调用）
+  ziwei.py                    统一 CLI：deps / engines / chart / tree / md / pillar
+  engine.js                   iztro 计算引擎（node 路，Python 经 stdin/stdout 调用）
   prepare_template.py         由 chart 生成分析工作单
   generate_report.py          AI 产 JSON → 渲染 HTML + --validate 闸门
   check_report_language.py    成品可读区语言验收（--self-test 自带夹具）
@@ -179,6 +213,8 @@ scripts/
   ziwei_doushu/
     astro.py                  真太阳时、干支纳音、四化、自化、关系、格局条件、岁数表
     chart.py                  编排层 + 跨平台依赖与进程管理
+    engines.py                多引擎调度层：detect() 探测 + run() 统一调用（auto/python/node）
+    engine_py.py              x-iztro 计算引擎（python 路，映射成与 engine.js 逐字段相同的结构）
     render.py                 树状盘面与 Markdown 渲染
 examples/
   sample-chart.json           示例盘面数据（教学自拟 1990-06-07 辰时 男）
@@ -238,7 +274,9 @@ docs/
 只要过得了三道脚本闸门，就能渲染出报告。
 
 **Q：`deps` 装了什么？**
-只装一个 `iztro@2.6.2`（MIT）到本目录的 `node_modules/`，不写全局、不改你的其它项目。
+按需给两条路都铺好：先 `pip install x-iztro`（Python 路，MIT），失败再
+`npm install iztro@2.6.2`（Node 路，MIT）到本目录的 `node_modules/`——不写全局、不改你的其它项目。
+两条装好时 `auto` 走 python（同进程、更快、不依赖 Node）。
 
 **Q：为什么报告是 HTML 而不是直接输出文字？**
 版式稳定、可校验（语言闸门与结构审查都作用在成品上）、可归档，也便于把「技术留痕」折叠起来给复核者看。
@@ -289,8 +327,15 @@ Output is an HTML report that must pass four gates: field/analysis validation, r
 a structural auditor that cross-checks every claim against the chart data, and an independent review pass
 that only judges the interpretive layer.
 
-**Requirements**: Python 3.8+, Node.js 18+. Run `python scripts/ziwei.py deps` once, then see
-[快速开始](#快速开始) for usage. The sample chart is a synthetic teaching example, not a real person.
+**Engine selection**: two interchangeable chart-casting engines, no path removed — `x-iztro` (Python,
+preferred by `auto`, in-process, no Node needed) and `iztro` 2.6.2 (Node, the original path).
+Both emit a byte-for-byte identical `astrolabe` contract; run `python scripts/ziwei.py engines --compare 200`
+to assert it over 200 random charts. The single field only the Node path can supply is `jieqiPillar`
+(solar-term four pillars) — the Python path returns `null` and says so in `meta.engineNotes`.
+
+**Requirements**: Python 3.8+, plus either Node.js 18+ (iztro) or `pip install x-iztro`.
+Run `python scripts/ziwei.py deps` once, then see [快速开始](#快速开始) for usage.
+The sample chart is a synthetic teaching example, not a real person.
 
 Conventions differ between schools; every convention used here is declared explicitly in the report
 (see [排盘口径声明](#排盘口径声明重要)). This project is for study and tooling — it does not diagnose,

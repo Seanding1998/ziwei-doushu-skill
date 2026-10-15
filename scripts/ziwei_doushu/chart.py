@@ -3,7 +3,8 @@ ziwei_doushu/chart.py — 排盘编排层（跨平台）
 
 设计：
   · Python 负责一切可计算的东西（真太阳时、四化、自化、三方四正、夹宫、岁数表、自检）
-  · Node/iztro 只当一个「函数」调用，通过 stdin/stdout 传 JSON
+  · 排盘引擎只当一个「函数」调用：优先 x-iztro（同进程），退回 Node/iztro（stdin/stdout JSON）
+    —— 引擎的选择与调用全部收敛在 engines.py，本文件不关心走的是哪条路
   · 不依赖 bash / PowerShell / .cmd —— 用 shutil.which + argv 列表，Windows/macOS/Linux 通用
 """
 
@@ -19,7 +20,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from . import astro
+from . import astro, engine_py, engines
 
 SKILL_ROOT = Path(__file__).resolve().parents[2]
 ENGINE_JS = Path(__file__).resolve().parents[1] / "engine.js"
@@ -133,6 +134,50 @@ def iztro_version() -> str | None:
         return None
 
 
+def x_iztro_version() -> str | None:
+    """x-iztro（Python 路）的版本；未安装返回 None。"""
+    from . import engine_py
+
+    return engine_py.module_version()
+
+
+def ensure_python_deps(quiet: bool = False, force: bool = False) -> dict[str, Any]:
+    """
+    把 `x-iztro` 装进当前 Python 环境（pip）。已装且未 --force 时直接返回。
+
+    ⚠️ 部分沙箱里 `pip install` 会因 wheel 元数据写权限报错；这种情况下 pip 的报错原样带出，
+    不静默吞掉——用户可改用本地 wheel 解包（`pip install --no-deps --target <dir> x-iztro`）。
+    """
+    have = x_iztro_version()
+    if have and not force:
+        return {"ok": True, "installed": False, "version": have, "via": "已在环境内"}
+
+    pkg = "x-iztro"
+    attempts: list[tuple[str, list[str]]] = [
+        ("PyPI", [sys.executable, "-m", "pip", "install", pkg, "--no-input", "--disable-pip-version-check"]),
+        ("PyPI（--user）",
+         [sys.executable, "-m", "pip", "install", pkg, "--user", "--no-input", "--disable-pip-version-check"]),
+    ]
+    last_err = ""
+    for label, cmd in attempts:
+        try:
+            r = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+        except Exception as e:  # noqa: BLE001
+            last_err = f"{type(e).__name__}: {e}"
+            continue
+        if r.returncode == 0 and x_iztro_version():
+            return {"ok": True, "installed": True, "version": x_iztro_version(), "via": label}
+        last_err = (r.stderr or r.stdout or "").strip()[-1500:]
+        if not quiet:
+            print(f"[ziwei] pip({label}) 安装 x-iztro 未成功，尝试下一种方式…", file=sys.stderr)
+
+    return {"ok": False, "installed": False, "version": None, "via": None,
+            "error": "X_IZTRO_INSTALL_FAILED",
+            "message": f"x-iztro 安装失败（离线或受限权限）。可手动执行："
+                       f"{sys.executable} -m pip install x-iztro",
+            "stderr": last_err}
+
+
 def ensure_deps(force: bool = False, quiet: bool = False) -> dict[str, Any]:
     """把 iztro 装进 skill 目录。不装全局、不动工作区。"""
     have = iztro_version()
@@ -157,7 +202,9 @@ def ensure_deps(force: bool = False, quiet: bool = False) -> dict[str, Any]:
             encoding="utf-8",
         )
 
-    base = npm + ["install", f"iztro@{IZTRO_PIN}", "--no-audit", "--no-fund",
+    # --no-save：不要动仓库里钉死版本的 package.json / package-lock.json。
+    # 否则 npm 会把 "iztro": "2.6.2" 改写成 "^2.6.2"（把「钉版本」这条约定悄悄改掉）。
+    base = npm + ["install", f"iztro@{IZTRO_PIN}", "--no-audit", "--no-fund", "--no-save",
                   "--prefix", str(SKILL_ROOT)]
 
     attempts: list[tuple[str, list[str]]] = [
@@ -191,45 +238,70 @@ def ensure_deps(force: bool = False, quiet: bool = False) -> dict[str, Any]:
     )
 
 
+def engine_status() -> list[dict[str, Any]]:
+    """两条引擎路各自的可用性与版本（给 deps / engines 收尾打印）。"""
+    return engines.detect()
+
+
+def ensure_deps_all(force: bool = False, quiet: bool = False) -> dict[str, Any]:
+    """
+    **按需给两条路都铺好**：先试 `pip install x-iztro`，再试 `npm install iztro`。
+
+    两条路只需成功一条即可排盘（有什么就用什么）。两条都装好则 auto 会走 python。
+    原有 npm 缓存/代理回退逻辑原样保留（见 ensure_deps）。
+    只有**两条都不可用**才算失败。
+    """
+    py: dict[str, Any]
+    node: dict[str, Any]
+
+    if not force and x_iztro_version():
+        py = {"ok": True, "installed": False, "version": x_iztro_version(), "via": "已在环境内"}
+    else:
+        py = ensure_python_deps(quiet=quiet, force=force)
+
+    if not force and iztro_version():
+        node = {"ok": True, "installed": False, "version": iztro_version(),
+                "path": str(NODE_MODULES)}
+    else:
+        try:
+            node = dict(ensure_deps(force=force, quiet=quiet), ok=True)
+        except Exception as e:  # noqa: BLE001 — node 装不上不影响 python 那条路
+            node = {"ok": False, "installed": False, "version": None,
+                    "error": getattr(e, "code", type(e).__name__),
+                    "message": getattr(e, "message", str(e))}
+
+    status = engine_status()
+    usable = [e for e in status if e["available"]]
+    return {
+        "ok": bool(usable),
+        "python": py,
+        "node": node,
+        "engines": status,
+        "auto": (engines.active_name("auto") or None),
+        "message": (None if usable else engines.INSTALL_HINT),
+    }
+
+
 # ---------- 引擎调用 ----------
 def run_engine(date: str, time_index: int, gender: str, calendar: str = "solar",
                years: list[int] | None = None, fix_leap: bool = True,
-               timeout: int = 120) -> dict[str, Any]:
-    node = find_node()
-    if not node:
-        raise ZiweiError("NODE_NOT_FOUND",
-                         "未找到 node。请安装 Node.js 18+，或设置环境变量 ZIWEI_NODE。")
-    if not ENGINE_JS.exists():
-        raise ZiweiError("ENGINE_MISSING", f"引擎文件缺失：{ENGINE_JS}")
-    if iztro_version() is None:
-        raise ZiweiError("IZTRO_NOT_FOUND", "未安装 iztro。请先运行：python ziwei.py deps")
+               timeout: int = 120, engine: str = "auto") -> dict[str, Any]:
+    """
+    排一张盘。engine 可选 auto / python / node，语义见 engines.run()。
 
+    返回 {ok:true, engine, version, astrolabe:{...}}（可能带 notes[]）；
+    失败抛 ZiweiError，调用方不必分辨是引擎返回失败还是引擎不可用。
+    """
     req = {
         "date": date, "calendar": calendar, "timeIndex": int(time_index),
         "gender": gender, "years": years or [], "fixLeap": bool(fix_leap),
     }
-    try:
-        r = subprocess.run(
-            [node, str(ENGINE_JS)],
-            input=json.dumps(req),
-            capture_output=True, text=True, encoding="utf-8",
-            timeout=timeout, env=_env_with_node_path(), cwd=str(SKILL_ROOT),
-        )
-    except subprocess.TimeoutExpired:
-        raise ZiweiError("ENGINE_TIMEOUT", f"引擎调用超时（{timeout}s）") from None
-
-    out = (r.stdout or "").strip()
-    if not out:
-        raise ZiweiError("ENGINE_NO_OUTPUT",
-                         "引擎没有输出。", stderr=(r.stderr or "")[-1200:], returncode=r.returncode)
-    try:
-        data = json.loads(out)
-    except json.JSONDecodeError as e:
-        raise ZiweiError("ENGINE_BAD_JSON", f"引擎输出无法解析：{e}",
-                         stdout=out[:800], stderr=(r.stderr or "")[-800:]) from None
+    data = engines.run(req, engine=engine, timeout=timeout)
     if not data.get("ok"):
         raise ZiweiError(data.get("error", "ENGINE_ERROR"),
-                         data.get("message", "引擎返回失败"), detail=data.get("detail"))
+                         data.get("message", "引擎返回失败"),
+                         detail=data.get("detail"), hint=data.get("hint"),
+                         stderr=(data.get("stderr") or "")[-1200:] or None)
     return data
 
 
@@ -273,8 +345,9 @@ def build_chart(
     calendar: str = "solar",
     years: list[int] | None = None,
     fix_leap: bool = True,
+    engine: str = "auto",
 ) -> dict[str, Any]:
-    """排出完整命盘 + 大限 + 流年，附全部确定性派生数据。"""
+    """排出完整命盘 + 大限 + 流年，附全部确定性派生数据。engine: auto/python/node。"""
     if gender not in ("男", "女"):
         raise ZiweiError("BAD_GENDER", "性别只能是 男 或 女")
 
@@ -308,12 +381,14 @@ def build_chart(
         tst = astro.apparent_solar_time(birth, hh, mm, longitude)
     warnings.extend(tst["warnings"])
 
-    # 2) 引擎排盘（晚子时 iztro 以日期为准；星盘本身在测试中与文墨天机一致）
+    # 2) 引擎排盘（auto：x-iztro 优先，退回 iztro；晚子时以日期为准）
     eng = run_engine(
         date=birth.isoformat(), time_index=tst["time_index"], gender=gender,
         calendar=calendar, years=years or [], fix_leap=fix_leap,
+        engine=engine,
     )
     a = eng["astrolabe"]
+    engine_notes = list(eng.get("notes") or [])
 
     # 3) 派生数据（全部 Python 算，不靠 AI）
     chinese = a["chineseDate"].split()
@@ -482,6 +557,11 @@ def build_chart(
         "meta": {
             "engine": eng.get("engine", "iztro"),
             "engineVersion": version,
+            # 实际走的是哪条路（auto/python/node → python 路为 x-iztro）。报告口径声明要用。
+            "engineKind": engine_py.ENGINE_NAME if eng.get("engine") == engine_py.ENGINE_NAME else "iztro",
+            "engineRequested": engine,
+            # 引擎自身的提示（如「jieqiPillar 需 node 引擎」）——不是盘面告警，单列一处。
+            "engineNotes": engine_notes,
             # 生成时刻：报告抬头要用它印「报告生成：…」。
             # 旧版让渲染器去读合并包的 `meta.date`，而 `--chart/--analysis` 这条路
             # 传进去的 `meta` 是空的，于是抬头日期恒为空（第七轮脚本疑似失效 2）。

@@ -39,8 +39,27 @@ description: 紫微斗数排盘、看盘与出分析报告。当用户给出出�
 python scripts/ziwei.py deps
 ```
 
-安装 `iztro@2.6.2` 到本 skill 的 `node_modules/`，**不装全局、不写入用户工作区**。
-若失败，输出会给出可手动执行的 npm 命令；也可用环境变量覆盖：`ZIWEI_NODE` / `ZIWEI_NPM`。
+**两条排盘引擎路，任装其一即可用**（`有什么就用什么`，互不替换）：
+
+| 路 | 组件 | 安装 |
+|---|---|---|
+| `python`（auto 首选，同进程、不依赖 Node） | `x-iztro` | `pip install x-iztro` |
+| `node`（原路，保留） | `iztro@2.6.2` | `npm install iztro@2.6.2 --prefix <skill 目录>` |
+
+`deps` 会**按需给两条路都铺好**：先试 `pip install x-iztro`，失败再试 `npm install iztro`
+（npm 缓存/代理回退逻辑不变）；最后打印两条路各自的可用状态与 auto 会选哪条。
+两条都不可用时才报失败，并给出安装指引。
+
+先探一次最省心：
+
+```bash
+python scripts/ziwei.py engines              # 哪条可用、版本、auto 选谁
+python scripts/ziwei.py engines --compare 200 # 两条引擎各排 200 张随机盘，逐字段比对（不一致应为 0）
+```
+
+- 引擎选择：全局参数 **`--engine auto|python|node`**，各子命令都接受。默认 `auto`＝先 `python`（`x-iztro`）再 `node`（`iztro`）。
+- 也可用环境变量覆盖可执行文件：`ZIWEI_NODE` / `ZIWEI_NPM`。
+- ⚠️ **`jieqiPillar`（立春口径四柱）只有 node 路有**（iztro 的历法依赖 lunar-lite）。python 路为 `null` 并在 `meta.engineNotes` 写明；`pillar` 命令会自动回退到 node 取该字段，node 不可用时如实报错，不伪造。
 
 ### 第 2 步 · 排盘（必须执行）
 
@@ -55,8 +74,10 @@ python scripts/ziwei.py chart --date 1990-06-07 --tx 4 --gender 男 --year 2026
 python scripts/ziwei.py md    --date 1990-06-07 --tx 4 --gender 男
 ```
 
-其他参数：`--lunar`（把 `--date` 当农历）、`--tx`（直接给时辰序号）、`--year 2026,2027`（多个流年）、`--pretty`。
+其他参数：`--lunar`（把 `--date` 当农历）、`--tx`（直接给时辰序号）、`--year 2026,2027`（多个流年）、`--pretty`、
+`--engine auto|python|node`（选排盘引擎）。
 日期支持 `1990-06-07` / `1990/6/7` / `1990年6月7日`。
+`meta.engine` / `meta.engineVersion` 记录本盘实际用的引擎，报告口径声明里要照它写。
 
 **先读 `meta.warnings`**：它包含定盘风险（是否靠近时辰交界、是否跨日、自检是否通过）。**这些警告必须转述给用户。**
 
@@ -346,12 +367,15 @@ python scripts/check_report_language.py --self-test
 ## 环境要求与可移植性
 
 - **Python 3.8+**（编排与全部派生计算）
-- **Node.js 18+**（仅作为 iztro 计算引擎）
+- **且具备以下之一**（两条排盘引擎路，任装其一即可）：
+  - **Node.js 18+**（node 路：`iztro@2.6.2`，由 `ziwei.py deps` 装到本 skill 的 `node_modules/`）
+  - **`pip install x-iztro`**（python 路：同进程调用，不需要 Node）
+  两条都装时 `auto` 走 python。唯一只能靠 node 的字段是 `jieqiPillar`（立春口径四柱）。
 - **跨平台**：Windows / macOS / Linux 均可用。
   - 脚本**不依赖 bash 或 PowerShell**：用 `shutil.which` 定位可执行文件，Windows 上自动识别 `npm.cmd`（直接 spawn 会报 WinError 193，已处理）。
   - 控制台编码统一转 UTF-8，Windows GBK 终端不会因中文与制表符崩溃。
   - 路径全部用 `pathlib`，Node 兜底位置按平台条件生成（`os.name`），无硬编码跨平台路径。
-- 首次 `deps` 需联网（npm）。受限网络下自动依次尝试：默认缓存 → skill 内本地缓存 → 环境代理。
+- 首次 `deps` 需联网（pip / npm）。npm 受限网络下自动依次尝试：默认缓存 → skill 内本地缓存 → 环境代理。
 - 可用环境变量覆盖可执行文件：`ZIWEI_NODE` / `ZIWEI_NPM`。
 - 安装位置：工作区 `<workspace>/skills/ziwei-doushu/`（合法发现路径，可直接用）；要全局可用则复制到 `~/.agents/skills/ziwei-doushu/`（见 `README.md`）。
 
