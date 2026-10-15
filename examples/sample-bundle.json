@@ -1,0 +1,5288 @@
+{
+  "meta": {
+    "name": "示例命盘（教学自拟 1990-06-07 辰时 男）",
+    "date": "2026-10-15 21:49"
+  },
+  "chart": {
+    "ok": true,
+    "meta": {
+      "engine": "iztro",
+      "engineVersion": "2.6.2",
+      "generatedAt": "2026-10-15 21:49",
+      "conventions": {
+        "年柱口径": "农历年（正月初一分界）——紫微斗数取此，用于生年四化",
+        "五行局": "由命宫宫干纳音定",
+        "大限起法": "起运虚岁=五行局数；行向按「阳男阴女顺行／阴男阳女逆行」定（现代软件通行口径；古籍卷二另有异说）。本盘行向见下表各行。",
+        "四化表": "通行本（戊庚壬的「科」与中州派不同）",
+        "小限口径": "自生年支所属三合局的起宫起算，男顺女逆，一年一宫；与「小限自命宫起」之说不同，属通行软件口径。本盘逐年小限落宫见第十节。",
+        "身宫口径": "身宫取本命命宫的对宫体系之外的另一套取法，本盘落在财帛宫；各派对身宫是否另立作用时点说法不一，本报告的用法是只在具体大限与流年上引动它。",
+        "提醒": "八字若按立春分界，年柱可能不同，四化随之改变；两套体系属不同口径，各自的结论只在各自体系内成立"
+      },
+      "warnings": [
+        "直接指定了时辰序号，未做真太阳时校正。"
+      ]
+    },
+    "input": {
+      "date": "1990-06-07",
+      "calendar": "solar",
+      "gender": "男",
+      "time": null,
+      "timeIndex": 4,
+      "timeName": "辰",
+      "longitude": null
+    },
+    "solarTime": {
+      "corrected": false,
+      "clock": null,
+      "apparent": null,
+      "delta_minutes": 0.0,
+      "equation_of_time": null,
+      "longitude_term": null,
+      "day_shift": 0,
+      "time_index": 4,
+      "time_name": "辰",
+      "minutes_from_hour_boundary": null,
+      "nearest_hour_boundary": null,
+      "nearest_boundary_minutes": null,
+      "boundary_shift_direction": null,
+      "clock_minutes_from_hour_boundary": null,
+      "clock_nearest_hour_boundary": null,
+      "clock_boundary_shift_direction": null,
+      "warnings": [
+        "直接指定了时辰序号，未做真太阳时校正。"
+      ]
+    },
+    "basic": {
+      "solarDate": "1990-06-07",
+      "lunarDate": "一九九〇年五月十五",
+      "chineseDate": "庚午 壬午 癸卯 丙辰",
+      "fiveElementsClass": "土五局",
+      "soul": "禄存",
+      "body": "火星",
+      "soulPalaceBranch": "寅",
+      "bodyPalaceBranch": "戌",
+      "sign": "双子座",
+      "zodiac": "马",
+      "time": "辰时",
+      "timeRange": "07:00~09:00",
+      "yearStem": "庚",
+      "yearBranch": "午",
+      "sameSoulBody": false,
+      "laiYinPalace": {
+        "branch": "辰",
+        "palace": "福德"
+      }
+    },
+    "palaces": [
+      {
+        "name": "命宫",
+        "stem": "戊",
+        "branch": "寅",
+        "isBodyPalace": false,
+        "major": [
+          {
+            "name": "贪狼",
+            "brightness": "平",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "minor": [],
+        "adjective": [
+          "天厨",
+          "蜚廉"
+        ],
+        "spirits": {
+          "suiqian": "白虎",
+          "jiangqian": "指背",
+          "changsheng": "病",
+          "boshi": "飞廉"
+        },
+        "decadalRange": [
+          5,
+          14
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          11,
+          23,
+          35,
+          47,
+          59,
+          71,
+          83,
+          95,
+          107,
+          119
+        ],
+        "yearAges": [
+          9,
+          21,
+          33,
+          45,
+          57,
+          69,
+          81,
+          93,
+          105,
+          117
+        ],
+        "isSoulPalace": true
+      },
+      {
+        "name": "父母",
+        "stem": "己",
+        "branch": "卯",
+        "isBodyPalace": false,
+        "major": [
+          {
+            "name": "天机",
+            "brightness": "旺",
+            "mutagen": null,
+            "scope": "origin"
+          },
+          {
+            "name": "巨门",
+            "brightness": "庙",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "minor": [
+          {
+            "name": "地劫",
+            "brightness": null,
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "adjective": [
+          "天喜",
+          "咸池",
+          "天德"
+        ],
+        "spirits": {
+          "suiqian": "天德",
+          "jiangqian": "咸池",
+          "changsheng": "死",
+          "boshi": "喜神"
+        },
+        "decadalRange": [
+          15,
+          24
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          12,
+          24,
+          36,
+          48,
+          60,
+          72,
+          84,
+          96,
+          108,
+          120
+        ],
+        "yearAges": [
+          10,
+          22,
+          34,
+          46,
+          58,
+          70,
+          82,
+          94,
+          106,
+          118
+        ],
+        "isSoulPalace": false
+      },
+      {
+        "name": "福德",
+        "stem": "庚",
+        "branch": "辰",
+        "isBodyPalace": false,
+        "major": [
+          {
+            "name": "紫微",
+            "brightness": "得",
+            "mutagen": null,
+            "scope": "origin"
+          },
+          {
+            "name": "天相",
+            "brightness": "得",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "minor": [],
+        "adjective": [
+          "八座",
+          "凤阁",
+          "天寿",
+          "寡宿",
+          "年解"
+        ],
+        "spirits": {
+          "suiqian": "吊客",
+          "jiangqian": "月煞",
+          "changsheng": "墓",
+          "boshi": "病符"
+        },
+        "decadalRange": [
+          25,
+          34
+        ],
+        "isLaiYin": true,
+        "soulAges": [
+          1,
+          13,
+          25,
+          37,
+          49,
+          61,
+          73,
+          85,
+          97,
+          109
+        ],
+        "yearAges": [
+          11,
+          23,
+          35,
+          47,
+          59,
+          71,
+          83,
+          95,
+          107,
+          119
+        ],
+        "isSoulPalace": false
+      },
+      {
+        "name": "田宅",
+        "stem": "辛",
+        "branch": "巳",
+        "isBodyPalace": false,
+        "major": [
+          {
+            "name": "天梁",
+            "brightness": "陷",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "minor": [
+          {
+            "name": "火星",
+            "brightness": "得",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "adjective": [
+          "天姚",
+          "天巫",
+          "破碎"
+        ],
+        "spirits": {
+          "suiqian": "病符",
+          "jiangqian": "亡神",
+          "changsheng": "绝",
+          "boshi": "大耗"
+        },
+        "decadalRange": [
+          35,
+          44
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          2,
+          14,
+          26,
+          38,
+          50,
+          62,
+          74,
+          86,
+          98,
+          110
+        ],
+        "yearAges": [
+          12,
+          24,
+          36,
+          48,
+          60,
+          72,
+          84,
+          96,
+          108,
+          120
+        ],
+        "isSoulPalace": false
+      },
+      {
+        "name": "官禄",
+        "stem": "壬",
+        "branch": "午",
+        "isBodyPalace": false,
+        "major": [
+          {
+            "name": "七杀",
+            "brightness": "旺",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "minor": [
+          {
+            "name": "右弼",
+            "brightness": null,
+            "mutagen": null,
+            "scope": "origin"
+          },
+          {
+            "name": "文昌",
+            "brightness": "陷",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "adjective": [
+          "封诰",
+          "天福",
+          "截路",
+          "阴煞"
+        ],
+        "spirits": {
+          "suiqian": "岁建",
+          "jiangqian": "将星",
+          "changsheng": "胎",
+          "boshi": "伏兵"
+        },
+        "decadalRange": [
+          45,
+          54
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          3,
+          15,
+          27,
+          39,
+          51,
+          63,
+          75,
+          87,
+          99,
+          111
+        ],
+        "yearAges": [
+          1,
+          13,
+          25,
+          37,
+          49,
+          61,
+          73,
+          85,
+          97,
+          109
+        ],
+        "isSoulPalace": false
+      },
+      {
+        "name": "仆役",
+        "stem": "癸",
+        "branch": "未",
+        "isBodyPalace": false,
+        "major": [],
+        "minor": [
+          {
+            "name": "天钺",
+            "brightness": null,
+            "mutagen": null,
+            "scope": "origin"
+          },
+          {
+            "name": "地空",
+            "brightness": null,
+            "mutagen": null,
+            "scope": "origin"
+          },
+          {
+            "name": "铃星",
+            "brightness": "利",
+            "mutagen": null,
+            "scope": "origin"
+          },
+          {
+            "name": "陀罗",
+            "brightness": "庙",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "adjective": [
+          "恩光",
+          "天月",
+          "天空",
+          "空亡",
+          "天伤"
+        ],
+        "spirits": {
+          "suiqian": "晦气",
+          "jiangqian": "攀鞍",
+          "changsheng": "养",
+          "boshi": "官府"
+        },
+        "decadalRange": [
+          55,
+          64
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          4,
+          16,
+          28,
+          40,
+          52,
+          64,
+          76,
+          88,
+          100,
+          112
+        ],
+        "yearAges": [
+          2,
+          14,
+          26,
+          38,
+          50,
+          62,
+          74,
+          86,
+          98,
+          110
+        ],
+        "isSoulPalace": false
+      },
+      {
+        "name": "迁移",
+        "stem": "甲",
+        "branch": "申",
+        "isBodyPalace": false,
+        "major": [
+          {
+            "name": "廉贞",
+            "brightness": "庙",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "minor": [
+          {
+            "name": "左辅",
+            "brightness": null,
+            "mutagen": null,
+            "scope": "origin"
+          },
+          {
+            "name": "文曲",
+            "brightness": "得",
+            "mutagen": null,
+            "scope": "origin"
+          },
+          {
+            "name": "禄存",
+            "brightness": null,
+            "mutagen": null,
+            "scope": "origin"
+          },
+          {
+            "name": "天马",
+            "brightness": null,
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "adjective": [
+          "天才",
+          "孤辰"
+        ],
+        "spirits": {
+          "suiqian": "丧门",
+          "jiangqian": "岁驿",
+          "changsheng": "长生",
+          "boshi": "博士"
+        },
+        "decadalRange": [
+          65,
+          74
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          5,
+          17,
+          29,
+          41,
+          53,
+          65,
+          77,
+          89,
+          101,
+          113
+        ],
+        "yearAges": [
+          3,
+          15,
+          27,
+          39,
+          51,
+          63,
+          75,
+          87,
+          99,
+          111
+        ],
+        "isSoulPalace": false
+      },
+      {
+        "name": "疾厄",
+        "stem": "乙",
+        "branch": "酉",
+        "isBodyPalace": false,
+        "major": [],
+        "minor": [
+          {
+            "name": "擎羊",
+            "brightness": "陷",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "adjective": [
+          "红鸾",
+          "天贵",
+          "天使"
+        ],
+        "spirits": {
+          "suiqian": "贯索",
+          "jiangqian": "息神",
+          "changsheng": "沐浴",
+          "boshi": "力士"
+        },
+        "decadalRange": [
+          75,
+          84
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          6,
+          18,
+          30,
+          42,
+          54,
+          66,
+          78,
+          90,
+          102,
+          114
+        ],
+        "yearAges": [
+          4,
+          16,
+          28,
+          40,
+          52,
+          64,
+          76,
+          88,
+          100,
+          112
+        ],
+        "isSoulPalace": false
+      },
+      {
+        "name": "财帛",
+        "stem": "丙",
+        "branch": "戌",
+        "isBodyPalace": true,
+        "major": [
+          {
+            "name": "破军",
+            "brightness": "旺",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "minor": [],
+        "adjective": [
+          "三台",
+          "龙池",
+          "台辅",
+          "华盖",
+          "旬空"
+        ],
+        "spirits": {
+          "suiqian": "官符",
+          "jiangqian": "华盖",
+          "changsheng": "冠带",
+          "boshi": "青龙"
+        },
+        "decadalRange": [
+          85,
+          94
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          7,
+          19,
+          31,
+          43,
+          55,
+          67,
+          79,
+          91,
+          103,
+          115
+        ],
+        "yearAges": [
+          5,
+          17,
+          29,
+          41,
+          53,
+          65,
+          77,
+          89,
+          101,
+          113
+        ],
+        "isSoulPalace": false
+      },
+      {
+        "name": "子女",
+        "stem": "丁",
+        "branch": "亥",
+        "isBodyPalace": false,
+        "major": [
+          {
+            "name": "天同",
+            "brightness": "庙",
+            "mutagen": "忌",
+            "scope": "origin"
+          }
+        ],
+        "minor": [],
+        "adjective": [
+          "天官",
+          "月德"
+        ],
+        "spirits": {
+          "suiqian": "小耗",
+          "jiangqian": "劫煞",
+          "changsheng": "临官",
+          "boshi": "小耗"
+        },
+        "decadalRange": [
+          95,
+          104
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          8,
+          20,
+          32,
+          44,
+          56,
+          68,
+          80,
+          92,
+          104,
+          116
+        ],
+        "yearAges": [
+          6,
+          18,
+          30,
+          42,
+          54,
+          66,
+          78,
+          90,
+          102,
+          114
+        ],
+        "isSoulPalace": false
+      },
+      {
+        "name": "夫妻",
+        "stem": "戊",
+        "branch": "子",
+        "isBodyPalace": false,
+        "major": [
+          {
+            "name": "武曲",
+            "brightness": "旺",
+            "mutagen": "权",
+            "scope": "origin"
+          },
+          {
+            "name": "天府",
+            "brightness": "庙",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "minor": [],
+        "adjective": [
+          "解神",
+          "天哭",
+          "天虚"
+        ],
+        "spirits": {
+          "suiqian": "大耗",
+          "jiangqian": "灾煞",
+          "changsheng": "帝旺",
+          "boshi": "将军"
+        },
+        "decadalRange": [
+          105,
+          114
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          9,
+          21,
+          33,
+          45,
+          57,
+          69,
+          81,
+          93,
+          105,
+          117
+        ],
+        "yearAges": [
+          7,
+          19,
+          31,
+          43,
+          55,
+          67,
+          79,
+          91,
+          103,
+          115
+        ],
+        "isSoulPalace": false
+      },
+      {
+        "name": "兄弟",
+        "stem": "己",
+        "branch": "丑",
+        "isBodyPalace": false,
+        "major": [
+          {
+            "name": "太阳",
+            "brightness": "不",
+            "mutagen": "禄",
+            "scope": "origin"
+          },
+          {
+            "name": "太阴",
+            "brightness": "庙",
+            "mutagen": "科",
+            "scope": "origin"
+          }
+        ],
+        "minor": [
+          {
+            "name": "天魁",
+            "brightness": null,
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "adjective": [
+          "天刑"
+        ],
+        "spirits": {
+          "suiqian": "龙德",
+          "jiangqian": "天煞",
+          "changsheng": "衰",
+          "boshi": "奏书"
+        },
+        "decadalRange": [
+          115,
+          124
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          10,
+          22,
+          34,
+          46,
+          58,
+          70,
+          82,
+          94,
+          106,
+          118
+        ],
+        "yearAges": [
+          8,
+          20,
+          32,
+          44,
+          56,
+          68,
+          80,
+          92,
+          104,
+          116
+        ],
+        "isSoulPalace": false
+      }
+    ],
+    "birthMutagen": [
+      {
+        "star": "天同",
+        "type": "忌",
+        "branch": "亥",
+        "palace": "子女"
+      },
+      {
+        "star": "武曲",
+        "type": "权",
+        "branch": "子",
+        "palace": "夫妻"
+      },
+      {
+        "star": "太阳",
+        "type": "禄",
+        "branch": "丑",
+        "palace": "兄弟"
+      },
+      {
+        "star": "太阴",
+        "type": "科",
+        "branch": "丑",
+        "palace": "兄弟"
+      }
+    ],
+    "selfMutagen": [
+      {
+        "direction": "离心",
+        "symbol": "↓",
+        "branch": "寅",
+        "palace": "命宫",
+        "from_branch": "寅",
+        "from_stem": "戊",
+        "star": "贪狼",
+        "type": "禄"
+      },
+      {
+        "direction": "向心",
+        "symbol": "↑",
+        "branch": "卯",
+        "palace": "父母",
+        "from_branch": "酉",
+        "from_stem": "乙",
+        "star": "天机",
+        "type": "禄"
+      },
+      {
+        "direction": "向心",
+        "symbol": "↑",
+        "branch": "午",
+        "palace": "官禄",
+        "from_branch": "子",
+        "from_stem": "戊",
+        "star": "右弼",
+        "type": "科"
+      },
+      {
+        "direction": "离心",
+        "symbol": "↓",
+        "branch": "申",
+        "palace": "迁移",
+        "from_branch": "申",
+        "from_stem": "甲",
+        "star": "廉贞",
+        "type": "禄"
+      },
+      {
+        "direction": "离心",
+        "symbol": "↓",
+        "branch": "亥",
+        "palace": "子女",
+        "from_branch": "亥",
+        "from_stem": "丁",
+        "star": "天同",
+        "type": "权"
+      },
+      {
+        "direction": "向心",
+        "symbol": "↑",
+        "branch": "子",
+        "palace": "夫妻",
+        "from_branch": "午",
+        "from_stem": "壬",
+        "star": "武曲",
+        "type": "忌"
+      },
+      {
+        "direction": "向心",
+        "symbol": "↑",
+        "branch": "丑",
+        "palace": "兄弟",
+        "from_branch": "未",
+        "from_stem": "癸",
+        "star": "太阴",
+        "type": "科"
+      }
+    ],
+    "surround": {
+      "self": {
+        "name": "命宫",
+        "stem": "戊",
+        "branch": "寅",
+        "isBodyPalace": false,
+        "major": [
+          {
+            "name": "贪狼",
+            "brightness": "平",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "minor": [],
+        "adjective": [
+          "天厨",
+          "蜚廉"
+        ],
+        "spirits": {
+          "suiqian": "白虎",
+          "jiangqian": "指背",
+          "changsheng": "病",
+          "boshi": "飞廉"
+        },
+        "decadalRange": [
+          5,
+          14
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          11,
+          23,
+          35,
+          47,
+          59,
+          71,
+          83,
+          95,
+          107,
+          119
+        ],
+        "yearAges": [
+          9,
+          21,
+          33,
+          45,
+          57,
+          69,
+          81,
+          93,
+          105,
+          117
+        ],
+        "isSoulPalace": true
+      },
+      "opposite": {
+        "name": "迁移",
+        "stem": "甲",
+        "branch": "申",
+        "isBodyPalace": false,
+        "major": [
+          {
+            "name": "廉贞",
+            "brightness": "庙",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "minor": [
+          {
+            "name": "左辅",
+            "brightness": null,
+            "mutagen": null,
+            "scope": "origin"
+          },
+          {
+            "name": "文曲",
+            "brightness": "得",
+            "mutagen": null,
+            "scope": "origin"
+          },
+          {
+            "name": "禄存",
+            "brightness": null,
+            "mutagen": null,
+            "scope": "origin"
+          },
+          {
+            "name": "天马",
+            "brightness": null,
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "adjective": [
+          "天才",
+          "孤辰"
+        ],
+        "spirits": {
+          "suiqian": "丧门",
+          "jiangqian": "岁驿",
+          "changsheng": "长生",
+          "boshi": "博士"
+        },
+        "decadalRange": [
+          65,
+          74
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          5,
+          17,
+          29,
+          41,
+          53,
+          65,
+          77,
+          89,
+          101,
+          113
+        ],
+        "yearAges": [
+          3,
+          15,
+          27,
+          39,
+          51,
+          63,
+          75,
+          87,
+          99,
+          111
+        ],
+        "isSoulPalace": false
+      },
+      "trine1": {
+        "name": "官禄",
+        "stem": "壬",
+        "branch": "午",
+        "isBodyPalace": false,
+        "major": [
+          {
+            "name": "七杀",
+            "brightness": "旺",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "minor": [
+          {
+            "name": "右弼",
+            "brightness": null,
+            "mutagen": null,
+            "scope": "origin"
+          },
+          {
+            "name": "文昌",
+            "brightness": "陷",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "adjective": [
+          "封诰",
+          "天福",
+          "截路",
+          "阴煞"
+        ],
+        "spirits": {
+          "suiqian": "岁建",
+          "jiangqian": "将星",
+          "changsheng": "胎",
+          "boshi": "伏兵"
+        },
+        "decadalRange": [
+          45,
+          54
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          3,
+          15,
+          27,
+          39,
+          51,
+          63,
+          75,
+          87,
+          99,
+          111
+        ],
+        "yearAges": [
+          1,
+          13,
+          25,
+          37,
+          49,
+          61,
+          73,
+          85,
+          97,
+          109
+        ],
+        "isSoulPalace": false
+      },
+      "trine2": {
+        "name": "财帛",
+        "stem": "丙",
+        "branch": "戌",
+        "isBodyPalace": true,
+        "major": [
+          {
+            "name": "破军",
+            "brightness": "旺",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "minor": [],
+        "adjective": [
+          "三台",
+          "龙池",
+          "台辅",
+          "华盖",
+          "旬空"
+        ],
+        "spirits": {
+          "suiqian": "官符",
+          "jiangqian": "华盖",
+          "changsheng": "冠带",
+          "boshi": "青龙"
+        },
+        "decadalRange": [
+          85,
+          94
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          7,
+          19,
+          31,
+          43,
+          55,
+          67,
+          79,
+          91,
+          103,
+          115
+        ],
+        "yearAges": [
+          5,
+          17,
+          29,
+          41,
+          53,
+          65,
+          77,
+          89,
+          101,
+          113
+        ],
+        "isSoulPalace": false
+      }
+    },
+    "flank": {
+      "left": {
+        "name": "兄弟",
+        "stem": "己",
+        "branch": "丑",
+        "isBodyPalace": false,
+        "major": [
+          {
+            "name": "太阳",
+            "brightness": "不",
+            "mutagen": "禄",
+            "scope": "origin"
+          },
+          {
+            "name": "太阴",
+            "brightness": "庙",
+            "mutagen": "科",
+            "scope": "origin"
+          }
+        ],
+        "minor": [
+          {
+            "name": "天魁",
+            "brightness": null,
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "adjective": [
+          "天刑"
+        ],
+        "spirits": {
+          "suiqian": "龙德",
+          "jiangqian": "天煞",
+          "changsheng": "衰",
+          "boshi": "奏书"
+        },
+        "decadalRange": [
+          115,
+          124
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          10,
+          22,
+          34,
+          46,
+          58,
+          70,
+          82,
+          94,
+          106,
+          118
+        ],
+        "yearAges": [
+          8,
+          20,
+          32,
+          44,
+          56,
+          68,
+          80,
+          92,
+          104,
+          116
+        ],
+        "isSoulPalace": false
+      },
+      "right": {
+        "name": "父母",
+        "stem": "己",
+        "branch": "卯",
+        "isBodyPalace": false,
+        "major": [
+          {
+            "name": "天机",
+            "brightness": "旺",
+            "mutagen": null,
+            "scope": "origin"
+          },
+          {
+            "name": "巨门",
+            "brightness": "庙",
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "minor": [
+          {
+            "name": "地劫",
+            "brightness": null,
+            "mutagen": null,
+            "scope": "origin"
+          }
+        ],
+        "adjective": [
+          "天喜",
+          "咸池",
+          "天德"
+        ],
+        "spirits": {
+          "suiqian": "天德",
+          "jiangqian": "咸池",
+          "changsheng": "死",
+          "boshi": "喜神"
+        },
+        "decadalRange": [
+          15,
+          24
+        ],
+        "isLaiYin": false,
+        "soulAges": [
+          12,
+          24,
+          36,
+          48,
+          60,
+          72,
+          84,
+          96,
+          108,
+          120
+        ],
+        "yearAges": [
+          10,
+          22,
+          34,
+          46,
+          58,
+          70,
+          82,
+          94,
+          106,
+          118
+        ],
+        "isSoulPalace": false
+      }
+    },
+    "palaceRelations": {
+      "寅": {
+        "branch": "寅",
+        "palace": "命宫",
+        "opposite": {
+          "branch": "申",
+          "palace": "迁移",
+          "stem": "甲"
+        },
+        "trine": [
+          {
+            "branch": "午",
+            "palace": "官禄",
+            "stem": "壬"
+          },
+          {
+            "branch": "戌",
+            "palace": "财帛",
+            "stem": "丙"
+          }
+        ],
+        "left": {
+          "branch": "丑",
+          "palace": "兄弟",
+          "stem": "己"
+        },
+        "right": {
+          "branch": "卯",
+          "palace": "父母",
+          "stem": "己"
+        },
+        "surroundBranches": [
+          "寅",
+          "申",
+          "午",
+          "戌"
+        ]
+      },
+      "卯": {
+        "branch": "卯",
+        "palace": "父母",
+        "opposite": {
+          "branch": "酉",
+          "palace": "疾厄",
+          "stem": "乙"
+        },
+        "trine": [
+          {
+            "branch": "未",
+            "palace": "仆役",
+            "stem": "癸"
+          },
+          {
+            "branch": "亥",
+            "palace": "子女",
+            "stem": "丁"
+          }
+        ],
+        "left": {
+          "branch": "寅",
+          "palace": "命宫",
+          "stem": "戊"
+        },
+        "right": {
+          "branch": "辰",
+          "palace": "福德",
+          "stem": "庚"
+        },
+        "surroundBranches": [
+          "卯",
+          "酉",
+          "未",
+          "亥"
+        ]
+      },
+      "辰": {
+        "branch": "辰",
+        "palace": "福德",
+        "opposite": {
+          "branch": "戌",
+          "palace": "财帛",
+          "stem": "丙"
+        },
+        "trine": [
+          {
+            "branch": "申",
+            "palace": "迁移",
+            "stem": "甲"
+          },
+          {
+            "branch": "子",
+            "palace": "夫妻",
+            "stem": "戊"
+          }
+        ],
+        "left": {
+          "branch": "卯",
+          "palace": "父母",
+          "stem": "己"
+        },
+        "right": {
+          "branch": "巳",
+          "palace": "田宅",
+          "stem": "辛"
+        },
+        "surroundBranches": [
+          "辰",
+          "戌",
+          "申",
+          "子"
+        ]
+      },
+      "巳": {
+        "branch": "巳",
+        "palace": "田宅",
+        "opposite": {
+          "branch": "亥",
+          "palace": "子女",
+          "stem": "丁"
+        },
+        "trine": [
+          {
+            "branch": "酉",
+            "palace": "疾厄",
+            "stem": "乙"
+          },
+          {
+            "branch": "丑",
+            "palace": "兄弟",
+            "stem": "己"
+          }
+        ],
+        "left": {
+          "branch": "辰",
+          "palace": "福德",
+          "stem": "庚"
+        },
+        "right": {
+          "branch": "午",
+          "palace": "官禄",
+          "stem": "壬"
+        },
+        "surroundBranches": [
+          "巳",
+          "亥",
+          "酉",
+          "丑"
+        ]
+      },
+      "午": {
+        "branch": "午",
+        "palace": "官禄",
+        "opposite": {
+          "branch": "子",
+          "palace": "夫妻",
+          "stem": "戊"
+        },
+        "trine": [
+          {
+            "branch": "戌",
+            "palace": "财帛",
+            "stem": "丙"
+          },
+          {
+            "branch": "寅",
+            "palace": "命宫",
+            "stem": "戊"
+          }
+        ],
+        "left": {
+          "branch": "巳",
+          "palace": "田宅",
+          "stem": "辛"
+        },
+        "right": {
+          "branch": "未",
+          "palace": "仆役",
+          "stem": "癸"
+        },
+        "surroundBranches": [
+          "午",
+          "子",
+          "戌",
+          "寅"
+        ]
+      },
+      "未": {
+        "branch": "未",
+        "palace": "仆役",
+        "opposite": {
+          "branch": "丑",
+          "palace": "兄弟",
+          "stem": "己"
+        },
+        "trine": [
+          {
+            "branch": "亥",
+            "palace": "子女",
+            "stem": "丁"
+          },
+          {
+            "branch": "卯",
+            "palace": "父母",
+            "stem": "己"
+          }
+        ],
+        "left": {
+          "branch": "午",
+          "palace": "官禄",
+          "stem": "壬"
+        },
+        "right": {
+          "branch": "申",
+          "palace": "迁移",
+          "stem": "甲"
+        },
+        "surroundBranches": [
+          "未",
+          "丑",
+          "亥",
+          "卯"
+        ]
+      },
+      "申": {
+        "branch": "申",
+        "palace": "迁移",
+        "opposite": {
+          "branch": "寅",
+          "palace": "命宫",
+          "stem": "戊"
+        },
+        "trine": [
+          {
+            "branch": "子",
+            "palace": "夫妻",
+            "stem": "戊"
+          },
+          {
+            "branch": "辰",
+            "palace": "福德",
+            "stem": "庚"
+          }
+        ],
+        "left": {
+          "branch": "未",
+          "palace": "仆役",
+          "stem": "癸"
+        },
+        "right": {
+          "branch": "酉",
+          "palace": "疾厄",
+          "stem": "乙"
+        },
+        "surroundBranches": [
+          "申",
+          "寅",
+          "子",
+          "辰"
+        ]
+      },
+      "酉": {
+        "branch": "酉",
+        "palace": "疾厄",
+        "opposite": {
+          "branch": "卯",
+          "palace": "父母",
+          "stem": "己"
+        },
+        "trine": [
+          {
+            "branch": "丑",
+            "palace": "兄弟",
+            "stem": "己"
+          },
+          {
+            "branch": "巳",
+            "palace": "田宅",
+            "stem": "辛"
+          }
+        ],
+        "left": {
+          "branch": "申",
+          "palace": "迁移",
+          "stem": "甲"
+        },
+        "right": {
+          "branch": "戌",
+          "palace": "财帛",
+          "stem": "丙"
+        },
+        "surroundBranches": [
+          "酉",
+          "卯",
+          "丑",
+          "巳"
+        ]
+      },
+      "戌": {
+        "branch": "戌",
+        "palace": "财帛",
+        "opposite": {
+          "branch": "辰",
+          "palace": "福德",
+          "stem": "庚"
+        },
+        "trine": [
+          {
+            "branch": "寅",
+            "palace": "命宫",
+            "stem": "戊"
+          },
+          {
+            "branch": "午",
+            "palace": "官禄",
+            "stem": "壬"
+          }
+        ],
+        "left": {
+          "branch": "酉",
+          "palace": "疾厄",
+          "stem": "乙"
+        },
+        "right": {
+          "branch": "亥",
+          "palace": "子女",
+          "stem": "丁"
+        },
+        "surroundBranches": [
+          "戌",
+          "辰",
+          "寅",
+          "午"
+        ]
+      },
+      "亥": {
+        "branch": "亥",
+        "palace": "子女",
+        "opposite": {
+          "branch": "巳",
+          "palace": "田宅",
+          "stem": "辛"
+        },
+        "trine": [
+          {
+            "branch": "卯",
+            "palace": "父母",
+            "stem": "己"
+          },
+          {
+            "branch": "未",
+            "palace": "仆役",
+            "stem": "癸"
+          }
+        ],
+        "left": {
+          "branch": "戌",
+          "palace": "财帛",
+          "stem": "丙"
+        },
+        "right": {
+          "branch": "子",
+          "palace": "夫妻",
+          "stem": "戊"
+        },
+        "surroundBranches": [
+          "亥",
+          "巳",
+          "卯",
+          "未"
+        ]
+      },
+      "子": {
+        "branch": "子",
+        "palace": "夫妻",
+        "opposite": {
+          "branch": "午",
+          "palace": "官禄",
+          "stem": "壬"
+        },
+        "trine": [
+          {
+            "branch": "辰",
+            "palace": "福德",
+            "stem": "庚"
+          },
+          {
+            "branch": "申",
+            "palace": "迁移",
+            "stem": "甲"
+          }
+        ],
+        "left": {
+          "branch": "亥",
+          "palace": "子女",
+          "stem": "丁"
+        },
+        "right": {
+          "branch": "丑",
+          "palace": "兄弟",
+          "stem": "己"
+        },
+        "surroundBranches": [
+          "子",
+          "午",
+          "辰",
+          "申"
+        ]
+      },
+      "丑": {
+        "branch": "丑",
+        "palace": "兄弟",
+        "opposite": {
+          "branch": "未",
+          "palace": "仆役",
+          "stem": "癸"
+        },
+        "trine": [
+          {
+            "branch": "巳",
+            "palace": "田宅",
+            "stem": "辛"
+          },
+          {
+            "branch": "酉",
+            "palace": "疾厄",
+            "stem": "乙"
+          }
+        ],
+        "left": {
+          "branch": "子",
+          "palace": "夫妻",
+          "stem": "戊"
+        },
+        "right": {
+          "branch": "寅",
+          "palace": "命宫",
+          "stem": "戊"
+        },
+        "surroundBranches": [
+          "丑",
+          "未",
+          "巳",
+          "酉"
+        ]
+      }
+    },
+    "pairingFacts": {
+      "soulBranch": "寅",
+      "surroundBranches": [
+        "寅",
+        "申",
+        "午",
+        "戌"
+      ],
+      "pairs": [
+        {
+          "group": "六吉",
+          "abbr": "辅弼",
+          "star1": "左辅",
+          "star2": "右弼",
+          "branch1": "申",
+          "branch2": "午",
+          "palace1": "迁移",
+          "palace2": "官禄",
+          "brightness1": null,
+          "brightness2": null,
+          "samePalace": false,
+          "opposite": false,
+          "trine": false,
+          "relation": "分居",
+          "paired": false,
+          "inSurround": [
+            "左辅",
+            "右弼"
+          ],
+          "bothInSurround": true
+        },
+        {
+          "group": "六吉",
+          "abbr": "昌曲",
+          "star1": "文昌",
+          "star2": "文曲",
+          "branch1": "午",
+          "branch2": "申",
+          "palace1": "官禄",
+          "palace2": "迁移",
+          "brightness1": "陷",
+          "brightness2": "得",
+          "samePalace": false,
+          "opposite": false,
+          "trine": false,
+          "relation": "分居",
+          "paired": false,
+          "inSurround": [
+            "文昌",
+            "文曲"
+          ],
+          "bothInSurround": true
+        },
+        {
+          "group": "六吉",
+          "abbr": "魁钺",
+          "star1": "天魁",
+          "star2": "天钺",
+          "branch1": "丑",
+          "branch2": "未",
+          "palace1": "兄弟",
+          "palace2": "仆役",
+          "brightness1": null,
+          "brightness2": null,
+          "samePalace": false,
+          "opposite": true,
+          "trine": false,
+          "relation": "对拱",
+          "paired": true,
+          "inSurround": [],
+          "bothInSurround": false
+        },
+        {
+          "group": "六煞",
+          "abbr": "羊陀",
+          "star1": "擎羊",
+          "star2": "陀罗",
+          "branch1": "酉",
+          "branch2": "未",
+          "palace1": "疾厄",
+          "palace2": "仆役",
+          "brightness1": "陷",
+          "brightness2": "庙",
+          "samePalace": false,
+          "opposite": false,
+          "trine": false,
+          "relation": "分居",
+          "paired": false,
+          "inSurround": [],
+          "bothInSurround": false
+        },
+        {
+          "group": "六煞",
+          "abbr": "火铃",
+          "star1": "火星",
+          "star2": "铃星",
+          "branch1": "巳",
+          "branch2": "未",
+          "palace1": "田宅",
+          "palace2": "仆役",
+          "brightness1": "得",
+          "brightness2": "利",
+          "samePalace": false,
+          "opposite": false,
+          "trine": false,
+          "relation": "分居",
+          "paired": false,
+          "inSurround": [],
+          "bothInSurround": false
+        },
+        {
+          "group": "六煞",
+          "abbr": "空劫",
+          "star1": "地空",
+          "star2": "地劫",
+          "branch1": "未",
+          "branch2": "卯",
+          "palace1": "仆役",
+          "palace2": "父母",
+          "brightness1": null,
+          "brightness2": null,
+          "samePalace": false,
+          "opposite": false,
+          "trine": true,
+          "relation": "三合遥会",
+          "paired": false,
+          "inSurround": [],
+          "bothInSurround": false
+        }
+      ],
+      "soft": {
+        "pairs": [
+          {
+            "group": "六吉",
+            "abbr": "辅弼",
+            "star1": "左辅",
+            "star2": "右弼",
+            "branch1": "申",
+            "branch2": "午",
+            "palace1": "迁移",
+            "palace2": "官禄",
+            "brightness1": null,
+            "brightness2": null,
+            "samePalace": false,
+            "opposite": false,
+            "trine": false,
+            "relation": "分居",
+            "paired": false,
+            "inSurround": [
+              "左辅",
+              "右弼"
+            ],
+            "bothInSurround": true
+          },
+          {
+            "group": "六吉",
+            "abbr": "昌曲",
+            "star1": "文昌",
+            "star2": "文曲",
+            "branch1": "午",
+            "branch2": "申",
+            "palace1": "官禄",
+            "palace2": "迁移",
+            "brightness1": "陷",
+            "brightness2": "得",
+            "samePalace": false,
+            "opposite": false,
+            "trine": false,
+            "relation": "分居",
+            "paired": false,
+            "inSurround": [
+              "文昌",
+              "文曲"
+            ],
+            "bothInSurround": true
+          },
+          {
+            "group": "六吉",
+            "abbr": "魁钺",
+            "star1": "天魁",
+            "star2": "天钺",
+            "branch1": "丑",
+            "branch2": "未",
+            "palace1": "兄弟",
+            "palace2": "仆役",
+            "brightness1": null,
+            "brightness2": null,
+            "samePalace": false,
+            "opposite": true,
+            "trine": false,
+            "relation": "对拱",
+            "paired": true,
+            "inSurround": [],
+            "bothInSurround": false
+          }
+        ],
+        "stars": [
+          {
+            "star": "左辅",
+            "branch": "申",
+            "palace": "迁移",
+            "inSurround": true
+          },
+          {
+            "star": "右弼",
+            "branch": "午",
+            "palace": "官禄",
+            "inSurround": true
+          },
+          {
+            "star": "文昌",
+            "branch": "午",
+            "palace": "官禄",
+            "inSurround": true
+          },
+          {
+            "star": "文曲",
+            "branch": "申",
+            "palace": "迁移",
+            "inSurround": true
+          },
+          {
+            "star": "天魁",
+            "branch": "丑",
+            "palace": "兄弟",
+            "inSurround": false
+          },
+          {
+            "star": "天钺",
+            "branch": "未",
+            "palace": "仆役",
+            "inSurround": false
+          }
+        ],
+        "allPresent": true,
+        "totalPairs": 3,
+        "pairedCount": 1,
+        "samePalaceCount": 0,
+        "oppositeCount": 1,
+        "trineCount": 0,
+        "inSurround": [
+          "左辅",
+          "右弼",
+          "文昌",
+          "文曲"
+        ],
+        "surroundCount": 4
+      },
+      "tough": {
+        "pairs": [
+          {
+            "group": "六煞",
+            "abbr": "羊陀",
+            "star1": "擎羊",
+            "star2": "陀罗",
+            "branch1": "酉",
+            "branch2": "未",
+            "palace1": "疾厄",
+            "palace2": "仆役",
+            "brightness1": "陷",
+            "brightness2": "庙",
+            "samePalace": false,
+            "opposite": false,
+            "trine": false,
+            "relation": "分居",
+            "paired": false,
+            "inSurround": [],
+            "bothInSurround": false
+          },
+          {
+            "group": "六煞",
+            "abbr": "火铃",
+            "star1": "火星",
+            "star2": "铃星",
+            "branch1": "巳",
+            "branch2": "未",
+            "palace1": "田宅",
+            "palace2": "仆役",
+            "brightness1": "得",
+            "brightness2": "利",
+            "samePalace": false,
+            "opposite": false,
+            "trine": false,
+            "relation": "分居",
+            "paired": false,
+            "inSurround": [],
+            "bothInSurround": false
+          },
+          {
+            "group": "六煞",
+            "abbr": "空劫",
+            "star1": "地空",
+            "star2": "地劫",
+            "branch1": "未",
+            "branch2": "卯",
+            "palace1": "仆役",
+            "palace2": "父母",
+            "brightness1": null,
+            "brightness2": null,
+            "samePalace": false,
+            "opposite": false,
+            "trine": true,
+            "relation": "三合遥会",
+            "paired": false,
+            "inSurround": [],
+            "bothInSurround": false
+          }
+        ],
+        "stars": [
+          {
+            "star": "擎羊",
+            "branch": "酉",
+            "palace": "疾厄",
+            "inSurround": false
+          },
+          {
+            "star": "陀罗",
+            "branch": "未",
+            "palace": "仆役",
+            "inSurround": false
+          },
+          {
+            "star": "火星",
+            "branch": "巳",
+            "palace": "田宅",
+            "inSurround": false
+          },
+          {
+            "star": "铃星",
+            "branch": "未",
+            "palace": "仆役",
+            "inSurround": false
+          },
+          {
+            "star": "地空",
+            "branch": "未",
+            "palace": "仆役",
+            "inSurround": false
+          },
+          {
+            "star": "地劫",
+            "branch": "卯",
+            "palace": "父母",
+            "inSurround": false
+          }
+        ],
+        "allPresent": true,
+        "totalPairs": 3,
+        "pairedCount": 0,
+        "samePalaceCount": 0,
+        "oppositeCount": 0,
+        "trineCount": 1,
+        "inSurround": [],
+        "surroundCount": 0
+      },
+      "places": {
+        "贪狼": {
+          "branch": "寅",
+          "palace": "命宫",
+          "brightness": "平"
+        },
+        "天机": {
+          "branch": "卯",
+          "palace": "父母",
+          "brightness": "旺"
+        },
+        "巨门": {
+          "branch": "卯",
+          "palace": "父母",
+          "brightness": "庙"
+        },
+        "地劫": {
+          "branch": "卯",
+          "palace": "父母",
+          "brightness": null
+        },
+        "紫微": {
+          "branch": "辰",
+          "palace": "福德",
+          "brightness": "得"
+        },
+        "天相": {
+          "branch": "辰",
+          "palace": "福德",
+          "brightness": "得"
+        },
+        "天梁": {
+          "branch": "巳",
+          "palace": "田宅",
+          "brightness": "陷"
+        },
+        "火星": {
+          "branch": "巳",
+          "palace": "田宅",
+          "brightness": "得"
+        },
+        "七杀": {
+          "branch": "午",
+          "palace": "官禄",
+          "brightness": "旺"
+        },
+        "右弼": {
+          "branch": "午",
+          "palace": "官禄",
+          "brightness": null
+        },
+        "文昌": {
+          "branch": "午",
+          "palace": "官禄",
+          "brightness": "陷"
+        },
+        "天钺": {
+          "branch": "未",
+          "palace": "仆役",
+          "brightness": null
+        },
+        "地空": {
+          "branch": "未",
+          "palace": "仆役",
+          "brightness": null
+        },
+        "铃星": {
+          "branch": "未",
+          "palace": "仆役",
+          "brightness": "利"
+        },
+        "陀罗": {
+          "branch": "未",
+          "palace": "仆役",
+          "brightness": "庙"
+        },
+        "廉贞": {
+          "branch": "申",
+          "palace": "迁移",
+          "brightness": "庙"
+        },
+        "左辅": {
+          "branch": "申",
+          "palace": "迁移",
+          "brightness": null
+        },
+        "文曲": {
+          "branch": "申",
+          "palace": "迁移",
+          "brightness": "得"
+        },
+        "禄存": {
+          "branch": "申",
+          "palace": "迁移",
+          "brightness": null
+        },
+        "天马": {
+          "branch": "申",
+          "palace": "迁移",
+          "brightness": null
+        },
+        "擎羊": {
+          "branch": "酉",
+          "palace": "疾厄",
+          "brightness": "陷"
+        },
+        "破军": {
+          "branch": "戌",
+          "palace": "财帛",
+          "brightness": "旺"
+        },
+        "天同": {
+          "branch": "亥",
+          "palace": "子女",
+          "brightness": "庙"
+        },
+        "武曲": {
+          "branch": "子",
+          "palace": "夫妻",
+          "brightness": "旺"
+        },
+        "天府": {
+          "branch": "子",
+          "palace": "夫妻",
+          "brightness": "庙"
+        },
+        "太阳": {
+          "branch": "丑",
+          "palace": "兄弟",
+          "brightness": "不"
+        },
+        "太阴": {
+          "branch": "丑",
+          "palace": "兄弟",
+          "brightness": "庙"
+        },
+        "天魁": {
+          "branch": "丑",
+          "palace": "兄弟",
+          "brightness": null
+        }
+      }
+    },
+    "decadalPalaceMaps": [
+      {
+        "ageRange": [
+          5,
+          14
+        ],
+        "yearRange": [
+          1994,
+          2003
+        ],
+        "ganzhi": "戊寅",
+        "soulBranch": "寅",
+        "natalPalaceOfSoul": "命宫",
+        "direction": 1,
+        "palaceMap": {
+          "命宫": "寅",
+          "兄弟": "丑",
+          "夫妻": "子",
+          "子女": "亥",
+          "财帛": "戌",
+          "疾厄": "酉",
+          "迁移": "申",
+          "仆役": "未",
+          "官禄": "午",
+          "田宅": "巳",
+          "福德": "辰",
+          "父母": "卯"
+        },
+        "branchMap": {
+          "寅": "命宫",
+          "丑": "兄弟",
+          "子": "夫妻",
+          "亥": "子女",
+          "戌": "财帛",
+          "酉": "疾厄",
+          "申": "迁移",
+          "未": "仆役",
+          "午": "官禄",
+          "巳": "田宅",
+          "辰": "福德",
+          "卯": "父母"
+        },
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "贪狼",
+            "branch": "寅",
+            "natalPalace": "命宫",
+            "decadalPalace": "命宫"
+          },
+          {
+            "type": "权",
+            "star": "太阴",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "兄弟"
+          },
+          {
+            "type": "科",
+            "star": "右弼",
+            "branch": "午",
+            "natalPalace": "官禄",
+            "decadalPalace": "官禄"
+          },
+          {
+            "type": "忌",
+            "star": "天机",
+            "branch": "卯",
+            "natalPalace": "父母",
+            "decadalPalace": "父母"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          15,
+          24
+        ],
+        "yearRange": [
+          2004,
+          2013
+        ],
+        "ganzhi": "己卯",
+        "soulBranch": "卯",
+        "natalPalaceOfSoul": "父母",
+        "direction": 1,
+        "palaceMap": {
+          "命宫": "卯",
+          "兄弟": "寅",
+          "夫妻": "丑",
+          "子女": "子",
+          "财帛": "亥",
+          "疾厄": "戌",
+          "迁移": "酉",
+          "仆役": "申",
+          "官禄": "未",
+          "田宅": "午",
+          "福德": "巳",
+          "父母": "辰"
+        },
+        "branchMap": {
+          "卯": "命宫",
+          "寅": "兄弟",
+          "丑": "夫妻",
+          "子": "子女",
+          "亥": "财帛",
+          "戌": "疾厄",
+          "酉": "迁移",
+          "申": "仆役",
+          "未": "官禄",
+          "午": "田宅",
+          "巳": "福德",
+          "辰": "父母"
+        },
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "武曲",
+            "branch": "子",
+            "natalPalace": "夫妻",
+            "decadalPalace": "子女"
+          },
+          {
+            "type": "权",
+            "star": "贪狼",
+            "branch": "寅",
+            "natalPalace": "命宫",
+            "decadalPalace": "兄弟"
+          },
+          {
+            "type": "科",
+            "star": "天梁",
+            "branch": "巳",
+            "natalPalace": "田宅",
+            "decadalPalace": "福德"
+          },
+          {
+            "type": "忌",
+            "star": "文曲",
+            "branch": "申",
+            "natalPalace": "迁移",
+            "decadalPalace": "仆役"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          25,
+          34
+        ],
+        "yearRange": [
+          2014,
+          2023
+        ],
+        "ganzhi": "庚辰",
+        "soulBranch": "辰",
+        "natalPalaceOfSoul": "福德",
+        "direction": 1,
+        "palaceMap": {
+          "命宫": "辰",
+          "兄弟": "卯",
+          "夫妻": "寅",
+          "子女": "丑",
+          "财帛": "子",
+          "疾厄": "亥",
+          "迁移": "戌",
+          "仆役": "酉",
+          "官禄": "申",
+          "田宅": "未",
+          "福德": "午",
+          "父母": "巳"
+        },
+        "branchMap": {
+          "辰": "命宫",
+          "卯": "兄弟",
+          "寅": "夫妻",
+          "丑": "子女",
+          "子": "财帛",
+          "亥": "疾厄",
+          "戌": "迁移",
+          "酉": "仆役",
+          "申": "官禄",
+          "未": "田宅",
+          "午": "福德",
+          "巳": "父母"
+        },
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "太阳",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "子女"
+          },
+          {
+            "type": "权",
+            "star": "武曲",
+            "branch": "子",
+            "natalPalace": "夫妻",
+            "decadalPalace": "财帛"
+          },
+          {
+            "type": "科",
+            "star": "太阴",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "子女"
+          },
+          {
+            "type": "忌",
+            "star": "天同",
+            "branch": "亥",
+            "natalPalace": "子女",
+            "decadalPalace": "疾厄"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          35,
+          44
+        ],
+        "yearRange": [
+          2024,
+          2033
+        ],
+        "ganzhi": "辛巳",
+        "soulBranch": "巳",
+        "natalPalaceOfSoul": "田宅",
+        "direction": 1,
+        "palaceMap": {
+          "命宫": "巳",
+          "兄弟": "辰",
+          "夫妻": "卯",
+          "子女": "寅",
+          "财帛": "丑",
+          "疾厄": "子",
+          "迁移": "亥",
+          "仆役": "戌",
+          "官禄": "酉",
+          "田宅": "申",
+          "福德": "未",
+          "父母": "午"
+        },
+        "branchMap": {
+          "巳": "命宫",
+          "辰": "兄弟",
+          "卯": "夫妻",
+          "寅": "子女",
+          "丑": "财帛",
+          "子": "疾厄",
+          "亥": "迁移",
+          "戌": "仆役",
+          "酉": "官禄",
+          "申": "田宅",
+          "未": "福德",
+          "午": "父母"
+        },
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "巨门",
+            "branch": "卯",
+            "natalPalace": "父母",
+            "decadalPalace": "夫妻"
+          },
+          {
+            "type": "权",
+            "star": "太阳",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "财帛"
+          },
+          {
+            "type": "科",
+            "star": "文曲",
+            "branch": "申",
+            "natalPalace": "迁移",
+            "decadalPalace": "田宅"
+          },
+          {
+            "type": "忌",
+            "star": "文昌",
+            "branch": "午",
+            "natalPalace": "官禄",
+            "decadalPalace": "父母"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          45,
+          54
+        ],
+        "yearRange": [
+          2034,
+          2043
+        ],
+        "ganzhi": "壬午",
+        "soulBranch": "午",
+        "natalPalaceOfSoul": "官禄",
+        "direction": 1,
+        "palaceMap": {
+          "命宫": "午",
+          "兄弟": "巳",
+          "夫妻": "辰",
+          "子女": "卯",
+          "财帛": "寅",
+          "疾厄": "丑",
+          "迁移": "子",
+          "仆役": "亥",
+          "官禄": "戌",
+          "田宅": "酉",
+          "福德": "申",
+          "父母": "未"
+        },
+        "branchMap": {
+          "午": "命宫",
+          "巳": "兄弟",
+          "辰": "夫妻",
+          "卯": "子女",
+          "寅": "财帛",
+          "丑": "疾厄",
+          "子": "迁移",
+          "亥": "仆役",
+          "戌": "官禄",
+          "酉": "田宅",
+          "申": "福德",
+          "未": "父母"
+        },
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "天梁",
+            "branch": "巳",
+            "natalPalace": "田宅",
+            "decadalPalace": "兄弟"
+          },
+          {
+            "type": "权",
+            "star": "紫微",
+            "branch": "辰",
+            "natalPalace": "福德",
+            "decadalPalace": "夫妻"
+          },
+          {
+            "type": "科",
+            "star": "左辅",
+            "branch": "申",
+            "natalPalace": "迁移",
+            "decadalPalace": "福德"
+          },
+          {
+            "type": "忌",
+            "star": "武曲",
+            "branch": "子",
+            "natalPalace": "夫妻",
+            "decadalPalace": "迁移"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          55,
+          64
+        ],
+        "yearRange": [
+          2044,
+          2053
+        ],
+        "ganzhi": "癸未",
+        "soulBranch": "未",
+        "natalPalaceOfSoul": "仆役",
+        "direction": 1,
+        "palaceMap": {
+          "命宫": "未",
+          "兄弟": "午",
+          "夫妻": "巳",
+          "子女": "辰",
+          "财帛": "卯",
+          "疾厄": "寅",
+          "迁移": "丑",
+          "仆役": "子",
+          "官禄": "亥",
+          "田宅": "戌",
+          "福德": "酉",
+          "父母": "申"
+        },
+        "branchMap": {
+          "未": "命宫",
+          "午": "兄弟",
+          "巳": "夫妻",
+          "辰": "子女",
+          "卯": "财帛",
+          "寅": "疾厄",
+          "丑": "迁移",
+          "子": "仆役",
+          "亥": "官禄",
+          "戌": "田宅",
+          "酉": "福德",
+          "申": "父母"
+        },
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "破军",
+            "branch": "戌",
+            "natalPalace": "财帛",
+            "decadalPalace": "田宅"
+          },
+          {
+            "type": "权",
+            "star": "巨门",
+            "branch": "卯",
+            "natalPalace": "父母",
+            "decadalPalace": "财帛"
+          },
+          {
+            "type": "科",
+            "star": "太阴",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "迁移"
+          },
+          {
+            "type": "忌",
+            "star": "贪狼",
+            "branch": "寅",
+            "natalPalace": "命宫",
+            "decadalPalace": "疾厄"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          65,
+          74
+        ],
+        "yearRange": [
+          2054,
+          2063
+        ],
+        "ganzhi": "甲申",
+        "soulBranch": "申",
+        "natalPalaceOfSoul": "迁移",
+        "direction": 1,
+        "palaceMap": {
+          "命宫": "申",
+          "兄弟": "未",
+          "夫妻": "午",
+          "子女": "巳",
+          "财帛": "辰",
+          "疾厄": "卯",
+          "迁移": "寅",
+          "仆役": "丑",
+          "官禄": "子",
+          "田宅": "亥",
+          "福德": "戌",
+          "父母": "酉"
+        },
+        "branchMap": {
+          "申": "命宫",
+          "未": "兄弟",
+          "午": "夫妻",
+          "巳": "子女",
+          "辰": "财帛",
+          "卯": "疾厄",
+          "寅": "迁移",
+          "丑": "仆役",
+          "子": "官禄",
+          "亥": "田宅",
+          "戌": "福德",
+          "酉": "父母"
+        },
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "廉贞",
+            "branch": "申",
+            "natalPalace": "迁移",
+            "decadalPalace": "命宫"
+          },
+          {
+            "type": "权",
+            "star": "破军",
+            "branch": "戌",
+            "natalPalace": "财帛",
+            "decadalPalace": "福德"
+          },
+          {
+            "type": "科",
+            "star": "武曲",
+            "branch": "子",
+            "natalPalace": "夫妻",
+            "decadalPalace": "官禄"
+          },
+          {
+            "type": "忌",
+            "star": "太阳",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "仆役"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          75,
+          84
+        ],
+        "yearRange": [
+          2064,
+          2073
+        ],
+        "ganzhi": "乙酉",
+        "soulBranch": "酉",
+        "natalPalaceOfSoul": "疾厄",
+        "direction": 1,
+        "palaceMap": {
+          "命宫": "酉",
+          "兄弟": "申",
+          "夫妻": "未",
+          "子女": "午",
+          "财帛": "巳",
+          "疾厄": "辰",
+          "迁移": "卯",
+          "仆役": "寅",
+          "官禄": "丑",
+          "田宅": "子",
+          "福德": "亥",
+          "父母": "戌"
+        },
+        "branchMap": {
+          "酉": "命宫",
+          "申": "兄弟",
+          "未": "夫妻",
+          "午": "子女",
+          "巳": "财帛",
+          "辰": "疾厄",
+          "卯": "迁移",
+          "寅": "仆役",
+          "丑": "官禄",
+          "子": "田宅",
+          "亥": "福德",
+          "戌": "父母"
+        },
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "天机",
+            "branch": "卯",
+            "natalPalace": "父母",
+            "decadalPalace": "迁移"
+          },
+          {
+            "type": "权",
+            "star": "天梁",
+            "branch": "巳",
+            "natalPalace": "田宅",
+            "decadalPalace": "财帛"
+          },
+          {
+            "type": "科",
+            "star": "紫微",
+            "branch": "辰",
+            "natalPalace": "福德",
+            "decadalPalace": "疾厄"
+          },
+          {
+            "type": "忌",
+            "star": "太阴",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "官禄"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          85,
+          94
+        ],
+        "yearRange": [
+          2074,
+          2083
+        ],
+        "ganzhi": "丙戌",
+        "soulBranch": "戌",
+        "natalPalaceOfSoul": "财帛",
+        "direction": 1,
+        "palaceMap": {
+          "命宫": "戌",
+          "兄弟": "酉",
+          "夫妻": "申",
+          "子女": "未",
+          "财帛": "午",
+          "疾厄": "巳",
+          "迁移": "辰",
+          "仆役": "卯",
+          "官禄": "寅",
+          "田宅": "丑",
+          "福德": "子",
+          "父母": "亥"
+        },
+        "branchMap": {
+          "戌": "命宫",
+          "酉": "兄弟",
+          "申": "夫妻",
+          "未": "子女",
+          "午": "财帛",
+          "巳": "疾厄",
+          "辰": "迁移",
+          "卯": "仆役",
+          "寅": "官禄",
+          "丑": "田宅",
+          "子": "福德",
+          "亥": "父母"
+        },
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "天同",
+            "branch": "亥",
+            "natalPalace": "子女",
+            "decadalPalace": "父母"
+          },
+          {
+            "type": "权",
+            "star": "天机",
+            "branch": "卯",
+            "natalPalace": "父母",
+            "decadalPalace": "仆役"
+          },
+          {
+            "type": "科",
+            "star": "文昌",
+            "branch": "午",
+            "natalPalace": "官禄",
+            "decadalPalace": "财帛"
+          },
+          {
+            "type": "忌",
+            "star": "廉贞",
+            "branch": "申",
+            "natalPalace": "迁移",
+            "decadalPalace": "夫妻"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          95,
+          104
+        ],
+        "yearRange": [
+          2084,
+          2093
+        ],
+        "ganzhi": "丁亥",
+        "soulBranch": "亥",
+        "natalPalaceOfSoul": "子女",
+        "direction": 1,
+        "palaceMap": {
+          "命宫": "亥",
+          "兄弟": "戌",
+          "夫妻": "酉",
+          "子女": "申",
+          "财帛": "未",
+          "疾厄": "午",
+          "迁移": "巳",
+          "仆役": "辰",
+          "官禄": "卯",
+          "田宅": "寅",
+          "福德": "丑",
+          "父母": "子"
+        },
+        "branchMap": {
+          "亥": "命宫",
+          "戌": "兄弟",
+          "酉": "夫妻",
+          "申": "子女",
+          "未": "财帛",
+          "午": "疾厄",
+          "巳": "迁移",
+          "辰": "仆役",
+          "卯": "官禄",
+          "寅": "田宅",
+          "丑": "福德",
+          "子": "父母"
+        },
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "太阴",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "福德"
+          },
+          {
+            "type": "权",
+            "star": "天同",
+            "branch": "亥",
+            "natalPalace": "子女",
+            "decadalPalace": "命宫"
+          },
+          {
+            "type": "科",
+            "star": "天机",
+            "branch": "卯",
+            "natalPalace": "父母",
+            "decadalPalace": "官禄"
+          },
+          {
+            "type": "忌",
+            "star": "巨门",
+            "branch": "卯",
+            "natalPalace": "父母",
+            "decadalPalace": "官禄"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          105,
+          114
+        ],
+        "yearRange": [
+          2094,
+          2103
+        ],
+        "ganzhi": "戊子",
+        "soulBranch": "子",
+        "natalPalaceOfSoul": "夫妻",
+        "direction": 1,
+        "palaceMap": {
+          "命宫": "子",
+          "兄弟": "亥",
+          "夫妻": "戌",
+          "子女": "酉",
+          "财帛": "申",
+          "疾厄": "未",
+          "迁移": "午",
+          "仆役": "巳",
+          "官禄": "辰",
+          "田宅": "卯",
+          "福德": "寅",
+          "父母": "丑"
+        },
+        "branchMap": {
+          "子": "命宫",
+          "亥": "兄弟",
+          "戌": "夫妻",
+          "酉": "子女",
+          "申": "财帛",
+          "未": "疾厄",
+          "午": "迁移",
+          "巳": "仆役",
+          "辰": "官禄",
+          "卯": "田宅",
+          "寅": "福德",
+          "丑": "父母"
+        },
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "贪狼",
+            "branch": "寅",
+            "natalPalace": "命宫",
+            "decadalPalace": "福德"
+          },
+          {
+            "type": "权",
+            "star": "太阴",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "父母"
+          },
+          {
+            "type": "科",
+            "star": "右弼",
+            "branch": "午",
+            "natalPalace": "官禄",
+            "decadalPalace": "迁移"
+          },
+          {
+            "type": "忌",
+            "star": "天机",
+            "branch": "卯",
+            "natalPalace": "父母",
+            "decadalPalace": "田宅"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          115,
+          124
+        ],
+        "yearRange": [
+          2104,
+          2113
+        ],
+        "ganzhi": "己丑",
+        "soulBranch": "丑",
+        "natalPalaceOfSoul": "兄弟",
+        "direction": 1,
+        "palaceMap": {
+          "命宫": "丑",
+          "兄弟": "子",
+          "夫妻": "亥",
+          "子女": "戌",
+          "财帛": "酉",
+          "疾厄": "申",
+          "迁移": "未",
+          "仆役": "午",
+          "官禄": "巳",
+          "田宅": "辰",
+          "福德": "卯",
+          "父母": "寅"
+        },
+        "branchMap": {
+          "丑": "命宫",
+          "子": "兄弟",
+          "亥": "夫妻",
+          "戌": "子女",
+          "酉": "财帛",
+          "申": "疾厄",
+          "未": "迁移",
+          "午": "仆役",
+          "巳": "官禄",
+          "辰": "田宅",
+          "卯": "福德",
+          "寅": "父母"
+        },
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "武曲",
+            "branch": "子",
+            "natalPalace": "夫妻",
+            "decadalPalace": "兄弟"
+          },
+          {
+            "type": "权",
+            "star": "贪狼",
+            "branch": "寅",
+            "natalPalace": "命宫",
+            "decadalPalace": "父母"
+          },
+          {
+            "type": "科",
+            "star": "天梁",
+            "branch": "巳",
+            "natalPalace": "田宅",
+            "decadalPalace": "官禄"
+          },
+          {
+            "type": "忌",
+            "star": "文曲",
+            "branch": "申",
+            "natalPalace": "迁移",
+            "decadalPalace": "疾厄"
+          }
+        ]
+      }
+    ],
+    "flankKinds": {
+      "left": [
+        {
+          "star": "天魁",
+          "kind": "吉"
+        }
+      ],
+      "right": [
+        {
+          "star": "地劫",
+          "kind": "煞"
+        }
+      ]
+    },
+    "decadal": [
+      {
+        "ageRange": [
+          5,
+          14
+        ],
+        "yearRange": [
+          1994,
+          2003
+        ],
+        "ganzhi": "戊寅",
+        "stem": "戊",
+        "branch": "寅",
+        "palace": "命宫",
+        "mutagen": [
+          "贪狼",
+          "太阴",
+          "右弼",
+          "天机"
+        ],
+        "palaceMap": {
+          "命宫": "寅",
+          "兄弟": "丑",
+          "夫妻": "子",
+          "子女": "亥",
+          "财帛": "戌",
+          "疾厄": "酉",
+          "迁移": "申",
+          "仆役": "未",
+          "官禄": "午",
+          "田宅": "巳",
+          "福德": "辰",
+          "父母": "卯"
+        },
+        "branchMap": {
+          "寅": "命宫",
+          "丑": "兄弟",
+          "子": "夫妻",
+          "亥": "子女",
+          "戌": "财帛",
+          "酉": "疾厄",
+          "申": "迁移",
+          "未": "仆役",
+          "午": "官禄",
+          "巳": "田宅",
+          "辰": "福德",
+          "卯": "父母"
+        },
+        "natalPalaceOfSoul": "命宫",
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "贪狼",
+            "branch": "寅",
+            "natalPalace": "命宫",
+            "decadalPalace": "命宫"
+          },
+          {
+            "type": "权",
+            "star": "太阴",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "兄弟"
+          },
+          {
+            "type": "科",
+            "star": "右弼",
+            "branch": "午",
+            "natalPalace": "官禄",
+            "decadalPalace": "官禄"
+          },
+          {
+            "type": "忌",
+            "star": "天机",
+            "branch": "卯",
+            "natalPalace": "父母",
+            "decadalPalace": "父母"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          15,
+          24
+        ],
+        "yearRange": [
+          2004,
+          2013
+        ],
+        "ganzhi": "己卯",
+        "stem": "己",
+        "branch": "卯",
+        "palace": "父母",
+        "mutagen": [
+          "武曲",
+          "贪狼",
+          "天梁",
+          "文曲"
+        ],
+        "palaceMap": {
+          "命宫": "卯",
+          "兄弟": "寅",
+          "夫妻": "丑",
+          "子女": "子",
+          "财帛": "亥",
+          "疾厄": "戌",
+          "迁移": "酉",
+          "仆役": "申",
+          "官禄": "未",
+          "田宅": "午",
+          "福德": "巳",
+          "父母": "辰"
+        },
+        "branchMap": {
+          "卯": "命宫",
+          "寅": "兄弟",
+          "丑": "夫妻",
+          "子": "子女",
+          "亥": "财帛",
+          "戌": "疾厄",
+          "酉": "迁移",
+          "申": "仆役",
+          "未": "官禄",
+          "午": "田宅",
+          "巳": "福德",
+          "辰": "父母"
+        },
+        "natalPalaceOfSoul": "父母",
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "武曲",
+            "branch": "子",
+            "natalPalace": "夫妻",
+            "decadalPalace": "子女"
+          },
+          {
+            "type": "权",
+            "star": "贪狼",
+            "branch": "寅",
+            "natalPalace": "命宫",
+            "decadalPalace": "兄弟"
+          },
+          {
+            "type": "科",
+            "star": "天梁",
+            "branch": "巳",
+            "natalPalace": "田宅",
+            "decadalPalace": "福德"
+          },
+          {
+            "type": "忌",
+            "star": "文曲",
+            "branch": "申",
+            "natalPalace": "迁移",
+            "decadalPalace": "仆役"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          25,
+          34
+        ],
+        "yearRange": [
+          2014,
+          2023
+        ],
+        "ganzhi": "庚辰",
+        "stem": "庚",
+        "branch": "辰",
+        "palace": "福德",
+        "mutagen": [
+          "太阳",
+          "武曲",
+          "太阴",
+          "天同"
+        ],
+        "palaceMap": {
+          "命宫": "辰",
+          "兄弟": "卯",
+          "夫妻": "寅",
+          "子女": "丑",
+          "财帛": "子",
+          "疾厄": "亥",
+          "迁移": "戌",
+          "仆役": "酉",
+          "官禄": "申",
+          "田宅": "未",
+          "福德": "午",
+          "父母": "巳"
+        },
+        "branchMap": {
+          "辰": "命宫",
+          "卯": "兄弟",
+          "寅": "夫妻",
+          "丑": "子女",
+          "子": "财帛",
+          "亥": "疾厄",
+          "戌": "迁移",
+          "酉": "仆役",
+          "申": "官禄",
+          "未": "田宅",
+          "午": "福德",
+          "巳": "父母"
+        },
+        "natalPalaceOfSoul": "福德",
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "太阳",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "子女"
+          },
+          {
+            "type": "权",
+            "star": "武曲",
+            "branch": "子",
+            "natalPalace": "夫妻",
+            "decadalPalace": "财帛"
+          },
+          {
+            "type": "科",
+            "star": "太阴",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "子女"
+          },
+          {
+            "type": "忌",
+            "star": "天同",
+            "branch": "亥",
+            "natalPalace": "子女",
+            "decadalPalace": "疾厄"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          35,
+          44
+        ],
+        "yearRange": [
+          2024,
+          2033
+        ],
+        "ganzhi": "辛巳",
+        "stem": "辛",
+        "branch": "巳",
+        "palace": "田宅",
+        "mutagen": [
+          "巨门",
+          "太阳",
+          "文曲",
+          "文昌"
+        ],
+        "palaceMap": {
+          "命宫": "巳",
+          "兄弟": "辰",
+          "夫妻": "卯",
+          "子女": "寅",
+          "财帛": "丑",
+          "疾厄": "子",
+          "迁移": "亥",
+          "仆役": "戌",
+          "官禄": "酉",
+          "田宅": "申",
+          "福德": "未",
+          "父母": "午"
+        },
+        "branchMap": {
+          "巳": "命宫",
+          "辰": "兄弟",
+          "卯": "夫妻",
+          "寅": "子女",
+          "丑": "财帛",
+          "子": "疾厄",
+          "亥": "迁移",
+          "戌": "仆役",
+          "酉": "官禄",
+          "申": "田宅",
+          "未": "福德",
+          "午": "父母"
+        },
+        "natalPalaceOfSoul": "田宅",
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "巨门",
+            "branch": "卯",
+            "natalPalace": "父母",
+            "decadalPalace": "夫妻"
+          },
+          {
+            "type": "权",
+            "star": "太阳",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "财帛"
+          },
+          {
+            "type": "科",
+            "star": "文曲",
+            "branch": "申",
+            "natalPalace": "迁移",
+            "decadalPalace": "田宅"
+          },
+          {
+            "type": "忌",
+            "star": "文昌",
+            "branch": "午",
+            "natalPalace": "官禄",
+            "decadalPalace": "父母"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          45,
+          54
+        ],
+        "yearRange": [
+          2034,
+          2043
+        ],
+        "ganzhi": "壬午",
+        "stem": "壬",
+        "branch": "午",
+        "palace": "官禄",
+        "mutagen": [
+          "天梁",
+          "紫微",
+          "左辅",
+          "武曲"
+        ],
+        "palaceMap": {
+          "命宫": "午",
+          "兄弟": "巳",
+          "夫妻": "辰",
+          "子女": "卯",
+          "财帛": "寅",
+          "疾厄": "丑",
+          "迁移": "子",
+          "仆役": "亥",
+          "官禄": "戌",
+          "田宅": "酉",
+          "福德": "申",
+          "父母": "未"
+        },
+        "branchMap": {
+          "午": "命宫",
+          "巳": "兄弟",
+          "辰": "夫妻",
+          "卯": "子女",
+          "寅": "财帛",
+          "丑": "疾厄",
+          "子": "迁移",
+          "亥": "仆役",
+          "戌": "官禄",
+          "酉": "田宅",
+          "申": "福德",
+          "未": "父母"
+        },
+        "natalPalaceOfSoul": "官禄",
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "天梁",
+            "branch": "巳",
+            "natalPalace": "田宅",
+            "decadalPalace": "兄弟"
+          },
+          {
+            "type": "权",
+            "star": "紫微",
+            "branch": "辰",
+            "natalPalace": "福德",
+            "decadalPalace": "夫妻"
+          },
+          {
+            "type": "科",
+            "star": "左辅",
+            "branch": "申",
+            "natalPalace": "迁移",
+            "decadalPalace": "福德"
+          },
+          {
+            "type": "忌",
+            "star": "武曲",
+            "branch": "子",
+            "natalPalace": "夫妻",
+            "decadalPalace": "迁移"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          55,
+          64
+        ],
+        "yearRange": [
+          2044,
+          2053
+        ],
+        "ganzhi": "癸未",
+        "stem": "癸",
+        "branch": "未",
+        "palace": "仆役",
+        "mutagen": [
+          "破军",
+          "巨门",
+          "太阴",
+          "贪狼"
+        ],
+        "palaceMap": {
+          "命宫": "未",
+          "兄弟": "午",
+          "夫妻": "巳",
+          "子女": "辰",
+          "财帛": "卯",
+          "疾厄": "寅",
+          "迁移": "丑",
+          "仆役": "子",
+          "官禄": "亥",
+          "田宅": "戌",
+          "福德": "酉",
+          "父母": "申"
+        },
+        "branchMap": {
+          "未": "命宫",
+          "午": "兄弟",
+          "巳": "夫妻",
+          "辰": "子女",
+          "卯": "财帛",
+          "寅": "疾厄",
+          "丑": "迁移",
+          "子": "仆役",
+          "亥": "官禄",
+          "戌": "田宅",
+          "酉": "福德",
+          "申": "父母"
+        },
+        "natalPalaceOfSoul": "仆役",
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "破军",
+            "branch": "戌",
+            "natalPalace": "财帛",
+            "decadalPalace": "田宅"
+          },
+          {
+            "type": "权",
+            "star": "巨门",
+            "branch": "卯",
+            "natalPalace": "父母",
+            "decadalPalace": "财帛"
+          },
+          {
+            "type": "科",
+            "star": "太阴",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "迁移"
+          },
+          {
+            "type": "忌",
+            "star": "贪狼",
+            "branch": "寅",
+            "natalPalace": "命宫",
+            "decadalPalace": "疾厄"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          65,
+          74
+        ],
+        "yearRange": [
+          2054,
+          2063
+        ],
+        "ganzhi": "甲申",
+        "stem": "甲",
+        "branch": "申",
+        "palace": "迁移",
+        "mutagen": [
+          "廉贞",
+          "破军",
+          "武曲",
+          "太阳"
+        ],
+        "palaceMap": {
+          "命宫": "申",
+          "兄弟": "未",
+          "夫妻": "午",
+          "子女": "巳",
+          "财帛": "辰",
+          "疾厄": "卯",
+          "迁移": "寅",
+          "仆役": "丑",
+          "官禄": "子",
+          "田宅": "亥",
+          "福德": "戌",
+          "父母": "酉"
+        },
+        "branchMap": {
+          "申": "命宫",
+          "未": "兄弟",
+          "午": "夫妻",
+          "巳": "子女",
+          "辰": "财帛",
+          "卯": "疾厄",
+          "寅": "迁移",
+          "丑": "仆役",
+          "子": "官禄",
+          "亥": "田宅",
+          "戌": "福德",
+          "酉": "父母"
+        },
+        "natalPalaceOfSoul": "迁移",
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "廉贞",
+            "branch": "申",
+            "natalPalace": "迁移",
+            "decadalPalace": "命宫"
+          },
+          {
+            "type": "权",
+            "star": "破军",
+            "branch": "戌",
+            "natalPalace": "财帛",
+            "decadalPalace": "福德"
+          },
+          {
+            "type": "科",
+            "star": "武曲",
+            "branch": "子",
+            "natalPalace": "夫妻",
+            "decadalPalace": "官禄"
+          },
+          {
+            "type": "忌",
+            "star": "太阳",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "仆役"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          75,
+          84
+        ],
+        "yearRange": [
+          2064,
+          2073
+        ],
+        "ganzhi": "乙酉",
+        "stem": "乙",
+        "branch": "酉",
+        "palace": "疾厄",
+        "mutagen": [
+          "天机",
+          "天梁",
+          "紫微",
+          "太阴"
+        ],
+        "palaceMap": {
+          "命宫": "酉",
+          "兄弟": "申",
+          "夫妻": "未",
+          "子女": "午",
+          "财帛": "巳",
+          "疾厄": "辰",
+          "迁移": "卯",
+          "仆役": "寅",
+          "官禄": "丑",
+          "田宅": "子",
+          "福德": "亥",
+          "父母": "戌"
+        },
+        "branchMap": {
+          "酉": "命宫",
+          "申": "兄弟",
+          "未": "夫妻",
+          "午": "子女",
+          "巳": "财帛",
+          "辰": "疾厄",
+          "卯": "迁移",
+          "寅": "仆役",
+          "丑": "官禄",
+          "子": "田宅",
+          "亥": "福德",
+          "戌": "父母"
+        },
+        "natalPalaceOfSoul": "疾厄",
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "天机",
+            "branch": "卯",
+            "natalPalace": "父母",
+            "decadalPalace": "迁移"
+          },
+          {
+            "type": "权",
+            "star": "天梁",
+            "branch": "巳",
+            "natalPalace": "田宅",
+            "decadalPalace": "财帛"
+          },
+          {
+            "type": "科",
+            "star": "紫微",
+            "branch": "辰",
+            "natalPalace": "福德",
+            "decadalPalace": "疾厄"
+          },
+          {
+            "type": "忌",
+            "star": "太阴",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "官禄"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          85,
+          94
+        ],
+        "yearRange": [
+          2074,
+          2083
+        ],
+        "ganzhi": "丙戌",
+        "stem": "丙",
+        "branch": "戌",
+        "palace": "财帛",
+        "mutagen": [
+          "天同",
+          "天机",
+          "文昌",
+          "廉贞"
+        ],
+        "palaceMap": {
+          "命宫": "戌",
+          "兄弟": "酉",
+          "夫妻": "申",
+          "子女": "未",
+          "财帛": "午",
+          "疾厄": "巳",
+          "迁移": "辰",
+          "仆役": "卯",
+          "官禄": "寅",
+          "田宅": "丑",
+          "福德": "子",
+          "父母": "亥"
+        },
+        "branchMap": {
+          "戌": "命宫",
+          "酉": "兄弟",
+          "申": "夫妻",
+          "未": "子女",
+          "午": "财帛",
+          "巳": "疾厄",
+          "辰": "迁移",
+          "卯": "仆役",
+          "寅": "官禄",
+          "丑": "田宅",
+          "子": "福德",
+          "亥": "父母"
+        },
+        "natalPalaceOfSoul": "财帛",
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "天同",
+            "branch": "亥",
+            "natalPalace": "子女",
+            "decadalPalace": "父母"
+          },
+          {
+            "type": "权",
+            "star": "天机",
+            "branch": "卯",
+            "natalPalace": "父母",
+            "decadalPalace": "仆役"
+          },
+          {
+            "type": "科",
+            "star": "文昌",
+            "branch": "午",
+            "natalPalace": "官禄",
+            "decadalPalace": "财帛"
+          },
+          {
+            "type": "忌",
+            "star": "廉贞",
+            "branch": "申",
+            "natalPalace": "迁移",
+            "decadalPalace": "夫妻"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          95,
+          104
+        ],
+        "yearRange": [
+          2084,
+          2093
+        ],
+        "ganzhi": "丁亥",
+        "stem": "丁",
+        "branch": "亥",
+        "palace": "子女",
+        "mutagen": [
+          "太阴",
+          "天同",
+          "天机",
+          "巨门"
+        ],
+        "palaceMap": {
+          "命宫": "亥",
+          "兄弟": "戌",
+          "夫妻": "酉",
+          "子女": "申",
+          "财帛": "未",
+          "疾厄": "午",
+          "迁移": "巳",
+          "仆役": "辰",
+          "官禄": "卯",
+          "田宅": "寅",
+          "福德": "丑",
+          "父母": "子"
+        },
+        "branchMap": {
+          "亥": "命宫",
+          "戌": "兄弟",
+          "酉": "夫妻",
+          "申": "子女",
+          "未": "财帛",
+          "午": "疾厄",
+          "巳": "迁移",
+          "辰": "仆役",
+          "卯": "官禄",
+          "寅": "田宅",
+          "丑": "福德",
+          "子": "父母"
+        },
+        "natalPalaceOfSoul": "子女",
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "太阴",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "福德"
+          },
+          {
+            "type": "权",
+            "star": "天同",
+            "branch": "亥",
+            "natalPalace": "子女",
+            "decadalPalace": "命宫"
+          },
+          {
+            "type": "科",
+            "star": "天机",
+            "branch": "卯",
+            "natalPalace": "父母",
+            "decadalPalace": "官禄"
+          },
+          {
+            "type": "忌",
+            "star": "巨门",
+            "branch": "卯",
+            "natalPalace": "父母",
+            "decadalPalace": "官禄"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          105,
+          114
+        ],
+        "yearRange": [
+          2094,
+          2103
+        ],
+        "ganzhi": "戊子",
+        "stem": "戊",
+        "branch": "子",
+        "palace": "夫妻",
+        "mutagen": [
+          "贪狼",
+          "太阴",
+          "右弼",
+          "天机"
+        ],
+        "palaceMap": {
+          "命宫": "子",
+          "兄弟": "亥",
+          "夫妻": "戌",
+          "子女": "酉",
+          "财帛": "申",
+          "疾厄": "未",
+          "迁移": "午",
+          "仆役": "巳",
+          "官禄": "辰",
+          "田宅": "卯",
+          "福德": "寅",
+          "父母": "丑"
+        },
+        "branchMap": {
+          "子": "命宫",
+          "亥": "兄弟",
+          "戌": "夫妻",
+          "酉": "子女",
+          "申": "财帛",
+          "未": "疾厄",
+          "午": "迁移",
+          "巳": "仆役",
+          "辰": "官禄",
+          "卯": "田宅",
+          "寅": "福德",
+          "丑": "父母"
+        },
+        "natalPalaceOfSoul": "夫妻",
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "贪狼",
+            "branch": "寅",
+            "natalPalace": "命宫",
+            "decadalPalace": "福德"
+          },
+          {
+            "type": "权",
+            "star": "太阴",
+            "branch": "丑",
+            "natalPalace": "兄弟",
+            "decadalPalace": "父母"
+          },
+          {
+            "type": "科",
+            "star": "右弼",
+            "branch": "午",
+            "natalPalace": "官禄",
+            "decadalPalace": "迁移"
+          },
+          {
+            "type": "忌",
+            "star": "天机",
+            "branch": "卯",
+            "natalPalace": "父母",
+            "decadalPalace": "田宅"
+          }
+        ]
+      },
+      {
+        "ageRange": [
+          115,
+          124
+        ],
+        "yearRange": [
+          2104,
+          2113
+        ],
+        "ganzhi": "己丑",
+        "stem": "己",
+        "branch": "丑",
+        "palace": "兄弟",
+        "mutagen": [
+          "武曲",
+          "贪狼",
+          "天梁",
+          "文曲"
+        ],
+        "palaceMap": {
+          "命宫": "丑",
+          "兄弟": "子",
+          "夫妻": "亥",
+          "子女": "戌",
+          "财帛": "酉",
+          "疾厄": "申",
+          "迁移": "未",
+          "仆役": "午",
+          "官禄": "巳",
+          "田宅": "辰",
+          "福德": "卯",
+          "父母": "寅"
+        },
+        "branchMap": {
+          "丑": "命宫",
+          "子": "兄弟",
+          "亥": "夫妻",
+          "戌": "子女",
+          "酉": "财帛",
+          "申": "疾厄",
+          "未": "迁移",
+          "午": "仆役",
+          "巳": "官禄",
+          "辰": "田宅",
+          "卯": "福德",
+          "寅": "父母"
+        },
+        "natalPalaceOfSoul": "兄弟",
+        "mutagenLanding": [
+          {
+            "type": "禄",
+            "star": "武曲",
+            "branch": "子",
+            "natalPalace": "夫妻",
+            "decadalPalace": "兄弟"
+          },
+          {
+            "type": "权",
+            "star": "贪狼",
+            "branch": "寅",
+            "natalPalace": "命宫",
+            "decadalPalace": "父母"
+          },
+          {
+            "type": "科",
+            "star": "天梁",
+            "branch": "巳",
+            "natalPalace": "田宅",
+            "decadalPalace": "官禄"
+          },
+          {
+            "type": "忌",
+            "star": "文曲",
+            "branch": "申",
+            "natalPalace": "迁移",
+            "decadalPalace": "疾厄"
+          }
+        ]
+      }
+    ],
+    "horoscope": [
+      {
+        "year": 2026,
+        "nominalAge": 37,
+        "soulLimit": {
+          "ganzhi": "庚辰",
+          "branch": "辰"
+        },
+        "decadal": {
+          "ganzhi": "辛巳",
+          "mutagen": [
+            "巨门",
+            "太阳",
+            "文曲",
+            "文昌"
+          ],
+          "stars": [
+            {
+              "palace": "子女",
+              "name": "运钺",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "子女",
+              "name": "运曲",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "兄弟",
+              "name": "运喜",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "父母",
+              "name": "运魁",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "田宅",
+              "name": "运陀",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "官禄",
+              "name": "运禄",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "仆役",
+              "name": "运羊",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "仆役",
+              "name": "运鸾",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "迁移",
+              "name": "运马",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "疾厄",
+              "name": "运昌",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            }
+          ]
+        },
+        "yearly": {
+          "ganzhi": "丙午",
+          "mutagen": [
+            "天同",
+            "天机",
+            "文昌",
+            "廉贞"
+          ],
+          "stars": [
+            {
+              "palace": "子女",
+              "name": "流喜",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "夫妻",
+              "name": "年解",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "夫妻",
+              "name": "流陀",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "兄弟",
+              "name": "流禄",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "命宫",
+              "name": "流曲",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "命宫",
+              "name": "流羊",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "福德",
+              "name": "流昌",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "福德",
+              "name": "流马",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "田宅",
+              "name": "流钺",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "田宅",
+              "name": "流鸾",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "仆役",
+              "name": "流魁",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            }
+          ]
+        },
+        "monthly": {
+          "ganzhi": "甲午"
+        },
+        "yearlySoulPalaceLandsOn": {
+          "branch": "午",
+          "palace": "官禄",
+          "major": [
+            "七杀"
+          ]
+        },
+        "soulLimitPalace": "福德",
+        "yearlyAuxStars": [
+          {
+            "name": "流禄",
+            "branch": "巳",
+            "natalPalace": "田宅"
+          },
+          {
+            "name": "流羊",
+            "branch": "午",
+            "natalPalace": "官禄"
+          },
+          {
+            "name": "流陀",
+            "branch": "辰",
+            "natalPalace": "福德"
+          },
+          {
+            "name": "流马",
+            "branch": "申",
+            "natalPalace": "迁移"
+          }
+        ]
+      },
+      {
+        "year": 2027,
+        "nominalAge": 38,
+        "soulLimit": {
+          "ganzhi": "辛巳",
+          "branch": "巳"
+        },
+        "decadal": {
+          "ganzhi": "辛巳",
+          "mutagen": [
+            "巨门",
+            "太阳",
+            "文曲",
+            "文昌"
+          ],
+          "stars": [
+            {
+              "palace": "子女",
+              "name": "运钺",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "子女",
+              "name": "运曲",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "兄弟",
+              "name": "运喜",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "父母",
+              "name": "运魁",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "田宅",
+              "name": "运陀",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "官禄",
+              "name": "运禄",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "仆役",
+              "name": "运羊",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "仆役",
+              "name": "运鸾",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "迁移",
+              "name": "运马",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            },
+            {
+              "palace": "疾厄",
+              "name": "运昌",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "decadal"
+            }
+          ]
+        },
+        "yearly": {
+          "ganzhi": "丁未",
+          "mutagen": [
+            "太阴",
+            "天同",
+            "天机",
+            "巨门"
+          ],
+          "stars": [
+            {
+              "palace": "疾厄",
+              "name": "流喜",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "财帛",
+              "name": "年解",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "夫妻",
+              "name": "流曲",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "夫妻",
+              "name": "流陀",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "夫妻",
+              "name": "流马",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "兄弟",
+              "name": "流禄",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "命宫",
+              "name": "流羊",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "父母",
+              "name": "流鸾",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "福德",
+              "name": "流钺",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "福德",
+              "name": "流昌",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            },
+            {
+              "palace": "官禄",
+              "name": "流魁",
+              "brightness": null,
+              "mutagen": null,
+              "scope": "yearly"
+            }
+          ]
+        },
+        "monthly": {
+          "ganzhi": "丙午"
+        },
+        "yearlySoulPalaceLandsOn": {
+          "branch": "未",
+          "palace": "仆役",
+          "major": []
+        },
+        "soulLimitPalace": "田宅",
+        "yearlyAuxStars": [
+          {
+            "name": "流禄",
+            "branch": "午",
+            "natalPalace": "官禄"
+          },
+          {
+            "name": "流羊",
+            "branch": "未",
+            "natalPalace": "仆役"
+          },
+          {
+            "name": "流陀",
+            "branch": "巳",
+            "natalPalace": "田宅"
+          },
+          {
+            "name": "流马",
+            "branch": "巳",
+            "natalPalace": "田宅"
+          }
+        ]
+      }
+    ],
+    "observations": {
+      "fourteenComplete": 14,
+      "fourteen": [
+        {
+          "star": "贪狼",
+          "branch": "寅",
+          "palace": "命宫",
+          "brightness": "平"
+        },
+        {
+          "star": "天机",
+          "branch": "卯",
+          "palace": "父母",
+          "brightness": "旺"
+        },
+        {
+          "star": "巨门",
+          "branch": "卯",
+          "palace": "父母",
+          "brightness": "庙"
+        },
+        {
+          "star": "紫微",
+          "branch": "辰",
+          "palace": "福德",
+          "brightness": "得"
+        },
+        {
+          "star": "天相",
+          "branch": "辰",
+          "palace": "福德",
+          "brightness": "得"
+        },
+        {
+          "star": "天梁",
+          "branch": "巳",
+          "palace": "田宅",
+          "brightness": "陷"
+        },
+        {
+          "star": "七杀",
+          "branch": "午",
+          "palace": "官禄",
+          "brightness": "旺"
+        },
+        {
+          "star": "廉贞",
+          "branch": "申",
+          "palace": "迁移",
+          "brightness": "庙"
+        },
+        {
+          "star": "破军",
+          "branch": "戌",
+          "palace": "财帛",
+          "brightness": "旺"
+        },
+        {
+          "star": "天同",
+          "branch": "亥",
+          "palace": "子女",
+          "brightness": "庙"
+        },
+        {
+          "star": "武曲",
+          "branch": "子",
+          "palace": "夫妻",
+          "brightness": "旺"
+        },
+        {
+          "star": "天府",
+          "branch": "子",
+          "palace": "夫妻",
+          "brightness": "庙"
+        },
+        {
+          "star": "太阳",
+          "branch": "丑",
+          "palace": "兄弟",
+          "brightness": "不"
+        },
+        {
+          "star": "太阴",
+          "branch": "丑",
+          "palace": "兄弟",
+          "brightness": "庙"
+        }
+      ],
+      "brightStrong": [
+        "天机[旺]@卯·父母",
+        "巨门[庙]@卯·父母",
+        "紫微[得]@辰·福德",
+        "天相[得]@辰·福德",
+        "七杀[旺]@午·官禄",
+        "廉贞[庙]@申·迁移",
+        "破军[旺]@戌·财帛",
+        "天同[庙]@亥·子女",
+        "武曲[旺]@子·夫妻",
+        "天府[庙]@子·夫妻",
+        "太阴[庙]@丑·兄弟"
+      ],
+      "brightWeak": [
+        "贪狼[平]@寅·命宫",
+        "天梁[陷]@巳·田宅",
+        "太阳[不]@丑·兄弟"
+      ],
+      "sixSoft": [
+        "右弼@午·官禄",
+        "文昌@午·官禄",
+        "天钺@未·仆役",
+        "左辅@申·迁移",
+        "文曲@申·迁移",
+        "天魁@丑·兄弟"
+      ],
+      "sixTough": [
+        "地劫@卯·父母",
+        "火星@巳·田宅",
+        "地空@未·仆役",
+        "铃星@未·仆役",
+        "陀罗@未·仆役",
+        "擎羊@酉·疾厄"
+      ],
+      "emptyPalaces": [
+        {
+          "branch": "未",
+          "palace": "仆役"
+        },
+        {
+          "branch": "酉",
+          "palace": "疾厄"
+        }
+      ],
+      "soulPalace": "寅"
+    },
+    "patternCandidates": [
+      {
+        "pattern": "杀破狼",
+        "display_name": "杀破狼",
+        "conditions_met": true,
+        "evidence": "七杀@['午'] 破军@['戌'] 贪狼@['寅']",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": true
+      },
+      {
+        "pattern": "日月同宫",
+        "display_name": "日月同宫",
+        "conditions_met": true,
+        "evidence": "太阳@['丑'] 太阴@['丑']",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": true
+      },
+      {
+        "pattern": "日月反背",
+        "display_name": "日月反背",
+        "conditions_met": false,
+        "evidence": "太阳@['丑'] 太阴@['丑']（相对而居；是否成格须再查双方亮度）",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": true
+      },
+      {
+        "pattern": "火贪格",
+        "display_name": "火贪格",
+        "conditions_met": false,
+        "evidence": "贪狼@['寅'] 火星@['巳']",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": true
+      },
+      {
+        "pattern": "铃贪格",
+        "display_name": "铃贪格",
+        "conditions_met": false,
+        "evidence": "贪狼@['寅'] 铃星@['未']",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": true
+      },
+      {
+        "pattern": "机月同梁",
+        "display_name": "机月同梁",
+        "conditions_met": false,
+        "evidence": "命宫寅三方四正内 天机未见、太阴未见、天同未见、天梁未见",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": true
+      },
+      {
+        "pattern": "紫府同宫",
+        "display_name": "紫府同宫",
+        "conditions_met": false,
+        "evidence": "紫微@['辰'] 天府@['子']",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": true
+      },
+      {
+        "pattern": "府相朝垣",
+        "display_name": "府相朝垣",
+        "conditions_met": false,
+        "evidence": "天府@['子'] 天相@['辰']；命宫寅三方四正=午/寅/戌/申；命宫两邻=丑/卯",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": true
+      },
+      {
+        "pattern": "火铃夹命",
+        "display_name": "火铃夹命",
+        "conditions_met": false,
+        "evidence": "火星@['巳'] 铃星@['未']；命宫两邻=丑/卯",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": true
+      },
+      {
+        "pattern": "魁钺夹命",
+        "display_name": "魁钺夹命",
+        "conditions_met": false,
+        "evidence": "天魁@['丑'] 天钺@['未']；命宫两邻=丑/卯",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": true
+      },
+      {
+        "pattern": "昌曲夹命",
+        "display_name": "昌曲夹命",
+        "conditions_met": false,
+        "evidence": "文昌@['午'] 文曲@['申']；命宫两邻=丑/卯",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": true
+      },
+      {
+        "pattern": "羊陀夹命",
+        "display_name": "羊陀夹命",
+        "conditions_met": false,
+        "evidence": "擎羊@['酉'] 陀罗@['未']；命宫两邻=丑/卯",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": true
+      },
+      {
+        "pattern": "空劫夹命",
+        "display_name": "空劫夹命",
+        "conditions_met": false,
+        "evidence": "地空@['未'] 地劫@['卯']；命宫两邻=丑/卯",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": true
+      },
+      {
+        "pattern": "禄马交驰",
+        "display_name": "禄马交驰",
+        "conditions_met": true,
+        "evidence": "禄存@['申'] 天马@['申']",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": true
+      },
+      {
+        "pattern": "刑忌夹印",
+        "display_name": "刑忌夹印（存疑条目）",
+        "conditions_met": false,
+        "evidence": "天相@['辰']（本命福德宫），两邻=卯宫（天机、巨门、地劫）／巳宫（天梁、火星）。按统一口径（凡化忌——生年／离心自化／向心飞化——皆计入夹），本格的落点子条件（刑与忌分处两邻）未满足；而本条的构成条件判定取的是「完整古法条件」——该格传统以「命宫天相被刑、忌两邻所夹」为准，本盘天相在福德宫（不在命宫），故按该派的完整条件不满足。是否放宽到任意宫位的印星被夹，各派不一；两说对本盘有实际差别，故此处只摆落点，不替流派下结论",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": false
+      },
+      {
+        "pattern": "双禄交流",
+        "display_name": "双禄交流",
+        "conditions_met": false,
+        "evidence": "禄存@['申'] 化禄@['丑']；本报告口径：禄存与化禄同宫或三合皆计入（同宫即算「交流」）；若采「要求分居相会」之口径，结论需重判",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": true
+      },
+      {
+        "pattern": "羊陀夹禄忌",
+        "display_name": "羊陀夹禄忌",
+        "conditions_met": false,
+        "evidence": "禄存与忌同宫之宫=无；未取得羊陀分居两邻的落点。本格口径：凡化忌（生年／离心自化／向心飞化）皆计入夹。另一点：「羊陀夹禄」是禄存位置的结构性必然（禄前擎羊、禄后陀罗），单独看无鉴别力；本格的鉴别力来自「禄存与忌同宫」这一半。",
+        "satisfied": null,
+        "break_save": null,
+        "needs_adjudication": true
+      }
+    ],
+    "selfCheck": {
+      "problems": [],
+      "passed": true
+    }
+  },
+  "analysis": {
+    "_INSTRUCTIONS": {
+      "读我": "这是分析工作单。带 ◆ 的字段由 AI 填写，脚本已把盘面事实填进 _CHART_FACTS，不要重抄。",
+      "强制顺序": [
+        "1) 先读 references/interpretation.md（判读规则、格局层次、10 类必须并列的流派分歧、误判清单）",
+        "2) 再读 references/report-schema.md（字段与字数下限）",
+        "3) **先完成九步分析并写进 interpretation_notes**，每步写「看到了什么→据此判断什么」",
+        "4) **再从分析结果写成文**（skeleton / star_system / … / risk_boundary）",
+        "5) 最后跑 generate_report.py --validate，按报错逐条修"
+      ],
+      "禁止": [
+        "跳过 interpretation_notes 直接拼字段（脚本会判不合格）",
+        "把 _CHART_FACTS 原样抄成正文（正文是你的判断，不是盘面复述）",
+        "AI 自行推导星曜落宫或四化（一律以 chart 为准）",
+        "AI 自行断言六吉六煞谁跟谁成对／同宫／对拱（照「六吉六煞配对」栏引用）",
+        "可读区出现文件名、路径、内部流程词（语言闸门会拦）",
+        "**把写作指令写进正文**（「落点须分开写」「不可写成…」「切记…」「不可混称…」）——祈使式元指令闸门会拦；给当事人的建议一律用「宜／忌」",
+        "**把自校／防守型句子写进正文**（「不宜把必然当发现」「层次要分清」「是两回事」「读法分开处理」「两颗并不共处一宫」「不宜并列」）——元指令闸门会拦；这类话要改写成读者向的结论本身，或移入技术留痕",
+        "**可读区出现产出方口径词**（「脚本」「判据」）——写「排盘结果」「本次判定」",
+        "**效力层级写错**（第六轮）：按 references/interpretation.md §3.2 的尺——1 同宫（贴身）＞ 2 两邻（夹）＞ 3 三合会照 ＞ 4 对宫照（含三合宫的对宫）＞ 5 遥会。两邻属贴身层，**不得写「效力次一等」**；对宫照不得高于两邻；吉星与煞星同宫写「贴身但含煞」；「贴身护格有几颗」只数第 1～2 级",
+        "**破格／救格／层次三栏串味**（第六轮）：破格栏只列外部削弱条件（煞冲、空劫、失辉、宫破、逢冲破），本格的形成形态（亮度只居中上、配置是否对称）写进「层次与效力说明」栏；「救格折损」属救格一侧；凶格就地写明方向（破格＝减凶、救格折损＝加重）；格层次与命局层次两个标签不混用",
+        "把候选表外的格名（如「三方五吉」「以双帝同宫为条件的格目」）写进某一格的破格／救格栏——统一登记到 pattern_exclusions，渲染成独立的「排除说明」一节"
+      ],
+      "九步": [
+        "1 定盘校验：真太阳时是否近交界、是否做过往事反推 → 定 A/B/C",
+        "2 读骨架：命宫／身宫／来因宫／五行局／命主身主",
+        "3 定星系类型：紫微落宫 → 六种组合之一",
+        "4 本宫＋三方四正",
+        "5 看亮度（分星判断再叠乘，庙陷不可整宫论）",
+        "6 看辅佐煞杂曜——**六吉六煞的成对／同宫／对拱一律照「配对事实」栏引用，不要自己判断谁跟谁成对**；再六煞落哪、禄存被羊陀夹在哪",
+        "7 看四化：生年→大限→流年，三层不可混",
+        "8 夹宫扫描",
+        "9 格局认定（报格局必须同时报成立条件与破格/救格）"
+      ]
+    },
+    "_CHART_FACTS": {
+      "四柱农历年口径": "庚午 壬午 癸卯 丙辰",
+      "农历": "一九九〇年五月十五",
+      "五行局": "土五局",
+      "命宫": "寅",
+      "身宫": "戌",
+      "命主": "禄存",
+      "身主": "火星",
+      "来因宫": "辰宫福德",
+      "生年四化": "天同化忌→亥宫子女　武曲化权→子宫夫妻　太阳化禄→丑宫兄弟　太阴化科→丑宫兄弟",
+      "自化": "命宫（本宫宫干戊）贪狼自化禄　父母（本宫己）天机受对宫酉（宫干乙）化入禄　官禄（本宫壬）右弼受对宫子（宫干戊）化入科　迁移（本宫宫干甲）廉贞自化禄　子女（本宫宫干丁）天同自化权　夫妻（本宫戊）武曲受对宫午（宫干壬）化入忌　兄弟（本宫己）太阴受对宫未（宫干癸）化入科",
+      "十四主星齐备": "14/14",
+      "庙旺集中": "天机[旺]@卯·父母、巨门[庙]@卯·父母、紫微[得]@辰·福德、天相[得]@辰·福德、七杀[旺]@午·官禄、廉贞[庙]@申·迁移、破军[旺]@戌·财帛、天同[庙]@亥·子女、武曲[旺]@子·夫妻、天府[庙]@子·夫妻、太阴[庙]@丑·兄弟",
+      "失辉集中": "贪狼[平]@寅·命宫、天梁[陷]@巳·田宅、太阳[不]@丑·兄弟",
+      "六吉": "右弼@午·官禄、文昌@午·官禄、天钺@未·仆役、左辅@申·迁移、文曲@申·迁移、天魁@丑·兄弟",
+      "六煞": "地劫@卯·父母、火星@巳·田宅、地空@未·仆役、铃星@未·仆役、陀罗@未·仆役、擎羊@酉·疾厄",
+      "六吉六煞配对": [
+        "六吉·辅弼：左辅@申·迁移 ／ 右弼@午·官禄 → 分居（落命宫三方四正内：左辅、右弼）",
+        "六吉·昌曲：文昌@午·官禄 ／ 文曲@申·迁移 → 分居（落命宫三方四正内：文昌、文曲）",
+        "六吉·魁钺：天魁@丑·兄弟 ／ 天钺@未·仆役 → 对拱（落命宫三方四正内：无）",
+        "六煞·羊陀：擎羊@酉·疾厄 ／ 陀罗@未·仆役 → 分居（落命宫三方四正内：无）",
+        "六煞·火铃：火星@巳·田宅 ／ 铃星@未·仆役 → 分居（落命宫三方四正内：无）",
+        "六煞·空劫：地空@未·仆役 ／ 地劫@卯·父母 → 三合遥会（落命宫三方四正内：无）"
+      ],
+      "配对小结": "六吉三对之中同宫或对拱者 1/3；六煞三对之中同宫或对拱者 0/3",
+      "空宫": "未·仆役、酉·疾厄",
+      "十二宫": [
+        "寅宫 命宫｜宫干戊｜主星：贪狼[平]｜辅煞：无｜大限：5~14",
+        "卯宫 父母｜宫干己｜主星：天机[旺]、巨门[庙]｜辅煞：地劫｜大限：15~24",
+        "辰宫 福德（●来因）｜宫干庚｜主星：紫微[得]、天相[得]｜辅煞：无｜大限：25~34",
+        "巳宫 田宅｜宫干辛｜主星：天梁[陷]｜辅煞：火星[得]｜大限：35~44",
+        "午宫 官禄｜宫干壬｜主星：七杀[旺]｜辅煞：右弼、文昌[陷]｜大限：45~54",
+        "未宫 仆役｜宫干癸｜主星：无｜辅煞：天钺、地空、铃星[利]、陀罗[庙]｜大限：55~64",
+        "申宫 迁移｜宫干甲｜主星：廉贞[庙]｜辅煞：左辅、文曲[得]、禄存、天马｜大限：65~74",
+        "酉宫 疾厄｜宫干乙｜主星：无｜辅煞：擎羊[陷]｜大限：75~84",
+        "戌宫 财帛（★身宫）｜宫干丙｜主星：破军[旺]｜辅煞：无｜大限：85~94",
+        "亥宫 子女｜宫干丁｜主星：天同[庙]化忌｜辅煞：无｜大限：95~104",
+        "子宫 夫妻｜宫干戊｜主星：武曲[旺]化权、天府[庙]｜辅煞：无｜大限：105~114",
+        "丑宫 兄弟｜宫干己｜主星：太阳[不]化禄、太阴[庙]化科｜辅煞：天魁｜大限：115~124"
+      ],
+      "三方四正": {
+        "self": "寅宫命宫：贪狼[平]｜无",
+        "opposite": "申宫迁移：廉贞[庙]｜左辅、文曲[得]、禄存、天马",
+        "trine1": "午宫官禄：七杀[旺]｜右弼、文昌[陷]",
+        "trine2": "戌宫财帛：破军[旺]｜无"
+      },
+      "夹宫": {
+        "左邻": "丑宫兄弟（天魁吉）",
+        "右邻": "卯宫父母（地劫煞）"
+      },
+      "大限前四限": "5~14虚岁(1994~2003) 戊寅落命宫 禄贪狼权太阴科右弼忌天机 / 15~24虚岁(2004~2013) 己卯落父母 禄武曲权贪狼科天梁忌文曲 / 25~34虚岁(2014~2023) 庚辰落福德 禄太阳权武曲科太阴忌天同 / 35~44虚岁(2024~2033) 辛巳落田宅 禄巨门权太阳科文曲忌文昌",
+      "流年": "2026年虚岁37 流年命宫落本命午宫官禄 流年四化禄天同权天机科文昌忌廉贞 / 2027年虚岁38 流年命宫落本命未宫仆役 流年四化禄太阴权天同科天机忌巨门",
+      "机器自检": "通过",
+      "排盘告警": [
+        "直接指定了时辰序号，未做真太阳时校正。"
+      ],
+      "真太阳时": "未校正"
+    },
+    "interpretation_notes": {
+      "_说明": "九步分析留痕。每步写「看到了什么 + 据此判断什么」，这是报告的依据链。",
+      "step1_定盘": "看到的是：输入只给了公历日期、辰时与性别，没有经度，排盘结果据此只给出一条告警——直接指定时辰序号、未做真太阳时校正；真太阳时轴的钟点、校正量与距交界分钟数在本盘全部为空，钟点轴的交界距离同样无从计算。据此判断：没有经度就无法判定是否贴近时辰交界，靠近交界时的整体位移风险无法排除；又没有任何已知往事可供反推核对。两条约束叠加，定盘等级只能取需复核一档，而不是基本可信。这一档位决定本报告的断言强度：只给本命结构，大限流年只讲方向。",
+      "step2_骨架": "看到的是：五行局土五局、虚岁 5 岁起运；命宫在寅，身宫在戌；命主为禄存，身主为火星；来因宫落在辰宫福德宫。据此判断：命身分处两宫，本性与后天用力方向不一致，本命底色偏多面善变，而后天的着力点却在资源重整上。命主落迁移、身主落田宅，两者都不在命宫左右，说明这一生的场偏向外求与家宅安顿，而不是守在原地深耕。来因宫在福德，一生的核心课题落在价值判断与内在标准上，事功只是这条课题的外在表现。",
+      "step3_星系类型": "看到的是：紫微落辰宫，与天相同宫，属紫相一系；命宫三方四正的另外三处分别是七杀、破军、贪狼，三颗杀破狼星齐见。据此判断：紫微不在命宫三方四正之内，其统领之性作用于福德宫的精神层面，不主导事业与财帛；这张盘的主结构是杀破狼的组合，主更替、开创与变动中找出路。稳定与守成因此不是本盘的强项，顺势而为的方向是接受变动的常态，把更替当成节奏而不是当成意外。",
+      "step4_本宫三方四正": "看到的是：命宫寅宫贪狼一颗，亮度为平，无辅无煞；官禄午宫七杀旺并坐右弼、文昌，文昌落陷；财帛戌宫破军旺，为身宫所在；迁移申宫廉贞庙，并坐左辅、文曲、禄存、天马。据此判断：四方之中三颗主星在旺位或庙位，唯独命宫本宫的主星最弱，迁移宫反而最充实，属外显强于内里的形态；文昌与七杀同宫会削弱果敢、增加犹疑，是这一组里的减分项；迁移宫集四颗吉曜与禄马，说明外部动线是本命兑现力量的主要通道，但禄存受羊陀所夹，机会与耗损同时在场。",
+      "step5_亮度": "看到的是：全盘失辉共三处，逐宫是命宫寅宫贪狼为平、田宅巳宫天梁落陷、兄弟丑宫太阳失辉；庙旺共十一处，集中在父母的卯宫、福德的辰宫、官禄的午宫、迁移的申宫、财帛的戌宫、子女的亥宫、夫妻的子宫与兄弟的丑宫。据此判断：强星几乎全体避开了命宫本宫，集中在本宫之外；命宫的三方四正之内则有两颗庙旺与两颗辅助吉星撑持。亮度是乘数而不是加数，同宫不同星各自判：同处丑宫的太阳失辉而太阴在庙，一明一暗各按各的读法，不能整宫论。",
+      "step6_辅佐煞杂曜": "看到的是：六吉为右弼与文昌在午宫官禄、天钺在未宫仆役、左辅与文曲在申宫迁移、天魁在丑宫兄弟；六煞为地劫在卯宫父母、火星在巳宫田宅、地空与铃星与陀罗同在未宫仆役、擎羊在酉宫疾厄。配对表给出的关系是：六吉三对之中，天魁与天钺互为对拱，另两对各自分处两地；六煞三对各自分处两地，其中空劫成三合遥会。落在命宫三方四正内的吉星共四颗，六煞无一落于其内。据此判断：护格之力集中在迁移与官禄两侧，方向是向外；而煞曜压着的正是父母、田宅、仆役、疾厄四处，家庭与同辈圈层是耗损面。禄存的结构必然使擎羊在酉、陀罗在未分居禄存两邻，禄存受羊陀所夹是禄存位置自带的条件，单独看并无鉴别力。",
+      "step7_四化三层": "看到的是：生年四化为天同忌在子女、武曲权在夫妻、太阳禄与太阴科同在兄弟；自化为命宫贪狼离心自化禄、迁移廉贞离心自化禄、子女天同离心自化权、官禄右弼受对宫向心化科、夫妻武曲受对宫向心化忌、兄弟太阴受对宫向心化科、父母天机受对宫向心化禄。大限一层落在第四限辛巳，流年一层落在 2026 丙午与 2027 丁未。据此判断：三层各有各的落点，彼此不能互相代换。生年层定的是出厂设定，主轴是资源在兄弟、执念在子女、主导欲在夫妻；自化层揭示明有实无，命宫与迁移两处的自化禄说明才华与机会都偏表面，须靠实际往来与持续经营才能留存；大限与流年两层只在大限限内与当年成立，不能拿来改本命的结论。",
+      "step8_夹宫": "看到的是：命宫在寅，左邻丑宫坐天魁一颗吉星（另带天刑一颗杂曜），右邻卯宫坐天机旺与巨门庙，同时坐地劫一颗煞星。据此判断：命宫两邻一吉一煞，丑宫的天魁属贴身层的贵人助力，卯宫的巨门主口舌与表达而地劫主空耗，两者与命宫同处贴身层，所以人生里的助力与口舌几乎同时到场，不是先后关系。另按夹宫看全盘：天魁在丑、天钺在未，两颗并非正好分居命宫两邻，故不成魁钺夹命；擎羊在酉、陀罗在未分居禄存所在申宫的两邻，夹的是禄存而非命宫。",
+      "step9_格局裁断": "看到的是：本次共判定 17 项候选格局，逐项裁断后成立者为 2 项；不成立者为 14 项，存疑并列者为 1 项，三项相加正好 17 项。据此判断：条件满足的候选有杀破狼、日月同宫、禄马交驰三项，其中日月同宫的星曜落在兄弟宫，不在命宫三方四正之内，故按裁断口径定为不成立；杀破狼三颗皆在命宫三方四正之内，条件与落点同时到位，故成立。凡裁为不成立的格一律不再引用该格名的断语，只按所涉星曜本身的落宫取象。"
+    },
+    "findings": {
+      "_说明": "从九步分析收敛出的关键发现。",
+      "主线": "这是一张以杀破狼为骨架、以迁移宫为兑现通道的盘：本宫主星最弱而迁移与官禄最实，力量须靠动线与外部平台才能落地，稳定守成不是它的强项。",
+      "关键点": [
+        "命宫贪狼为平且自化禄，才华与人缘外露却难以自动凝聚；本宫是三方四正里最弱的一处，本性的多面与善变须靠外部结构约束。",
+        "迁移宫集左辅、文曲、禄存、天马四颗吉曜，主星廉贞在庙位，禄马交驰成立且整体落在命宫三方四正之内；外部动线是这张盘最主要的兑现通道。",
+        "六煞六颗全见而无一落在命宫三方四正之内，压力因此分散在父母、田宅、仆役、疾厄四处，家庭与同辈圈层是耗损面而非致命面；其中未宫一宫同坐地空、铃星、陀罗三煞，是煞气最挤的一处。",
+        "生年四化里两条吉化同落兄弟宫，而兄弟宫不在命宫三方四正之内，资源与人缘都在近身却不贴身的位置，须靠主动往来把它拉进射程。",
+        "天同生年化忌与离心自化权同落子女宫，一忌一权自相抵消，主对子女、创作或自己所养之事的投入情绪偏高而回报滞后。",
+        "现行大限为第四限辛巳，大限命宫落本命田宅宫，大限官禄宫落本命疾厄宫；大限文昌化忌使本命官禄宫被引动，事业面的文书与考试相关事务在这一限需要额外核对。"
+      ],
+      "矛盾点": "盘面最明显的矛盾是外实内虚：迁移与官禄两处庙旺吉曜齐集，命宫本宫却只有一颗平位的贪狼，且自带离心自化禄。表现上机会与助力都不缺，实质上留存与凝聚最费力，外显的从容与内里的消耗并存。另一处矛盾在夫妻宫：武曲既受生年化权又受对宫向心化忌，关系与共同资源上既有主导意识又持续费力。"
+    },
+    "firming_level": "C 需复核（未给经度，示例盘为教学自拟）",
+    "firming_reason": "本盘为教学自拟的示例命盘，虚构人物，不对应任何真实个案，也不引用任何真实人物的出生信息。输入只给了公历 1990-06-07 与辰时（07:00 至 09:00）、性别男，未提供出生地或经度，因此本次排盘直接按辰时序号取用，不做真太阳时校正——真太阳时轴的钟点、校正分钟数与距时辰交界分钟数在本盘均不可得，这是排盘结果自己给出的告警，也是本报告把定盘等级定为需复核的第一条依据。第二条依据是没有往事反推：没有任何已知重大事件可供逐年核对，定盘缺少外部约束。按定盘分级口径，未给经度即落入需复核一档，本报告因此只就本命结构给出结构性说明，大限与流年只讲方向、不讲具体事件。作为教学示例，本盘的全部价值在于演示判读流程与裁断口径，读者把它当成对某个真人的批断并不合适。排盘参数本身自洽：五行局为土五局，虚岁 5 岁起运；十四主星齐备 14/14；禄存与擎羊、陀罗相邻；十二宫名无重复。口径声明三条：五行局由命宫宫干纳音定；四化表采用通行本，戊、庚、壬三干的化科与中州派不同；大限起法采用现代软件通行口径，即起运虚岁等于五行局数、行向按阳男阴女顺行与阴男阳女逆行定。本盘为庚午年阳男，大限顺行。",
+    "skeleton": "命宫在寅宫，坐贪狼一颗，亮度为平；身宫落在戌宫财帛宫，坐破军，亮度为旺。命身不同宫，先天本性与后天发力方向各在一处：本性的底色是贪狼式的多面与善变，后天的着力点却放在财帛与资源的重整上。五行局为土五局，虚岁 5 岁起运。命主为禄存，身主为火星——命主落迁移宫，身主落田宅宫，与命宫皆不相邻。来因宫落在辰宫福德宫，一生反复回到的课题在价值判断与内在标准这一处，而不是外在事功。命宫三方四正为寅、午、戌、申四宫：本宫贪狼，官禄午宫七杀，财帛戌宫破军，迁移申宫廉贞。四颗主星各占一处，整体是不安定而偏开创的结构，稳定与守成不是这张盘的强项。命宫两邻一吉一煞：丑宫坐天魁，卯宫坐地劫与巨门——本宫之外先见助力，也先见口舌与空耗。",
+    "star_system": "紫微落辰宫，与天相同宫，属紫相系；紫微的统领性因此落在福德宫的精神层面，表现为对品质、体面与判断标准的在意，不直接主导事业与财帛的运作。命宫三方四正齐见七杀、破军、贪狼三颗，构成完整的杀破狼结构，主更替、开创与在变动里找出路；此结构成立与否见格局表。主星的亮度分组逐星核读，不作整宫论。庙旺一侧共十一处：父母宫的天机旺与巨门庙、福德宫的紫微得与天相得、官禄宫的七杀旺、迁移宫的廉贞庙、财帛宫的破军旺、子女宫的天同庙、夫妻宫的武曲旺与天府庙、兄弟宫的太阴庙。失辉一侧共三处：命宫贪狼最弱，田宅宫天梁落陷，兄弟宫太阳失辉。两侧的分布有规律：强星几乎全落在命宫三方四正与外部宫位，唯独命宫本宫的主星最弱，迁移宫的主星却在庙位，外显强于内里。六吉六煞的成对、同宫与对拱一律照盘面的配对表读，不作另行推算。六吉之中，天魁与天钺互为对拱，分处丑宫与未宫；另两对各自分处两地，不与对方同宫；落在命宫三方四正内的吉星共四颗，为左辅与文曲在申宫迁移、右弼与文昌在午宫官禄。六煞六颗全见，三对各自分处两地，或者成三合遥会，压力分散而非集中；六煞无一落在命宫三方四正之内。另按禄存的结构必然，擎羊在酉、陀罗在未分居禄存所在申宫的两邻，禄存必受羊陀所夹。",
+    "mutagen_axis": "生年四化为天同化忌落子女宫、武曲化权落夫妻宫、太阳化禄与太阴化科同落兄弟宫。四条里最须留意的是天同化忌落子女宫：化忌是执念与最用力之处，不是凶兆；天同在亥为庙，这一条偏向费心而得——对子女、创作或自己所养之事投入极深，情绪上的期待与实际回报不在同一节拍上。武曲化权落夫妻宫，与天府庙同宫，主在关系与共同资源里有主导意识，但武曲同时受对宫午宫宫干化入忌，权与忌集于一身，表现为越想主导越费力的结构张力。兄弟宫太阳化禄与太阴化科同宫，是全盘资源与人缘最集中的一处：太阳在此失辉而化禄，属古籍「忌星入庙反为佳」的同类思路——光照不足却因化禄而转为可用的助力；太阴在此为庙又化科，主细腻、名声与长线积累。可惜这处资源落在命宫三方四正之外，须靠实际往来才能兑现。自化层面揭示的是明有实无：命宫宫干使贪狼自化禄，才华与人缘外露而难以凝聚；迁移宫宫干使廉贞自化禄，外部机会看似多而留存有限；子女宫宫干使天同自化权，与生年化忌同处一宫，一权一忌自相抵消；官禄宫右弼受对宫子宫宫干化入科，夫妻宫武曲受对宫午宫宫干化入忌，兄弟宫太阴受对宫未宫宫干化入科。四化主轴一句话概括：资源在兄弟、名声在官禄、执念在子女，而三处都不在命宫本宫，本命的力量须靠迁移动线去兑现。",
+    "palace_reading": "以下按十二宫逐宫陈述。判断顺序依古法：先看本宫主星与亮度，再看三方四正，再看四化与自化，最后看夹宫。每宫结论都能回溯到具体星曜或宫位，不作无依据的推断。凡涉及健康与财务的表述，均属结构性的徵验讯号，实际徵验率因人而异，不构成专业建议。",
+    "palace_details": [
+      {
+        "palace": "命宫",
+        "branch": "寅",
+        "text": "寅宫坐贪狼一颗，亮度为平，无辅星，带天厨与蜚廉两颗杂曜。贪狼主多才多艺、交际面广、欲求与兴趣都偏多线；平位与庙位相比力量居中间，主才华够用而爆发力有限。宫干戊使贪狼离心自化禄，属明有实无：机会与好感容易到手，却不易沉淀成可积累的成果。命宫两邻一吉一煞，丑宫的天魁是贵人助力，卯宫的巨门与地劫是口舌与空耗，助力与口舌近乎同时到场。此宫的结构性提醒是宜专一不宜多线并行，把兴趣收束成一两处可长期经营的方向更合本盘的走向。"
+      },
+      {
+        "palace": "兄弟宫",
+        "branch": "丑",
+        "text": "丑宫坐太阳与太阴两颗，太阳失辉而带生年化禄，太阴在庙位而带生年化科，另有天魁与天刑同宫。日月同处一宫而明暗各半，主与同辈、近亲的往来密切而体感分裂：既有实际的资源与人缘（太阳化禄），也有细腻的名声与长线积累（太阴化科）。宫干己又使太阴受对宫未宫宫干化入科，与生年化科同处一宫。此宫不在命宫三方四正之内，这处资源属于近身而不贴身的位置，须靠主动往来才能把它变成可用的助力。"
+      },
+      {
+        "palace": "夫妻宫",
+        "branch": "子",
+        "text": "子宫坐武曲与天府两颗，武曲旺而带生年化权，天府在庙位，属财星与库星同宫。主在关系与共同资源上有主导意识，也重视稳定与秩序；武曲化权使执行力偏向刚性，天府庙位则提供包容与储备之力。宫干戊使武曲受对宫午宫宫干化入忌，权与忌集于武曲一身，读法是越想主导越费力，压力多来自条件与规则的硬碰，而不是感情本身。此为结构性提醒，不构成投资建议。"
+      },
+      {
+        "palace": "子女宫",
+        "branch": "亥",
+        "text": "亥宫坐天同一颗，亮度为庙，带生年化忌，宫干丁又使天同离心自化权。天同是福星，庙位本主温和与享受；化忌落此宫，依古法属执念与最用力之处而非凶兆，表现为对子女、学生、创作或自己所养之事的情绪投入极深。自化权与生年化忌同处一宫，一权一忌自相抵消，这是全盘内耗最典型的一处，宜把期待值放在自己的节奏上而不是回报的时点上。"
+      },
+      {
+        "palace": "财帛宫",
+        "branch": "戌",
+        "text": "戌宫坐破军一颗，亮度为旺，无辅无煞，此宫同时是身宫所在。破军主更替与重整，在旺位主力量能出、敢推倒重来；作为身宫，说明后天的着力点确实放在资源与财帛上。此宫在命宫三方四正之内，与命宫贪狼、官禄七杀连成杀破狼一线，财务形态偏向在变动里获利，靠打破旧结构取得新空间，而不是靠稳定积累。结构性提醒是财务上宜留出应对波动的余地，此为结构性描述，不构成投资建议。"
+      },
+      {
+        "palace": "疾厄宫",
+        "branch": "酉",
+        "text": "酉宫为没有主星的空宫，坐擎羊一颗，该星在盘面落陷。空宫的读法是接着核对其对宫与三方：对宫为卯宫的天机与巨门，三合为丑宫与巳宫。借来的性质是天机所主的思虑与神经、巨门所主的消化与口腔咽喉，加上本宫擎羊落陷所主的金属外伤与急症倾向。身体上的结构提醒偏向由思虑过度与饮食作息引起的波动，此为徵验讯号，实际徵验率因人而异，身体不适应就医而不是问命。"
+      },
+      {
+        "palace": "迁移宫",
+        "branch": "申",
+        "text": "申宫坐廉贞一颗，亮度为庙，并坐左辅、文曲、禄存、天马四颗吉曜，是全盘配置最实的一宫，而此宫正是命宫的对宫。禄存与天马同处一宫，构成禄马交驰，主动线生财与外部机会；左辅与文曲同处一宫，主文书、人脉与协调之力齐备。宫干甲使廉贞离心自化禄，属明有实无，主外部机会看似源源不绝而真正留存的有限。另按禄存的结构必然，擎羊在酉、陀罗在未分居本宫两邻，禄存受羊陀所夹，出外得力与出外耗损同时存在。"
+      },
+      {
+        "palace": "仆役宫",
+        "branch": "未",
+        "text": "未宫为没有主星的空宫，而煞曜最挤：地空、铃星、陀罗三颗同在，天钺一颗吉星也在其中。借对宫丑宫的太阳与太阴来看，性质是资源与人缘，但本宫以煞为主，故同辈与圈层关系表面热络而实质助力有限，变动与摩擦偏多。天钺落在这里又与三颗煞曜同处，属贴身但含煞，贵人的助力须在耗损之中才显出来。宜精选少数可靠的人深交，不宜广结。"
+      },
+      {
+        "palace": "官禄宫",
+        "branch": "午",
+        "text": "午宫坐七杀一颗，亮度为旺，并坐右弼与文昌，其中文昌在盘面落陷。七杀旺位主刚断、执行力强、适合竞争与开创；右弼主协调与辅佐之力，文昌落陷则主文书与考试一面偏弱。这里有一处古法要留意：昌曲对七杀、破军是负担，会消解果敢、增加犹疑，故本宫的力量宜减一层看。宫干壬使右弼受对宫子宫宫干化入科，属向心自化，名声与专业口碑有外力助攻但须靠实际往来兑现。"
+      },
+      {
+        "palace": "田宅宫",
+        "branch": "巳",
+        "text": "巳宫坐天梁一颗，在盘面落陷，另有火星同宫。天梁主原则、长辈缘与庇护之力，落陷则庇护之力偏薄；火星主突发与急躁，与天梁同宫主家宅与固定资产上易有突发变动。此宫同时是现行大限的限内命宫所在，第四限的家宅与安顿议题因此被推到台前。结构上的读法是这一处不宜以稳守为主，宜按变动留出余地；此为结构性提醒，不构成投资建议。"
+      },
+      {
+        "palace": "福德宫",
+        "branch": "辰",
+        "text": "辰宫坐紫微与天相两颗，紫微为得、天相为得，同为来因宫所在。紫微主统领与自尊，天相主平衡与服务，两星同宫主精神层面重视品质、体面与判断标准，也容易被「应该怎样」的框架绑住。此宫是来因宫，说明一生的核心课题落在价值判断与内在标准上。此宫不在命宫三方四正之内，故福德之稳对本命只起背景作用，不直接主导事业与财帛的运作。"
+      },
+      {
+        "palace": "父母宫",
+        "branch": "卯",
+        "text": "卯宫坐天机与巨门两颗，天机旺而巨门在庙，另有地劫一颗煞星，带天喜、咸池、天德等杂曜。天机旺主思虑快、点子多，巨门庙主口才与辨析之力强，两星同宫主与长辈上级的沟通频繁，也容易因言语直接而起摩擦。地劫同宫主这一面的收获有折损，付出的心力与实际得到的支持不成正比。此宫在命宫两邻的贴身层，故父母与上级的沟通方式是本命最直接的影响源。"
+      }
+    ],
+    "patterns": [
+      {
+        "name": "杀破狼",
+        "script_conditions_met": true,
+        "script_evidence": "七杀@['午'] 破军@['戌'] 贪狼@['寅']",
+        "satisfied": true,
+        "evidence": "七杀在午宫官禄、破军在戌宫财帛、贪狼在寅宫命宫，三星分处三合，且三宫即命宫的三方四正（寅、午、戌、申之内），条件与落点同时到位，本盘以此格为主轴。",
+        "break_save": "破格：昌曲对七杀、破军是负担，官禄宫的文昌在盘面落陷，与七杀同宫会消解果敢、增加犹疑；命宫贪狼只在平位，本宫无吉星贴身，主轴的开创之力缺少同宫助力。救格（锚点：寅、午、戌）：迁移宫申宫坐左辅与文曲，文曲在得位，与命宫的三合关系构成会照救应；申宫又见禄存与天马同宫，动线与资源两头都有实配。层次与效力说明：三颗星分布在命宫、财帛与官禄三处，落在命宫三方四正之内的四颗吉星恰好全在迁移与官禄两侧，方向上支持向外开创；身宫落财帛宫的破军，后天发力点与主轴一致，不出现拉扯。此格在本盘的格层次为中上，属有机会也有耗损的结构，成败取决于能否把更替的节奏变成可预期的安排。",
+        "nature": "吉",
+        "anchor": "寅、午、戌"
+      },
+      {
+        "name": "日月同宫",
+        "script_conditions_met": true,
+        "script_evidence": "太阳@['丑'] 太阴@['丑']",
+        "satisfied": false,
+        "evidence": "太阳与太阴同在丑宫，同宫条件满足；但丑宫不在命宫寅的三方四正（寅、午、戌、申）之内，不主本命格局，故定为不成立。",
+        "break_save": "",
+        "nature": "中性",
+        "anchor": "丑"
+      },
+      {
+        "name": "日月反背",
+        "script_conditions_met": false,
+        "script_evidence": "太阳@['丑'] 太阴@['丑']（相对而居；是否成格须再查双方亮度）",
+        "satisfied": false,
+        "evidence": "太阳与太阴同处丑宫一处，并非分居相对的两宫，古法所述构成条件不满足，故本格不成立。",
+        "break_save": "",
+        "nature": "凶",
+        "anchor": "丑"
+      },
+      {
+        "name": "火贪格",
+        "script_conditions_met": false,
+        "script_evidence": "贪狼@['寅'] 火星@['巳']",
+        "satisfied": false,
+        "evidence": "贪狼在寅宫，火星在巳宫，两宫既不同宫，也不构成三合（寅的三合为午与戌），构成条件不满足，故本格不成立。",
+        "break_save": "",
+        "nature": "吉",
+        "anchor": "寅、巳"
+      },
+      {
+        "name": "铃贪格",
+        "script_conditions_met": false,
+        "script_evidence": "贪狼@['寅'] 铃星@['未']",
+        "satisfied": false,
+        "evidence": "贪狼在寅宫，铃星在未宫，两宫既不同宫，也不构成三合（寅的三合为午与戌），也不互为对宫，构成条件不满足，故本格不成立。",
+        "break_save": "",
+        "nature": "吉",
+        "anchor": "寅、未"
+      },
+      {
+        "name": "机月同梁",
+        "script_conditions_met": false,
+        "script_evidence": "命宫寅三方四正内 天机未见、太阴未见、天同未见、天梁未见",
+        "satisfied": false,
+        "evidence": "天机在卯宫、太阴在丑宫、天同在亥宫、天梁在巳宫，四颗皆未落于命宫寅的三方四正（寅、午、戌、申）之内，构成条件不满足，故本格不成立。",
+        "break_save": "",
+        "nature": "中性",
+        "anchor": "寅"
+      },
+      {
+        "name": "紫府同宫",
+        "script_conditions_met": false,
+        "script_evidence": "紫微@['辰'] 天府@['子']",
+        "satisfied": false,
+        "evidence": "紫微在辰宫福德、天府在子宫夫妻，两宫分处两地而非同宫，构成条件不满足，故本格不成立。",
+        "break_save": "",
+        "nature": "吉",
+        "anchor": "辰、子"
+      },
+      {
+        "name": "府相朝垣",
+        "script_conditions_met": false,
+        "script_evidence": "天府@['子'] 天相@['辰']；命宫寅三方四正=午/寅/戌/申；命宫两邻=丑/卯",
+        "satisfied": false,
+        "evidence": "天府在子宫、天相在辰宫，两宫皆不在命宫寅的三方四正（寅、午、戌、申）之内，也不落在命宫两邻（丑、卯），构成条件不满足，故本格不成立。",
+        "break_save": "",
+        "nature": "吉",
+        "anchor": "子、辰"
+      },
+      {
+        "name": "火铃夹命",
+        "script_conditions_met": false,
+        "script_evidence": "火星@['巳'] 铃星@['未']；命宫两邻=丑/卯",
+        "satisfied": false,
+        "evidence": "火星在巳宫、铃星在未宫，命宫两邻为丑宫与卯宫，两颗并未正好分居命宫两邻，构成条件不满足，故本格不成立。",
+        "break_save": "",
+        "nature": "凶",
+        "anchor": "丑、卯"
+      },
+      {
+        "name": "魁钺夹命",
+        "script_conditions_met": false,
+        "script_evidence": "天魁@['丑'] 天钺@['未']；命宫两邻=丑/卯",
+        "satisfied": false,
+        "evidence": "天魁在丑宫、天钺在未宫，命宫两邻为丑宫与卯宫；两颗之中只有天魁落在命宫一侧，并非正好分居命宫两邻，构成条件不满足，故本格不成立。",
+        "break_save": "",
+        "nature": "吉",
+        "anchor": "丑、卯"
+      },
+      {
+        "name": "昌曲夹命",
+        "script_conditions_met": false,
+        "script_evidence": "文昌@['午'] 文曲@['申']；命宫两邻=丑/卯",
+        "satisfied": false,
+        "evidence": "文昌在午宫、文曲在申宫，命宫两邻为丑宫与卯宫，两颗并未落在命宫两邻，构成条件不满足，故本格不成立。",
+        "break_save": "",
+        "nature": "吉",
+        "anchor": "丑、卯"
+      },
+      {
+        "name": "羊陀夹命",
+        "script_conditions_met": false,
+        "script_evidence": "擎羊@['酉'] 陀罗@['未']；命宫两邻=丑/卯",
+        "satisfied": false,
+        "evidence": "擎羊在酉宫、陀罗在未宫，命宫两邻为丑宫与卯宫，两颗并未落在命宫两邻，构成条件不满足，故本格不成立。",
+        "break_save": "",
+        "nature": "凶",
+        "anchor": "丑、卯"
+      },
+      {
+        "name": "空劫夹命",
+        "script_conditions_met": false,
+        "script_evidence": "地空@['未'] 地劫@['卯']；命宫两邻=丑/卯",
+        "satisfied": false,
+        "evidence": "地空在未宫、地劫在卯宫，命宫两邻为丑宫与卯宫；两颗之中只有地劫落在命宫一侧，并非正好分居命宫两邻，构成条件不满足，故本格不成立。",
+        "break_save": "",
+        "nature": "凶",
+        "anchor": "丑、卯"
+      },
+      {
+        "name": "禄马交驰",
+        "script_conditions_met": true,
+        "script_evidence": "禄存@['申'] 天马@['申']",
+        "satisfied": true,
+        "evidence": "禄存与天马同在申宫迁移宫，同宫条件满足；申宫又正在命宫寅的三方四正之内，落点与条件同时到位，故本格成立。",
+        "break_save": "破格：同宫所见以动线与机会为主，稳定与留存不是这一格的长处；所涉两星自身不带生年禄，机会的质地依赖外部往来维持；又因禄存的结构必然，擎羊在酉、陀罗在未分居申宫两邻，禄存受羊陀所夹，出外得力与出外耗损同时在场。救格（锚点：申）：廉贞在申宫迁移为庙位，主外部机会的质地不弱；同宫另坐左辅与文曲两颗吉星，文曲在得位，人脉与文书之力齐备，与所涉两星同处一宫，属第一级贴身层的独立救应。层次与效力说明：本格所涉两星与救应吉星同处一宫，配置集中而不分散；申宫相对命宫寅属对宫照一级，力量经对宫转达，说明这条财路须走出原地才成立。此格在本盘的格层次为中上，属动中生财的结构，兑现速度取决于移动与往来的频率。",
+        "nature": "吉",
+        "anchor": "申"
+      },
+      {
+        "name": "刑忌夹印",
+        "script_conditions_met": false,
+        "script_evidence": "天相@['辰']（本命福德宫），两邻=卯宫（天机、巨门、地劫）／巳宫（天梁、火星）。按统一口径（凡化忌——生年／离心自化／向心飞化——皆计入夹），本格的落点子条件（刑与忌分处两邻）未满足；而本条的构成条件判定取的是「完整古法条件」——该格传统以「命宫天相被刑、忌两邻所夹」为准，本盘天相在福德宫（不在命宫），故按该派的完整条件不满足。是否放宽到任意宫位的印星被夹，各派不一；两说对本盘有实际差别，故此处只摆落点，不替流派下结论",
+        "satisfied": null,
+        "evidence": "天相在辰宫福德，其两邻为卯宫与巳宫：卯宫坐天机、巨门与地劫，巳宫坐天梁与火星。按统一口径，凡化忌（生年忌、离心自化忌、向心飞化忌）皆计入夹，本盘两邻皆未坐化忌、亦未坐擎羊，落点子条件不满足；而该格传统的完整条件以命宫天相被刑与忌两邻所夹为准，本盘天相在福德宫而非命宫，另一派主张放宽到任意宫位的印星被夹。争点在宫位限定上，两种口径对本盘有实际差别，故本项结论列写存疑并列，两种口径的落点都已摆出。",
+        "break_save": "本格两说并列：若采命宫限定一说，天相不在命宫，本格不成立；若采任意宫位一说，那就要看两邻是否有刑与忌——本盘卯宫与巳宫两邻皆未坐化忌、亦未坐擎羊，落点子条件仍不满足。两种口径对本盘的落点已并列摆出，读者可按所用口径对读。",
+        "nature": "中性",
+        "anchor": "卯、巳"
+      },
+      {
+        "name": "双禄交流",
+        "script_conditions_met": false,
+        "script_evidence": "禄存@['申'] 化禄@['丑']；本报告口径：禄存与化禄同宫或三合皆计入（同宫即算「交流」）；若采「要求分居相会」之口径，结论需重判",
+        "satisfied": false,
+        "evidence": "禄存在申宫迁移、生年太阳化禄在丑宫兄弟；两宫既不互为对宫，也不构成三合（申的三合为子与辰，丑的三合为巳与酉），构成条件不满足，故本格不成立。",
+        "break_save": "",
+        "nature": "吉",
+        "anchor": "申、丑"
+      },
+      {
+        "name": "羊陀夹禄忌",
+        "script_conditions_met": false,
+        "script_evidence": "禄存与忌同宫之宫=无；未取得羊陀分居两邻的落点。本格口径：凡化忌（生年／离心自化／向心飞化）皆计入夹。另一点：「羊陀夹禄」是禄存位置的结构性必然（禄前擎羊、禄后陀罗），单独看无鉴别力；本格的鉴别力来自「禄存与忌同宫」这一半。",
+        "satisfied": false,
+        "evidence": "本格要求禄存与化忌同处一宫、且擎羊与陀罗正好分居该宫两邻；盘面禄存在申宫迁移，而化忌落于亥宫子女，无任何一宫同时坐禄存与化忌，构成条件不满足，故本格不成立。",
+        "break_save": "",
+        "nature": "凶",
+        "anchor": "申、未、酉"
+      }
+    ],
+    "pattern_exclusions": [
+      "「三方五吉」一类：本盘命宫三方四正之内虽有左辅、右弼、文昌、文曲四颗吉星，但另两颗吉星天魁与天钺落在丑宫与未宫，不在命宫三方四正之内，俗称的三方五吉结构不成立。该名目不在本次判定的 17 项候选表内，此处只列名目，读者按名目对读即可。",
+      "「以双帝同宫为条件的格目」（如紫府朝垣一脉）：紫微在辰宫、天府在子宫，两颗帝星分处两地，此类格目一概不适用。该名目不在候选表内，此处只列名目，读者按名目对读即可。"
+    ],
+    "pattern_summary": "本次共判定 17 项格局的构成条件，经全盘裁断后，成立者为 2 项；不成立者为 14 项，存疑并列者为 1 项，三者相加正好 17 项。成立的两项里，杀破狼是主轴：七杀、破军、贪狼三星分处命宫、财帛与官禄，三宫即命宫三方四正，条件与落点同时到位；禄马交驰落在迁移宫，禄存与天马同处一宫，申宫又在命宫三方四正之内，是这张盘最实的兑现通道。条件满足而不成立的典型是日月同宫：太阳与太阴同在丑宫，同宫条件本身满足，但丑宫在命宫三方四正之外，按裁断口径不计入本命主格，本报告只按太阳化禄与太阴化科两星各自的落宫取象。不成立的格一律不再引用格名断语。火贪格与铃贪格的条件不满足（贪狼在寅，与火星所在的巳宫、铃星所在的未宫既不构成同宫也不构成三合），只按贪狼、火星、铃星各自的落宫取象。机月同梁的四颗星散在父母、兄弟、子女、田宅，一颗都不在命宫三方四正之内，本盘不以稳定策划路线为主。夹宫类的五项一律按两星是否正好分居命宫两邻来判：命宫两邻为丑宫与卯宫，天魁在丑、地劫在卯各占一侧，但与之配对的天钺在未、地空在未，故魁钺夹命与空劫夹命都不成立；羊陀、火铃、昌曲三对更是两星皆不在命宫两邻。这里有一处区分值得写出来：羊陀夹禄是禄存位置的结构性必然（禄前擎羊、禄后陀罗），本盘擎羊在酉、陀罗在未正好分居禄存所在申宫的两邻，这是禄存自带的相邻关系，单独看并无鉴别力；羊陀夹禄忌的鉴别力全在禄存与化忌是否同宫，本盘化忌落在子女宫，与禄存不同宫，故该格不成立。双禄交流一项，禄存在申、化禄在丑，两宫既不同宫、也不互为对宫、也不构成三合，条件不满足，本盘不以双禄论。存疑并列者为刑忌夹印：天相在辰宫福德，两邻为卯宫与巳宫，两邻皆未坐化忌也未见擎羊，落点子条件不满足；该格是否以命宫天相为限定条件，各派不一，本盘天相不在命宫，两种口径对本盘有实际差别，本项结论列写存疑并列，两种口径的落点已并列摆出，读者可按所用口径对读。命局层次定为中格：庙旺十一处而失辉三处，星曜整体不弱；落在命宫三方四正之内的吉星有四颗，其中一颗六煞都没有落在其内，护格不算薄；但化禄与化权都不在命宫三方四正之内，命宫本宫的主星又只在平位，缺少同宫的吉曜贴身，故不足以推为上格。本盘最强的一处在迁移宫，最弱的一处在命宫本宫，这个内外倒置的关系是本盘全部判断的起点。",
+    "strengths": [
+      {
+        "title": "走外部动线与平台协作是本命最顺的一条路",
+        "text": "迁移宫申宫坐廉贞庙，并集左辅、文曲、禄存、天马四颗吉曜，而申宫正是命宫的对宫；禄存与天马同处一宫构成禄马交驰。把力气放在外部通道、跨地域协作与平台借力上，比守在原处深耕更省力。"
+      },
+      {
+        "title": "四方主星多在旺庙，开创与执行力是真实的本钱",
+        "text": "官禄午宫七杀在旺位、财帛戌宫破军也在旺位，两宫皆在命宫三方四正之内，身宫又落在财帛宫的破军上。杀破狼的组合主在变动里找空间，顺势接受更替的节奏，比强行求稳更符合本盘的结构。"
+      },
+      {
+        "title": "资源与人缘近在身边，只差主动往来这一步",
+        "text": "兄弟宫丑宫坐太阳化禄与太阴化科，两颗吉化同处一宫，主资源与人缘、名声与细腻兼备。此宫不在命宫三方四正之内，属于近身而不贴身的位置；主动维持往来，就能把这处资源拉进射程。"
+      },
+      {
+        "title": "精神层面有标准也有体面感，判断力不弱",
+        "text": "福德宫辰宫坐紫微与天相，两者皆在得位，且此宫是来因宫。对品质、分寸与判断标准的在意，是这张盘最稳的一处底色，宜把它用作决策时的自我校准，而不是用来要求外部世界。"
+      }
+    ],
+    "weaknesses": [
+      {
+        "title": "命宫主星最弱且自化禄，外露的才华不易凝聚",
+        "text": "命宫寅宫只有贪狼一颗且在平位，本宫无吉星贴身；宫干戊又使贪狼离心自化禄，属明有实无。表现上机会与好感都不缺，实质上需要用固定的节奏与外部约束把才华沉淀成可积累的成果，多线并行是这一处最大的隐性成本。"
+      },
+      {
+        "title": "六煞压在家庭与同辈圈层，耗损面集中在近身关系",
+        "text": "六煞六颗全见且无一落在命宫三方四正之内，分别落在地劫所在的卯宫父母、火星所在的巳宫田宅、擎羊所在的酉宫疾厄，以及地空、铃星、陀罗同处的未宫仆役。压力因此不致命但持续，且集中在父母、家宅与同辈三处；未宫一宫同坐三煞是煞气最挤的地方，圈层的更替与摩擦会比别处频繁。"
+      },
+      {
+        "title": "子女宫一忌一权同处，投入与回报不在同一节拍",
+        "text": "天同在亥宫子女为庙位，带生年化忌，宫干丁又使天同离心自化权，一权一忌集于同一颗星。化忌是执念而非凶兆，读法是对子女、学生、创作或其他自己所养之事的情绪投入极深，而回报出现的时点往往滞后。宜把期待值放在自己的节奏上。"
+      },
+      {
+        "title": "夫妻宫权忌同星，关系里的主导意识容易被规则磨掉",
+        "text": "武曲在子宫夫妻既带生年化权，又受对宫午宫宫干化入忌，权与忌集于一星；天府庙位提供稳定与包容，但改不了这一处的基本张力。摩擦多来自条件、分工与规则上的硬碰，而不是感情本身；宜把共识放在具体安排上，而不是放在态度上。"
+      },
+      {
+        "title": "现行大限的限内官禄落在本命疾厄宫，工作强度与身体节律需要一起排",
+        "text": "第四限辛巳的大限命宫落本命田宅宫、大限官禄宫落本命疾厄宫，该宫为空宫且坐擎羊落陷；大限文昌化忌又使本命官禄宫被引动。这一限事业的输出与身体状态绑得较紧，此为结构性提醒，不构成医疗建议，身体不适应就医。"
+      }
+    ],
+    "decadal_trend": "现行大限为第四限，起于 35 虚岁、止于 44 虚岁，对应 2024 年至 2033 年，限干限支为辛巳，大限命宫落本命田宅宫（巳宫）。限内宫名一律照盘面的大限十二宫落位表读：本限命宫在巳、兄弟在辰、夫妻在卯、子女在寅、财帛在丑、疾厄在子、迁移在亥、仆役在戌、官禄在酉、田宅在申、福德在未、父母在午。先说大限四化：辛干使巨门化禄、太阳化权、文曲化科、文昌化忌。四条落点照盘面的大限四化落点表读——禄落本命父母宫，在本限为夫妻宫，主沟通、表达与长辈上级的支持在本限偏实；权落本命兄弟宫，在本限为财帛宫，主资源上的主导意识在这一限增强；科落本命迁移宫，在本限为田宅宫，主外部平台与专业口碑能落到家宅与安顿这一类具体处；忌落本命官禄宫，在本限为父母宫，主事业面的文书、考试与合约相关事务在本限需要额外核对。再看本限的整体形态：大限命宫落在本命田宅宫，是空宫而只坐一颗落陷的擎羊，对宫为亥宫子女宫的天同；借来的性质是福星的温和与执念，所以这一限的主题偏向安顿、家宅与内部秩序的重整，而不是对外扩张。大限官禄宫落在本命疾厄宫，事业输出与身体节律在这一限绑得较紧；大限福德宫落本命迁移宫，而同辈圈层正是煞曜最挤的一处，内在支撑面因此偏薄，宜靠作息与自我调节自理，不宜指望外力自动托底。限内宫名、四化落点一律以盘面两张表为准，不另行推算。整体判定为：这一限是重整与沉淀并行的十年，宜稳中求变，资源上的主导意识可放，文书与合约上的核对要收；凡涉及财务与健康的表述均属结构性提醒，不构成专业建议。",
+    "decadal_detail": [
+      {
+        "range": "25~34 虚岁（2014~2023）",
+        "palace": "福德宫（庚辰）",
+        "text": "第三限庚辰，大限命宫落本命福德宫（辰宫），限内宫名为：命宫在辰、兄弟在卯、夫妻在寅、子女在丑、财帛在子、疾厄在亥、迁移在戌、仆役在酉、官禄在申、田宅在未、福德在午、父母在巳。庚干使太阳化禄、武曲化权、太阴化科、天同化忌。照大限四化落点表读：禄落本命兄弟宫（本限子女宫），权落本命夫妻宫（本限财帛宫），科落本命兄弟宫（本限子女宫），忌落本命子女宫（本限疾厄宫）。这一限的特点是太阳化禄与太阴化科同落一处，而那一处正是本命兄弟宫；资源与人缘的助力在这一限最集中，但落点在本限的子女位，受益的方式偏向通过下属、学生或下一辈的关系来实现。天同化忌落本命子女宫，正好压在本命天同生年化忌与自化权之上，三者叠在同一宫，这一限对这一处的情绪投入最重。武曲化权落本命夫妻宫，与本命武曲生年化权再度叠加，关系与共同资源上的主导意识在这一限被引动两次。此为结构性描述，不构成投资建议。"
+      },
+      {
+        "range": "35~44 虚岁（2024~2033）",
+        "palace": "田宅宫（辛巳）",
+        "text": "本限即现行大限，大限命宫落本命田宅宫（巳宫）。限内宫名为：命宫在巳、兄弟在辰、夫妻在卯、子女在寅、财帛在丑、疾厄在子、迁移在亥、仆役在戌、官禄在酉、田宅在申、福德在未、父母在午。辛干四化落点照表读：巨门化禄落本命父母宫（本限夫妻宫），太阳化权落本命兄弟宫（本限财帛宫），文曲化科落本命迁移宫（本限田宅宫），文昌化忌落本命官禄宫（本限父母宫）。本限命宫所在是空宫，只坐一颗落陷的擎羊，对宫为亥宫子女宫的天同，主题因此落在安顿与内部秩序的重整上，而不是对外开拓；大限官禄宫落本命疾厄宫，工作强度与身体节律需要一起排；大限福德宫落本命迁移宫，而同辈圈层煞曜最挤，内在支撑面偏薄，宜自行调节而非等待外援。文昌化忌使本命官禄宫被引动，文书、考试与合约相关事务在这一限需要额外核对。此为结构性提醒，不构成投资建议；具体应期须结合流年逐年核对。"
+      },
+      {
+        "range": "45~54 虚岁（2034~2043）",
+        "palace": "官禄宫（壬午）",
+        "text": "第五限壬午，大限命宫落本命官禄宫（午宫），限内宫名为：命宫在午、兄弟在巳、夫妻在辰、子女在卯、财帛在寅、疾厄在丑、迁移在子、仆役在亥、官禄在戌、田宅在酉、福德在申、父母在未。壬干使天梁化禄、紫微化权、左辅化科、武曲化忌。照落点表读：禄落本命田宅宫（本限兄弟宫），权落本命福德宫（本限夫妻宫），科落本命迁移宫（本限福德宫），忌落本命夫妻宫（本限迁移宫）。大限命宫落本命官禄宫，而该宫正是七杀旺位与文昌落陷所在，事业主题在这一限达到全盘最重；左辅化科落本命迁移宫，与迁移宫本有的左辅、文曲同处一宫，专业口碑与外部通道在这一限同时被点亮。武曲化忌落本命夫妻宫，与本命武曲的生年化权、向心化忌叠在同一处，关系与共同资源上的张力在这一限最需要提前安排。结构上这一限是启动成本高、但外部通道最通的一限，适合延续既有专业纵深而不是另起新线。此为结构性提醒，不构成投资建议。"
+      }
+    ],
+    "current_year": "2026 年为丙午年，虚岁 37，仍在第四限辛巳之内。这一年的流年命宫落在本命午宫官禄宫，该宫坐七杀旺与右弼、文昌（文昌落陷），重心在事业与竞争面，且带刚硬之气；流年命宫与本限的父母位重叠，上级、长辈与文书事务是这一年最直接的场景。流年四化照盘面的流年表读：天同化禄、天机化权、文昌化科、廉贞化忌。逐宫核对如下——天同化禄落在本命子女宫，而该宫本有生年化忌与离心自化权，三者叠于同一宫，这一处情绪投入的力度在这一年再次被放大；天机化权落在本命父母宫，该宫有地劫同宫，点子与主张增多而落点有限；文昌化科落在本命官禄宫，与落陷的文昌同处一宫，文书与考试一面有助力但底子偏薄；廉贞化忌落在本命迁移宫，而该宫本带廉贞离心自化禄，禄与忌集于同一颗星，外部机会的可得性与留存性在这一年被同时引动。综合看，这一年不是三层同星共振的年份：只有生年天同与流年天同化禄在同一宫重合，其余三层各指一处，信号不集中。因此这一年属按既有节奏推进、局部需留意的年份：宜延续本限的重整基调，在文书与合约、外部机会的取舍两处多核对一次，不宜做重大的方向调整。",
+    "risk_boundary": "本报告基于教学自拟的示例命盘推演，虚构人物，不对应任何真实人物，属方法演示与自我观察参考，全部内容不得据以对任何人下判断。排盘已完成机器自检：十二宫名唯一、十四主星齐备、禄存与擎羊陀罗相邻、五行局与起运岁数一致。本盘的定盘等级为需复核一档，依据有两条：一是未提供出生地或经度，按辰时序号直接取用，未做真太阳时校正，无法判定是否贴近时辰交界，靠近交界时整体错位的风险无法排除；二是未提供任何已知往事，无法做反推校验。按这一档位的口径，本报告只就本命结构给出结构性说明，大限与流年只讲方向、不讲具体事件。另有流派分歧要在此交代：大限起法各家不同，本报告采用现代软件通行口径（起运虚岁等于五行局数、阳男阴女顺行）；古籍另有阳男阴女自父母宫起顺行、阴男阳女自兄弟宫起逆行的一说，若采信该说，各限须整体平移一宫，上述大限结论会随之改变。此为大限起法的分歧声明，不是本盘的排盘结论。四化表采用通行本，戊、庚、壬三干的化科与中州派不同，换表则相应落点与结论都要重算。另有几处无法仅凭命盘确定的事项：具体职业选择、婚姻对象、疾病诊断、法律结论，均须结合实际条件判断。",
+    "boundary_notes": [
+      "本示例盘为教学自拟，虚构人物，不对应任何真实个案；文中的日期、时辰与性别仅用于演示排盘与判读流程。",
+      "输入只给了日期与时辰、没有出生地或经度，本次排盘未做真太阳时校正，真太阳时轴的钟点、校正分钟数与距时辰交界分钟数在本盘均不可得；因此本盘的定盘等级为需复核一档，只给结构性说明，大限流年只讲方向。",
+      "亮度分级存在版本差异，同一主星在不同来源的庙旺归属可能不同，本报告采用单一来源口径并在盘面标注明示；左辅、右弼、天魁、天钺、禄存、天马等星在盘面无亮度值，故不标庙陷，不作强弱比较。",
+      "四化表采用通行本，戊、庚、壬三干的化科与中州派不同，若使用其他排盘来源可能得出不同落点。",
+      "盘面宫名作仆役，即今称交友宫，本报告统一使用盘面宫名，两者指同一宫。",
+      "健康相关内容属徵验讯号，实际徵验率因人而异，不构成医疗建议，身体不适应就医。",
+      "财务相关内容为结构性描述，不构成投资建议，涉及具体安排时请咨询合格专业人士。",
+      "本报告对夹类格局统一采用一个口径：凡化忌（生年忌、离心自化忌、向心飞化忌）皆计入夹。该口径对刑忌夹印与羊陀夹禄忌同样适用；刑忌夹印仍列存疑并列，争点在该格是否以命宫天相为限定条件（本盘天相在福德宫、不在命宫），两种口径对本盘有实际差别，本报告不在任何位置单方裁断，两种口径的落点均已摆出。",
+      "六吉与六煞的分组情况一律以盘面的分布与配对表为准，正文只作引用。",
+      "命局层次与格层次是两个层次：命局层次指全盘（本盘定为中格），格层次指某一格本身，两者不互相替代。"
+    ],
+    "verdict": "命局层次定为中格，上限取决于选择：这张盘的强处全在本宫之外，迁移宫的禄马交驰与四颗吉曜是真正的兑现通道，命宫本宫最弱而自化禄，所以最顺的一条路是向外走、靠平台与往来把力量落地，而不是守在原地把才华磨成更细的分工。",
+    "advice": "宜把主要精力放在外部通道与跨地域协作上，用动线与往来兑现资源；宜对兴趣与项目做减法，把多线并行收束成一两处可长期经营的方向；宜主动维持近身的人缘与资源往来，让兄弟宫那两颗吉化真正进入射程；宜在文书、合约与考试相关事务上多核对一次，尤其在现行大限之内；宜把决策流程外部化，用固定的核查机制对冲命宫自化禄带来的机会感。忌在情绪投入高的领域期待即时回报；忌在关系与共同资源上以规则硬碰；忌在煞曜最挤的同辈圈层广泛结盟；忌以稳重守成作为本盘的主要策略。",
+    "meta": {
+      "name": "示例命盘（教学自拟 1990-06-07 辰时 男）",
+      "date": "2026-10-15 21:49"
+    }
+  },
+  "md_full": {
+    "定盘与口径": "# 第一节 定盘与口径（原始记录）\n\n## 一、输入\n\n- 公历：1990-06-07（农历一九九〇年五月十五）\n- 时辰：辰时（07:00~09:00），由时辰序号 4 直接指定\n- 性别：男\n- 出生地或经度：未提供\n- 本盘性质：教学自拟的示例命盘，虚构人物，不对应任何真实个案\n\n## 二、真太阳时处理\n\n- 是否校正：未校正\n- 真太阳时校正后的钟点：不可得（未提供经度）\n- 校正分钟数：0.0\n- 距时辰交界分钟数（真太阳时轴）：None\n- 越界方向（真太阳时轴）：None\n- 距时辰交界分钟数（钟点轴）：None\n- 最近交界（钟点轴）：None\n- 越界方向（钟点轴）：None\n- 说明：未给经度即无法做真太阳时校正，两条轴的交界分钟数与越界方向在本盘均不可得；因此本盘不宣称「远离交界」，也不宣称「贴近交界」。\n\n## 三、排盘告警（原文转述）\n\n- 直接指定了时辰序号，未做真太阳时校正。\n- 直接指定了时辰序号，未做真太阳时校正。\n\n## 四、定盘等级\n\n- 等级：C 需复核（未给经度，示例盘为教学自拟）\n- 依据：未提供经度、未做真太阳时校正；未提供任何已知往事，无法做反推校验。\n- 断言强度：只给本命结构的结构性说明；大限与流年只讲方向，不讲具体事件。\n\n## 五、口径声明（三层各说各的来源）\n\n- 年柱口径：农历年（正月初一分界）——紫微斗数取此，用于生年四化\n- 五行局：由命宫宫干纳音定\n- 大限起法：起运虚岁=五行局数；行向按「阳男阴女顺行／阴男阳女逆行」定（现代软件通行口径；古籍卷二另有异说）。本盘行向见下表各行。\n- 四化表：通行本（戊庚壬的「科」与中州派不同）\n- 小限口径：自生年支所属三合局的起宫起算，男顺女逆，一年一宫；与「小限自命宫起」之说不同，属通行软件口径。本盘逐年小限落宫见第十节。\n- 身宫口径：身宫取本命命宫的对宫体系之外的另一套取法，本盘落在财帛宫；各派对身宫是否另立作用时点说法不一，本报告的用法是只在具体大限与流年上引动它。\n- 提醒：八字若按立春分界，年柱可能不同，四化随之改变；两套体系属不同口径，各自的结论只在各自体系内成立\n\n## 六、机器自检\n\n- 自检结果：通过\n- 十四主星：14/14\n- 四柱（农历年口径）：庚午 壬午 癸卯 丙辰\n- 五行局：土五局；命宫：寅；身宫：戌；命主：禄存；身主：火星\n\n## 七、本盘要点（供复核对读）\n\n- 命宫寅（贪狼，平）；身宫戌（财帛，破军，旺）；紫微落辰（福德，天相同宫，得）\n- 命宫三方四正：寅、午、戌、申；命宫两邻：丑、卯\n- 大限起法与行向：土五局，虚岁 5 岁起运，庚午年阳男，大限顺行\n- 真太阳时轴：不可得；本次不宣称时辰交界风险等级",
+    "格局条件判定原始记录": "第二节 格局条件判定原始记录\n\n本盘候选格局共 17 项。以下逐项记录：候选的条件判定与落点（原始记录）、本报告的裁断与依据、格性与锚点。\n\n## 1. 杀破狼\n\n- 机器键：杀破狼\n- 古法构成条件是否满足：满足\n- 条件判定原始记录：七杀在午 破军在戌 贪狼在寅\n- 是否属流派分歧条目（两派口径的落点都已摆出）：否\n- 本报告裁断：成立\n- 格性：吉\n- 锚点宫：寅、午、戌\n- 裁断依据：七杀在午宫官禄、破军在戌宫财帛、贪狼在寅宫命宫，三星分处三合，且三宫即命宫的三方四正（寅、午、戌、申之内），条件与落点同时到位，本盘以此格为主轴。\n- 破格／救格／层次原始记录：破格：昌曲对七杀、破军是负担，官禄宫的文昌在盘面落陷，与七杀同宫会消解果敢、增加犹疑；命宫贪狼只在平位，本宫无吉星贴身，主轴的开创之力缺少同宫助力。救格（锚点：寅、午、戌）：迁移宫申宫坐左辅与文曲，文曲在得位，与命宫的三合关系构成会照救应；申宫又见禄存与天马同宫，动线与资源两头都有实配。层次与效力说明：三颗星分布在命宫、财帛与官禄三处，落在命宫三方四正之内的四颗吉星恰好全在迁移与官禄两侧，方向上支持向外开创；身宫落财帛宫的破军，后天发力点与主轴一致，不出现拉扯。此格在本盘的格层次为中上，属有机会也有耗损的结构，成败取决于能否把更替的节奏变成可预期的安排。\n\n## 2. 日月同宫\n\n- 机器键：日月同宫\n- 古法构成条件是否满足：满足\n- 条件判定原始记录：太阳在丑 太阴在丑\n- 是否属流派分歧条目（两派口径的落点都已摆出）：否\n- 本报告裁断：不成立\n- 格性：中性\n- 锚点宫：丑\n- 裁断依据：太阳与太阴同在丑宫，同宫条件满足；但丑宫不在命宫寅的三方四正（寅、午、戌、申）之内，不主本命格局，故定为不成立。\n\n## 3. 日月反背\n\n- 机器键：日月反背\n- 古法构成条件是否满足：不满足\n- 条件判定原始记录：太阳在丑 太阴在丑（相对而居；是否成格须再查双方亮度）\n- 是否属流派分歧条目（两派口径的落点都已摆出）：否\n- 本报告裁断：不成立\n- 格性：凶\n- 锚点宫：丑\n- 裁断依据：太阳与太阴同处丑宫一处，并非分居相对的两宫，古法所述构成条件不满足，故本格不成立。\n\n## 4. 火贪格\n\n- 机器键：火贪格\n- 古法构成条件是否满足：不满足\n- 条件判定原始记录：贪狼在寅 火星在巳\n- 是否属流派分歧条目（两派口径的落点都已摆出）：否\n- 本报告裁断：不成立\n- 格性：吉\n- 锚点宫：寅、巳\n- 裁断依据：贪狼在寅宫，火星在巳宫，两宫既不同宫，也不构成三合（寅的三合为午与戌），构成条件不满足，故本格不成立。\n\n## 5. 铃贪格\n\n- 机器键：铃贪格\n- 古法构成条件是否满足：不满足\n- 条件判定原始记录：贪狼在寅 铃星在未\n- 是否属流派分歧条目（两派口径的落点都已摆出）：否\n- 本报告裁断：不成立\n- 格性：吉\n- 锚点宫：寅、未\n- 裁断依据：贪狼在寅宫，铃星在未宫，两宫既不同宫，也不构成三合（寅的三合为午与戌），也不互为对宫，构成条件不满足，故本格不成立。\n\n## 6. 机月同梁\n\n- 机器键：机月同梁\n- 古法构成条件是否满足：不满足\n- 条件判定原始记录：命宫寅三方四正内 天机未见、太阴未见、天同未见、天梁未见\n- 是否属流派分歧条目（两派口径的落点都已摆出）：否\n- 本报告裁断：不成立\n- 格性：中性\n- 锚点宫：寅\n- 裁断依据：天机在卯宫、太阴在丑宫、天同在亥宫、天梁在巳宫，四颗皆未落于命宫寅的三方四正（寅、午、戌、申）之内，构成条件不满足，故本格不成立。\n\n## 7. 紫府同宫\n\n- 机器键：紫府同宫\n- 古法构成条件是否满足：不满足\n- 条件判定原始记录：紫微在辰 天府在子\n- 是否属流派分歧条目（两派口径的落点都已摆出）：否\n- 本报告裁断：不成立\n- 格性：吉\n- 锚点宫：辰、子\n- 裁断依据：紫微在辰宫福德、天府在子宫夫妻，两宫分处两地而非同宫，构成条件不满足，故本格不成立。\n\n## 8. 府相朝垣\n\n- 机器键：府相朝垣\n- 古法构成条件是否满足：不满足\n- 条件判定原始记录：天府在子 天相在辰；命宫寅三方四正=午/寅/戌/申；命宫两邻=丑/卯\n- 是否属流派分歧条目（两派口径的落点都已摆出）：否\n- 本报告裁断：不成立\n- 格性：吉\n- 锚点宫：子、辰\n- 裁断依据：天府在子宫、天相在辰宫，两宫皆不在命宫寅的三方四正（寅、午、戌、申）之内，也不落在命宫两邻（丑、卯），构成条件不满足，故本格不成立。\n\n## 9. 火铃夹命\n\n- 机器键：火铃夹命\n- 古法构成条件是否满足：不满足\n- 条件判定原始记录：火星在巳 铃星在未；命宫两邻=丑/卯\n- 是否属流派分歧条目（两派口径的落点都已摆出）：否\n- 本报告裁断：不成立\n- 格性：凶\n- 锚点宫：丑、卯\n- 裁断依据：火星在巳宫、铃星在未宫，命宫两邻为丑宫与卯宫，两颗并未正好分居命宫两邻，构成条件不满足，故本格不成立。\n\n## 10. 魁钺夹命\n\n- 机器键：魁钺夹命\n- 古法构成条件是否满足：不满足\n- 条件判定原始记录：天魁在丑 天钺在未；命宫两邻=丑/卯\n- 是否属流派分歧条目（两派口径的落点都已摆出）：否\n- 本报告裁断：不成立\n- 格性：吉\n- 锚点宫：丑、卯\n- 裁断依据：天魁在丑宫、天钺在未宫，命宫两邻为丑宫与卯宫；两颗之中只有天魁落在命宫一侧，并非正好分居命宫两邻，构成条件不满足，故本格不成立。\n\n## 11. 昌曲夹命\n\n- 机器键：昌曲夹命\n- 古法构成条件是否满足：不满足\n- 条件判定原始记录：文昌在午 文曲在申；命宫两邻=丑/卯\n- 是否属流派分歧条目（两派口径的落点都已摆出）：否\n- 本报告裁断：不成立\n- 格性：吉\n- 锚点宫：丑、卯\n- 裁断依据：文昌在午宫、文曲在申宫，命宫两邻为丑宫与卯宫，两颗并未落在命宫两邻，构成条件不满足，故本格不成立。\n\n## 12. 羊陀夹命\n\n- 机器键：羊陀夹命\n- 古法构成条件是否满足：不满足\n- 条件判定原始记录：擎羊在酉 陀罗在未；命宫两邻=丑/卯\n- 是否属流派分歧条目（两派口径的落点都已摆出）：否\n- 本报告裁断：不成立\n- 格性：凶\n- 锚点宫：丑、卯\n- 裁断依据：擎羊在酉宫、陀罗在未宫，命宫两邻为丑宫与卯宫，两颗并未落在命宫两邻，构成条件不满足，故本格不成立。\n\n## 13. 空劫夹命\n\n- 机器键：空劫夹命\n- 古法构成条件是否满足：不满足\n- 条件判定原始记录：地空在未 地劫在卯；命宫两邻=丑/卯\n- 是否属流派分歧条目（两派口径的落点都已摆出）：否\n- 本报告裁断：不成立\n- 格性：凶\n- 锚点宫：丑、卯\n- 裁断依据：地空在未宫、地劫在卯宫，命宫两邻为丑宫与卯宫；两颗之中只有地劫落在命宫一侧，并非正好分居命宫两邻，构成条件不满足，故本格不成立。\n\n## 14. 禄马交驰\n\n- 机器键：禄马交驰\n- 古法构成条件是否满足：满足\n- 条件判定原始记录：禄存在申 天马在申\n- 是否属流派分歧条目（两派口径的落点都已摆出）：否\n- 本报告裁断：成立\n- 格性：吉\n- 锚点宫：申\n- 裁断依据：禄存与天马同在申宫迁移宫，同宫条件满足；申宫又正在命宫寅的三方四正之内，落点与条件同时到位，故本格成立。\n- 破格／救格／层次原始记录：破格：同宫所见以动线与机会为主，稳定与留存不是这一格的长处；所涉两星自身不带生年禄，机会的质地依赖外部往来维持；又因禄存的结构必然，擎羊在酉、陀罗在未分居申宫两邻，禄存受羊陀所夹，出外得力与出外耗损同时在场。救格（锚点：申）：廉贞在申宫迁移为庙位，主外部机会的质地不弱；同宫另坐左辅与文曲两颗吉星，文曲在得位，人脉与文书之力齐备，与所涉两星同处一宫，属第一级贴身层的独立救应。层次与效力说明：本格所涉两星与救应吉星同处一宫，配置集中而不分散；申宫相对命宫寅属对宫照一级，力量经对宫转达，说明这条财路须走出原地才成立。此格在本盘的格层次为中上，属动中生财的结构，兑现速度取决于移动与往来的频率。\n\n## 15. 刑忌夹印（存疑条目）\n\n- 机器键：刑忌夹印\n- 古法构成条件是否满足：不满足\n- 条件判定原始记录：天相在辰（本命福德宫），两邻=卯宫（天机、巨门、地劫）／巳宫（天梁、火星）。按统一口径（凡化忌——生年／离心自化／向心飞化——皆计入夹），本格的落点子条件（刑与忌分处两邻）未满足；而本条的构成条件判定取的是「完整古法条件」——该格传统以「命宫天相被刑、忌两邻所夹」为准，本盘天相在福德宫（不在命宫），故按该派的完整条件不满足。是否放宽到任意宫位的印星被夹，各派不一；两说对本盘有实际差别，故此处把两派的落点一并摆出\n- 是否属流派分歧条目（两派口径的落点都已摆出）：是\n- 本报告裁断：存疑／并列\n- 格性：中性\n- 锚点宫：卯、巳\n- 裁断依据：天相在辰宫福德，其两邻为卯宫与巳宫：卯宫坐天机、巨门与地劫，巳宫坐天梁与火星。按统一口径，凡化忌（生年忌、离心自化忌、向心飞化忌）皆计入夹，本盘两邻皆未坐化忌、亦未坐擎羊，落点子条件不满足；而该格传统的完整条件以命宫天相被刑与忌两邻所夹为准，本盘天相在福德宫而非命宫，另一派主张放宽到任意宫位的印星被夹。争点在宫位限定上，两种口径对本盘有实际差别，故本项结论列写存疑并列，两种口径的落点都已摆出。\n- 破格／救格／层次原始记录：本格两说并列：若采命宫限定一说，天相不在命宫，本格不成立；若采任意宫位一说，那就要看两邻是否有刑与忌——本盘卯宫与巳宫两邻皆未坐化忌、亦未坐擎羊，落点子条件仍不满足。两种口径对本盘的落点已并列摆出，读者可按所用口径对读。\n\n## 16. 双禄交流\n\n- 机器键：双禄交流\n- 古法构成条件是否满足：不满足\n- 条件判定原始记录：禄存在申 化禄在丑；本报告口径：禄存与化禄同宫或三合皆计入（同宫即算「交流」）；若采「要求分居相会」之口径，结论需重判\n- 是否属流派分歧条目（两派口径的落点都已摆出）：否\n- 本报告裁断：不成立\n- 格性：吉\n- 锚点宫：申、丑\n- 裁断依据：禄存在申宫迁移、生年太阳化禄在丑宫兄弟；两宫既不互为对宫，也不构成三合（申的三合为子与辰，丑的三合为巳与酉），构成条件不满足，故本格不成立。\n\n## 17. 羊陀夹禄忌\n\n- 机器键：羊陀夹禄忌\n- 古法构成条件是否满足：不满足\n- 条件判定原始记录：禄存与忌同宫之宫=无；未取得羊陀分居两邻的落点。本格口径：凡化忌（生年／离心自化／向心飞化）皆计入夹。另一点：「羊陀夹禄」是禄存位置的结构性必然（禄前擎羊、禄后陀罗），单独看无鉴别力；本格的鉴别力来自「禄存与忌同宫」这一半。\n- 是否属流派分歧条目（两派口径的落点都已摆出）：否\n- 本报告裁断：不成立\n- 格性：凶\n- 锚点宫：申、未、酉\n- 裁断依据：本格要求禄存与化忌同处一宫、且擎羊与陀罗正好分居该宫两邻；盘面禄存在申宫迁移，而化忌落于亥宫子女，无任何一宫同时坐禄存与化忌，构成条件不满足，故本格不成立。\n\n## 分类计数\n\n- 成立：2 项（杀破狼、禄马交驰）\n- 不成立：14 项（日月同宫、日月反背、火贪格、铃贪格、机月同梁、紫府同宫、府相朝垣、火铃夹命、魁钺夹命、昌曲夹命、羊陀夹命、空劫夹命、双禄交流、羊陀夹禄忌）\n- 存疑并列：1 项（刑忌夹印）\n- 合计：17 项，与候选表 17 项一致"
+  }
+}

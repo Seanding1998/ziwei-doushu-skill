@@ -1,0 +1,7 @@
+{
+  "name": "ziwei-doushu-skill",
+  "private": true,
+  "dependencies": {
+    "iztro": "2.6.2"
+  }
+}
