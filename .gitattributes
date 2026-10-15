@@ -1,0 +1,11 @@
+# 统一换行，避免 Windows/macOS/Linux 之间反复改动
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.gif binary
+
+*.py   text eol=lf
+*.js   text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
