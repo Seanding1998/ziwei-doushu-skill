@@ -62,6 +62,17 @@ def _iztro_version() -> str | None:
         return None
 
 
+def _lunar_ts_version() -> str | None:
+    """`lunar-typescript`（历法库）的版本 —— 闰月查表用它，不用排盘引擎。"""
+    pkg = NODE_MODULES / "lunar-typescript" / "package.json"
+    if not pkg.exists():
+        return None
+    try:
+        return json.loads(pkg.read_text(encoding="utf-8")).get("version")
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def _python_engine() -> dict[str, Any]:
     ok = engine_py.available()
     version = engine_py.module_version() if ok else None
@@ -132,7 +143,7 @@ def _run_python(req: dict[str, Any]) -> dict[str, Any]:
     return engine_py.run(req)
 
 
-def _run_node(req: dict[str, Any], timeout: int = 120) -> dict[str, Any]:
+def _run_node(req: dict[str, Any], timeout: int = 120, need_iztro: bool = True) -> dict[str, Any]:
     import subprocess
 
     from . import chart as chartmod  # 延迟导入
@@ -143,7 +154,8 @@ def _run_node(req: dict[str, Any], timeout: int = 120) -> dict[str, Any]:
                 "message": "未找到 node。请安装 Node.js 18+，或设置环境变量 ZIWEI_NODE。"}
     if not ENGINE_JS.exists():
         return {"ok": False, "error": "ENGINE_MISSING", "message": f"引擎文件缺失：{ENGINE_JS}"}
-    if _iztro_version() is None:
+    # 排盘才需要 iztro；历法查表模式（need_iztro=False）只用 lunar-typescript。
+    if need_iztro and _iztro_version() is None:
         return {"ok": False, "error": "IZTRO_NOT_FOUND",
                 "message": "未安装 iztro。请先运行：python ziwei.py deps"}
 
@@ -232,5 +244,125 @@ def _fallback(req: dict[str, Any], timeout: int, skip: str) -> dict[str, Any] | 
     return None
 
 
-__all__ = ["detect", "pick", "run", "active_name", "compare",
+def _node_batch_chunk(part: list[dict[str, Any]], out_path: str, timeout: int) -> list[dict[str, Any]] | None:
+    """一个分片的 node 批量排盘；结果落 `out_path` 再读回（不挤管道）。"""
+    res = _run_node({"mode": "batch", "requests": part, "out": out_path}, timeout=timeout)
+    if not res.get("ok"):
+        return None
+    try:
+        payload = json.loads(Path(out_path).read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return None
+    results = payload.get("results")
+    if not isinstance(results, list) or len(results) != len(part):
+        return None
+    return [r if isinstance(r, dict) else {"ok": False, "error": "ENGINE_BAD_RESULT"}
+            for r in results]
+
+
+def run_many(reqs: list[dict[str, Any]], timeout: int = 600,
+             chunk: int = 32, workers: int = 0) -> list[dict[str, Any]] | None:
+    """
+    一次（或几个并行的）node 子进程排多张盘（`engine.js` 的 `mode: "batch"`）。
+
+    语义与逐张 `run(req, engine="node")` **逐个同形同序**（完整 astrolabe，无裁剪），
+    只是省掉了每张盘的进程启动开销（实测 ~0.23s/次；闰月穷举一次要排上百张，
+    启动开销比计算本身还大）。结果经临时文件回流，不走管道 ——
+    96 张盘的完整 JSON 约 800KB，挤管道既慢又容易顶到系统管道缓冲。
+    分片之间用线程池并行（排盘是纯 CPU 的子进程，不共享状态）：
+    单进程排 96 张约 4.5s，4 片并行约 1.5s。顺序按分片序号拼回，与 `reqs` 一一对应。
+
+    返回与 `reqs` 等长的结果列表；node 不可用 / iztro 缺失 / 任一分片失败时返回 None，
+    由调用方**逐张退回** `run(..., engine="node")`（不因为批量失败就弄丢对拍）。
+    `chunk` / `workers` 只影响吞吐，对结果无影响（`workers=0` 自动按 CPU 数，上限 4）。
+    """
+    import concurrent.futures as _cf
+    import os
+    import tempfile
+
+    if not reqs:
+        return []
+    node = _node_exe()
+    if node is None or not ENGINE_JS.exists() or _iztro_version() is None:
+        return None
+
+    size = max(1, int(chunk or len(reqs)))
+    parts: list[list[dict[str, Any]]] = [list(reqs[i:i + size])
+                                         for i in range(0, len(reqs), size)]
+    n_workers = int(workers) if workers else 0
+    if not n_workers:
+        env = os.environ.get("ZIWEI_BATCH_WORKERS", "").strip()
+        try:
+            n_workers = int(env) if env else min(4, max(1, (os.cpu_count() or 1)))
+        except ValueError:
+            n_workers = 1
+    n_workers = max(1, min(n_workers, len(parts)))
+
+    with tempfile.TemporaryDirectory(prefix="ziwei-batch-") as tmpdir:
+        paths = [os.path.join(tmpdir, f"batch-{i}.json") for i in range(len(parts))]
+        if n_workers == 1 or len(parts) == 1:
+            chunks = [_node_batch_chunk(p, path, timeout)
+                      for p, path in zip(parts, paths)]
+        else:
+            with _cf.ThreadPoolExecutor(max_workers=n_workers) as ex:
+                chunks = list(ex.map(lambda pp: _node_batch_chunk(pp[0], pp[1], timeout),
+                                     list(zip(parts, paths))))
+    if any(c is None for c in chunks):
+        return None
+    out: list[dict[str, Any]] = []
+    for c in chunks:
+        out.extend(c)  # type: ignore[arg-type]
+    return out
+
+
+# ---------------------------------------------------------------- 历法查表
+
+def leap_months(lo: int, hi: int, timeout: int = 120) -> list[dict[str, Any]] | None:
+    """
+    闰月**查表**（不是扫描）：一次子进程把 `lo`-`hi` 年段的所有闰月问出来。
+
+    走 `engine.js` 的 `mode: "leap_months"`，由 `lunar-typescript` 的
+    `LunarYear.fromYear(y).getLeapMonth()` / `Lunar.fromYmd(y, -m, d)` 回答；
+    本模块**不做任何历法推导**，只搬运。
+
+    返回（按年升序）：
+      [{lunarYear, leapMonth, lengthDays,
+        picks: [{lunarDay, solarDate, lunarDate}]}]   # picks = 第 1 / 中间 / 最后一天
+    以下情况返回 None（调用方负责报「闰月穷举需要 node 引擎」）：
+      · node 不可用 / engine.js 缺失
+      · lunar-typescript 缺失（引擎回 LUNAR_LIB_NOT_FOUND）
+      · 引擎调用失败或返回结构不对
+    返回 [] 与 None 的差别：[] = 问到了，这些年确实没有闰月。
+    """
+    try:
+        lo_i, hi_i = int(lo), int(hi)
+    except (TypeError, ValueError):
+        return None
+    if lo_i > hi_i:
+        lo_i, hi_i = hi_i, lo_i
+    if _node_exe() is None or not ENGINE_JS.exists() or _lunar_ts_version() is None:
+        return None
+
+    res = _run_node({"mode": "leap_months", "years": [lo_i, hi_i]},
+                    timeout=timeout, need_iztro=False)
+    if not res.get("ok"):
+        return None
+    months = res.get("leapMonths")
+    if not isinstance(months, list):
+        return None
+    out: list[dict[str, Any]] = []
+    for m in months:
+        if not isinstance(m, dict):
+            return None
+        out.append({
+            "lunarYear": m.get("lunarYear"),
+            "leapMonth": m.get("leapMonth"),
+            "lengthDays": m.get("lengthDays"),
+            "picks": [dict(p) for p in (m.get("picks") or []) if isinstance(p, dict)],
+            "warnings": list(res.get("warnings") or []),
+        })
+    return out
+
+
+__all__ = ["detect", "pick", "run", "run_many", "active_name", "compare", "leap_months",
            "INSTALL_HINT", "PY", "NODE", "ENGINE_JS", "NODE_MODULES"]

@@ -46,6 +46,9 @@ python scripts/ziwei.py deps
 | `python`（auto 首选，同进程、不依赖 Node） | `x-iztro` | `pip install x-iztro` |
 | `node`（原路，保留） | `iztro@2.6.2` | `npm install iztro@2.6.2 --prefix <skill 目录>` |
 
+另直接依赖 `lunar-typescript@1.8.6`（原本只是 iztro 的传递依赖）：只用来**查闰月**
+（`LunarYear.getLeapMonth()` / `Lunar.fromYmd(y, -m, d)`），不排盘、不扫日期。
+
 `deps` 会**按需给两条路都铺好**：先试 `pip install x-iztro`，失败再试 `npm install iztro`
 （npm 缓存/代理回退逻辑不变）；最后打印两条路各自的可用状态与 auto 会选哪条。
 两条都不可用时才报失败，并给出安装指引。
@@ -60,9 +63,11 @@ python scripts/ziwei.py engines --leap-sweep 1995-2030  # 确定性闰月穷举�
 
 - **两条引擎一致的验证方式**（改引擎映射后必跑）：`--compare N` 是随机抽样，抽到
   「阳历生日落在闰月内」的概率约 1%，所以它**查不出 solar 路 `fixLeap` 写不写死**这类口径差。
-  要卡死就用 `--leap-sweep A-B`（不传则不跑，不影响普通 `--compare` 的耗时）：按天扫 A–B 年、
-  从 `lunarDate` 的「闰」字找出**每一个闰月**，覆盖其第 1/中间/最后一天 × 早子·午·晚子 × 男女
+  要卡死就用 `--leap-sweep A-B`（不传则不跑，不影响普通 `--compare` 的耗时）：闰月**查历法库**
+  （lunar-typescript 的 `getLeapMonth` / `Lunar.fromYmd`，整个年段一次 node 子进程，不扫描），
+  覆盖其第 1/中间/最后一天 × 早子·午·晚子 × 男女
   × `fixLeap{true,false}`，结果见 `compare.coverage.leapSweep*`，`mismatches` 必须为 0。
+  `leapSweepScanRoute` 现为 `"calendar-table"`，`leapSweepDaysScanned` 恒为 `null`（不再扫日期）。
 
 - 引擎选择：全局参数 **`--engine auto|python|node`**，各子命令都接受。默认 `auto`＝先 `python`（`x-iztro`）再 `node`（`iztro`）。
 - 也可用环境变量覆盖可执行文件：`ZIWEI_NODE` / `ZIWEI_NPM`。

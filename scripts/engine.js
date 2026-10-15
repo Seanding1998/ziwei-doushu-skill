@@ -8,6 +8,18 @@
  *   { "date": "1990-06-07", "calendar": "solar"|"lunar", "timeIndex": 4,
  *     "gender": "男", "years": [2026, 2027], "fixLeap": true }
  * 输出（stdout JSON）: { ok: true, engine, version, astrolabe: {...} } 或 { ok:false, error, message }
+ *
+ * 另有**历法查表**模式（不排盘，只回答「这些年里有哪些闰月」）:
+ *   输入 { "mode": "leap_months", "years": [1995, 2030] }
+ *   输出 { ok:true, mode:"leap_months", leapMonths:[{lunarYear, leapMonth, lengthDays,
+ *          picks:[{lunarDay, solarDate, lunarDate}]}] }
+ *   用 lunar-typescript 的 LunarYear.getLeapMonth() / Lunar.fromYmd(y, -m, d) —— 一次子进程
+ *   查完整个年段，不再按天扫排盘引擎。不传 mode 时走下面的排盘主路径，行为不变。
+ *
+ * 另有**批量排盘**模式（只给对拍器省子进程启动开销）:
+ *   输入 { "mode": "batch", "requests": [ <普通请求>, ... ], "out": "<可选文件路径>" }
+ *   输出 { ok:true, mode:"batch", count, results:[ <同形结果>, ... ] }
+ *   给了 out 就把整份响应写进该文件、stdout 只留一行确认（大批量落文件，别挤管道）。
  */
 'use strict';
 
@@ -16,15 +28,18 @@ const errors = [];
 for (const spec of ['iztro', 'iztro/lib/index.js']) {
   try { iztro = require(spec); break; } catch (e) { errors.push(String(e.message)); }
 }
-if (!iztro) {
-  process.stdout.write(JSON.stringify({
+/**
+ * iztro 的可用性**延迟到排盘路径再判**（不在模块顶层 exit）：
+ * 历法查表模式（mode: "leap_months"）只用 lunar-typescript，不该被缺失的 iztro 连坐。
+ */
+function requireIztro() {
+  if (iztro) return null;
+  return {
     ok: false, error: 'IZTRO_NOT_FOUND',
     message: '未找到 iztro 模块。请先运行: python ziwei.py deps',
     detail: errors,
-  }));
-  process.exit(3);
+  };
 }
-const { astro } = iztro;
 
 /**
  * 节气四柱（立春分界）—— 由 lunar-lite 提供（iztro 自身的历法依赖），
@@ -48,6 +63,104 @@ function jieqiPillar(dateStr, timeIndex) {
   }
 }
 
+/**
+ * 历法库（lunar-typescript）——**只用它查表**，不用它排盘。
+ *
+ * 注意：这里刻意加载 `lunar-typescript` 本尊，而不是 iztro 依赖树里的 `lunar-lite`：
+ * lunar-lite 的 `lib/leap.js` 虽然导出 getLeapMonth/getLeapDays，但该版本取不到
+ * LUNAR_INFO，一调用就抛。查表必须走 lunar-typescript。
+ */
+function loadLunarTypescript() {
+  const errs = [];
+  for (const spec of ['lunar-typescript', 'lunar-typescript/lib/index.js']) {
+    try { return require(spec); } catch (e) { errs.push(String(e && e.message || e)); }
+  }
+  return { __error: errs };
+}
+
+const LUNAR_LIB_HINT =
+  '未找到 lunar-typescript。请安装 Node.js 18+ 后运行: python ziwei.py deps ' +
+  '（或 npm install lunar-typescript@1.8.6 --prefix <skill 目录>）';
+
+/** 该闰月是 29 天还是 30 天：用 Lunar.fromYmd(y, -m, 30) 试探，不抛即 30，抛即 29。 */
+function leapMonthLength(Lunar, y, m) {
+  try {
+    Lunar.fromYmd(y, -m, 30);
+    return 30;
+  } catch (e) {
+    return 29;
+  }
+}
+
+/**
+ * 历法查表模式：`{ mode: "leap_months", years: [lo, hi] }`。
+ * 对每个有闰月的年份，取该闰月 lunarYear / leapMonth / lengthDays，
+ * 并给出第 1 天 / 中间一天（ceil(lengthDays/2)）/ 最后一天三个日期。
+ */
+function runLeapMonths(req) {
+  const years = Array.isArray(req.years) ? req.years : [];
+  if (years.length !== 2) {
+    return { ok: false, error: 'BAD_YEARS', message: 'leap_months 模式需要 years: [起始年, 结束年]' };
+  }
+  const lo = Number(years[0]);
+  const hi = Number(years[1]);
+  if (!Number.isInteger(lo) || !Number.isInteger(hi)) {
+    return { ok: false, error: 'BAD_YEARS', message: `years 必须是整数年：${JSON.stringify(years)}` };
+  }
+  const from = Math.min(lo, hi);
+  const to = Math.max(lo, hi);
+
+  const lib = loadLunarTypescript();
+  if (lib.__error) {
+    return { ok: false, error: 'LUNAR_LIB_NOT_FOUND', message: LUNAR_LIB_HINT, detail: lib.__error };
+  }
+  const { LunarYear, Lunar } = lib;
+  if (typeof LunarYear?.fromYear !== 'function' || typeof Lunar?.fromYmd !== 'function') {
+    return { ok: false, error: 'LUNAR_LIB_NOT_FOUND', message: LUNAR_LIB_HINT,
+             detail: ['lunar-typescript 缺少 LunarYear.fromYear / Lunar.fromYmd'] };
+  }
+
+  let version = 'unknown';
+  try {
+    // 不 require('lunar-typescript/package.json')：该包的 exports 未暴露 ./package.json。
+    const pkgPath = require('path').join(require('path').dirname(require.resolve('lunar-typescript')), '..', 'package.json');
+    version = JSON.parse(require('fs').readFileSync(pkgPath, 'utf8')).version || 'unknown';
+  } catch (e) { /* 保持 unknown */ }
+
+  const leapMonths = [];
+  const warnings = [];
+  for (let y = from; y <= to; y += 1) {
+    let m = 0;
+    try {
+      m = Number(LunarYear.fromYear(y).getLeapMonth()) || 0;
+    } catch (e) {
+      warnings.push(`${y} 年查闰月失败：${String(e && e.message || e)}`);
+      continue;
+    }
+    if (!m) continue;                                   // 0 = 该年无闰月
+    const lengthDays = leapMonthLength(Lunar, y, m);
+    const midDay = Math.ceil(lengthDays / 2);
+    const picks = [];
+    for (const day of [1, midDay, lengthDays]) {
+      if (picks.some((p) => p.lunarDay === day)) continue;
+      try {
+        const lunar = Lunar.fromYmd(y, -m, day);        // 负月号 = 闰月
+        picks.push({
+          lunarDay: day,
+          solarDate: lunar.getSolar().toYmd(),
+          lunarDate: lunar.toString(),
+        });
+      } catch (e) {
+        warnings.push(`${y} 闰${m}月第 ${day} 天算不出来：${String(e && e.message || e)}`);
+      }
+    }
+    leapMonths.push({ lunarYear: y, leapMonth: m, lengthDays, picks });
+  }
+
+  return { ok: true, mode: 'leap_months', engine: 'lunar-typescript', version,
+           years: [from, to], leapMonths, warnings };
+}
+
 function readStdin() {
   return new Promise((resolve, reject) => {
     let buf = '';
@@ -62,6 +175,9 @@ const pick = (s) => (!s ? null : { name: s.name, brightness: s.brightness || nul
 const pickAll = (arr) => (arr || []).map(pick);
 
 function main(req) {
+  const missing = requireIztro();
+  if (missing) return missing;
+  const { astro } = iztro;
   const { date, calendar = 'solar', timeIndex, gender, years = [], fixLeap = true } = req;
   if (!date) return { ok: false, error: 'MISSING_DATE' };
   if (timeIndex === undefined || timeIndex === null) return { ok: false, error: 'MISSING_TIME_INDEX' };
@@ -161,6 +277,40 @@ function main(req) {
   };
 }
 
+/**
+ * 批量排盘模式：`{ mode: "batch", requests: [ <普通请求>, ... ], out: "<文件路径>" }`。
+ *
+ * 只服务于**对拍器的吞吐**：一次子进程排多张盘，省掉每张盘 ~0.24s 的 node 启动开销
+ * （闰月穷举要排上百张盘，逐张起进程时启动开销比计算本身还大）。
+ * 结果逐条与单张调用 `main(req)` **同形同序**（完整 astrolabe，不含任何裁剪），
+ * 单条抛错只影响那一条。给了 `out` 就把整个响应写进那个文件、stdout 只留一行简短确认：
+ * 96 张盘的完整 JSON 约 800KB，塞进管道既慢又顶到系统管道缓冲，落文件最省事。
+ * 不传 mode 或 mode 为其它值时，行为与从前逐字一致。
+ */
+function runBatch(req) {
+  const requests = Array.isArray(req.requests) ? req.requests : null;
+  if (!requests) {
+    return { ok: false, error: 'BAD_BATCH', message: 'batch 模式需要 requests: [ ... ] 数组' };
+  }
+  let results;
+  try {
+    results = requests.map((one, i) => Object.assign({ index: i }, main(one || {})));
+  } catch (e) {
+    return { ok: false, error: 'ENGINE_THREW', message: String(e && e.stack || e) };
+  }
+  const payload = { ok: true, mode: 'batch', count: results.length, results };
+
+  if (req.out) {
+    try {
+      require('fs').writeFileSync(String(req.out), JSON.stringify(payload), 'utf8');
+    } catch (e) {
+      return { ok: false, error: 'BATCH_WRITE_FAILED', message: String(e && e.message || e) };
+    }
+    return { ok: true, mode: 'batch', count: results.length, out: String(req.out) };
+  }
+  return payload;
+}
+
 readStdin().then((raw) => {
   let req;
   try { req = JSON.parse(raw || '{}'); } catch (e) {
@@ -168,7 +318,12 @@ readStdin().then((raw) => {
     return;
   }
   let res;
-  try { res = main(req); } catch (e) {
+  try {
+    // 两条专用路径与排盘主路径互不干扰：mode 不在这两个值上时行为与从前逐字一致。
+    if (req.mode === 'leap_months') res = runLeapMonths(req);
+    else if (req.mode === 'batch') res = runBatch(req);
+    else res = main(req);
+  } catch (e) {
     res = { ok: false, error: 'ENGINE_THREW', message: String(e && e.stack || e) };
   }
   process.stdout.write(JSON.stringify(res));

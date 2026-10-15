@@ -35,7 +35,8 @@ ziwei-doushu / scripts/ziwei.py — 统一命令行入口（跨平台：Windows 
   `--compare N` 是**随机抽样**：抽到「阳历生日落在闰月内」的概率约 1%，
   所以 200 张 0 差异**不能**证明 solar 路的 fixLeap 口径对齐。
   要真正堵住这类漏检，用 `--leap-sweep A-B`（不传则不跑，不影响普通 --compare 的耗时）：
-  它按天扫描 A-B 年、从 lunarDate 的「闰」字找出**每一个闰月**，对每个闰月覆盖
+  闰月由**历法库查表**给出（lunar-typescript 的 `LunarYear.getLeapMonth` / `Lunar.fromYmd`，
+  一次 node 子进程问完整个年段，不按天扫描），对每个闰月覆盖
   第 1 天／中间一天／最后一天 × 时辰{早子0, 午6, 晚子12} × 性别{男,女} × fixLeap{true,false}，
   比对结果与覆盖数写进 `compare.coverage.leapSweep*`（`mismatches` 必须为 0）。
 """
@@ -45,9 +46,7 @@ from __future__ import annotations
 import argparse
 import datetime as _dt
 import json
-import os
 import random
-import re
 import sys
 from pathlib import Path
 
@@ -71,107 +70,6 @@ def _fail(err: Exception) -> int:
         print(json.dumps({"ok": False, "error": type(err).__name__, "message": str(err)},
                          ensure_ascii=False))
     return 1
-
-
-#: 农历日期串里的汉字数字 → 整数（「闰七月」的「七」即 7）。
-_CN_DIGITS = {"〇": 0, "零": 0, "一": 1, "二": 2, "三": 3, "四": 4, "五": 5,
-              "六": 6, "七": 7, "八": 8, "九": 9}
-
-
-def _cn_number(text: str) -> int | None:
-    """
-    解析农历串里的一段汉字数字：七→7 / 十→10 / 十八→18 / 廿七→27 / 三十→30 / 三十五→35。
-    「冬」「腊」「正」按农历月名的习惯读作 11 / 12 / 1。
-    解析不了返回 None（**不猜**，由调用方跳过并如实记录）。
-    """
-    if not text:
-        return None
-    if text in ("冬", "冬月"):
-        return 11
-    if text in ("腊", "腊月"):
-        return 12
-    if text in ("正", "正月"):
-        return 1
-    s = text.strip()
-    # 含「十／廿／卅」的按数位规则解析；含「初」的剥掉前缀再解析。
-    # 注意：纯数字捷径必须在这些标记**之后**判断，否则「初四」会走进捷径并整体失败。
-    if s.startswith("初") or s.startswith("廿") or s.startswith("卅") or "十" in s:
-        if s.startswith("初"):
-            s = s[1:]
-            if not s:
-                return None
-        for one, ten in (("廿", 20), ("卅", 30), ("十", 10)):
-            if s.startswith(one):
-                rest = s[len(one):]
-                if not rest:
-                    return ten
-                r = _cn_number(rest)
-                return None if r is None else ten + r
-        if "十" in s:                                   # 「X十Y」型：三十 / 三十五
-            head, _, tail = s.partition("十")
-            if len(head) == 1 and head in _CN_DIGITS:
-                tens = _CN_DIGITS[head] * 10
-                if not tail:
-                    return tens
-                r = _cn_number(tail)
-                return None if r is None else tens + r
-            return None
-        if not s:
-            return None
-    if set(s) <= set(_CN_DIGITS):                       # 七 / 十二（无「十」的纯数字）
-        n = 0
-        for ch in s:
-            n = n * 10 + _CN_DIGITS[ch]
-        return n
-    return None
-
-
-#: 匹配「[闰]<月名>月<日名>日」。月名限定在真实月名内，避免误吃年份。
-#: 两个易错点：① 日名里「十X」必须排在裸「十」前面；② 末尾「日」要放进同一个
-#: 非捕获组里一起可选，否则正则会先吃「十」→ 判「日」失败 → **不再回头试其它分支**。
-#: 实测 x-iztro / iztro 的 lunarDate 不带末尾「日」（「…闰七月廿七」），故置为可选。
-_CN_LUNAR_RE = re.compile(
-    r"(?P<leap>闰)?(?P<month>正|冬|腊|十[一二]?|[一二三四五六七八九])月"
-    r"(?:(?P<day>初[一二三四五六七八九十]|廿[一二三四五六七八九]?|[一二三]十[一二三四五六七八九]?|十[一二三四五六七八九]?)日?)")
-
-
-#: 年份里的汉字数字：iztro / x-iztro 一律用「〇」(U+3007)，但把「零」也认了。
-_CN_ZERO = "〇零"
-
-
-def _cn_year(text: str) -> int | None:
-    if not text:
-        return None
-    n = 0
-    for ch in text:
-        if ch in _CN_ZERO:
-            n = n * 10
-        elif ch in _CN_DIGITS:
-            n = n * 10 + _CN_DIGITS[ch]
-        else:
-            return None
-    return n
-
-
-def _parse_cn_lunar_date(text: str | None) -> dict | None:
-    """
-    从农历串（如「二〇〇六年闰七月廿七」）取出 年/月/日/是否闰月。
-
-    这是**闰月的发现方式**：两条引擎的 lunarDate 都会给闰月显式带「闰」字，
-    本函数只读这个事实，不做任何历法推导。解析不了返回 None。
-    """
-    if not text:
-        return None
-    ym = re.search(r"([〇零一二三四五六七八九]{2,4})年", str(text))
-    year = _cn_year(ym.group(1)) if ym else None
-    m = _CN_LUNAR_RE.search(str(text))
-    if not m:
-        return None
-    month = _cn_number(m.group("month"))
-    day = _cn_number(m.group("day"))
-    if month is None or day is None:
-        return None
-    return {"year": year, "month": month, "day": day, "isLeap": bool(m.group("leap"))}
 
 
 def _parse_year_range(spec: str, flag: str) -> tuple[int, int]:
@@ -260,12 +158,16 @@ def cmd_engines(args) -> int:
 
     if args.compare or sweep_spec:
         if len(avail) < 2:
+            need = ("COMPARE_NEEDS_TWO_ENGINES" if args.compare
+                    else "LEAP_SWEEP_NEEDS_TWO_ENGINES")
+            err = (f"比对需要两条引擎都可用；当前可用："
+                   f"{', '.join(e['kind'] for e in avail) or '无'}")
+            if sweep_spec and not args.compare:
+                err = f"{_LEAP_SWEEP_NEEDS_NODE} 当前可用：{', '.join(e['kind'] for e in avail) or '无'}"
             out["ok"] = False
             out["compare"] = {
                 "requested": args.compare, "compared": 0, "mismatches": 0,
-                "error": "COMPARE_NEEDS_TWO_ENGINES",
-                "message": "比对需要两条引擎都可用；当前可用：" +
-                           (", ".join(e["kind"] for e in avail) or "无"),
+                "error": need, "message": err,
             }
             _emit(out, as_json=True, pretty=True)
             return 1
@@ -282,13 +184,15 @@ def cmd_engines(args) -> int:
             out["leapSweepMismatches"] = out["compare"].pop("leapSweepMismatches", [])
             if out["compare"].get("leapSweepOk") is False:
                 out["ok"] = False
+            if sweep.get("error"):
+                out["ok"] = False
         elif out["compare"]["mismatches"]:
             out["ok"] = False
     elif sweep_spec:
         sweep = _leap_sweep(sweep_spec,
                             limit=getattr(args, "leap_sweep_limit", _LEAP_COMBO_LIMIT) or 0,
                             seed=args.seed)
-        out["ok"] = bool(avail) and sweep["mismatches"] == 0
+        out["ok"] = bool(avail) and sweep["mismatches"] == 0 and not sweep.get("error")
         out["leapSweep"] = {k: v for k, v in sweep.items() if k != "mismatchDetails"}
         out["leapSweepMismatches"] = sweep["mismatchDetails"]
         out["compare"] = {
@@ -322,10 +226,14 @@ _LEAP_GENDERS = ("男", "女")
 #: 超上限时按「fixLeap=false 优先、但两边都留」分配配额 —— false 正是暴露本次 bug 的取值，
 #: 但只跑 false 会让 coverage 变成不诚实的数字，所以 true 也必须占到份额。
 _LEAP_COMBO_LIMIT = 96
-#: `--leap-sweep` 不带区间时的默认扫描年段（含两端）。
+#: `--leap-sweep` 不带区间时的默认年段（含两端）。
 _LEAP_SWEEP_DEFAULT = "1995-2030"
-#: 降级（node）扫描最多扫多少年 —— 每次子进程约 0.24s，再多就不实用了。
-_NODE_SWEEP_MAX_YEARS = 12
+#: 查历法库要 node（`lunar-typescript` 是 npm 包）；同时**对照也必须两条引擎都在**。
+#: 缺 node 时明确报错，不再退回「扫排盘引擎」的旧办法。
+_LEAP_SWEEP_NEEDS_NODE = (
+    "闰月穷举需要 node 引擎：闰月来自历法库（lunar-typescript），对照也由 node 路 iztro 完成。"
+    "请安装 Node.js 18+ 并运行 python scripts/ziwei.py deps 后重试。"
+)
 
 KNOWN_DIFFERENCES = [
     "jieqiPillar：node 路由 lunar-lite 提供立春口径四柱；python 路（x-iztro）没有该字段，"
@@ -336,6 +244,10 @@ KNOWN_DIFFERENCES = [
 def _sweep_coverage(sweep: dict) -> dict:
     """
     闰月穷举的覆盖信息，**在既有 coverage 键之外新增** `leapSweep*`，不动原有键。
+
+    键名沿用旧版（下游脚本按名取值），只有两处语义随「查表取代扫描」而变：
+      · `leapSweepScanRoute` 由 "python"（按天扫）改为 "calendar-table"；
+      · `leapSweepDaysScanned` 恒为 `null`（查表不扫日期），说明见 `leapSweepScanNote`。
     """
     return {
         "leapSweep": True,
@@ -343,6 +255,8 @@ def _sweep_coverage(sweep: dict) -> dict:
         "leapSweepScanRoute": sweep["scanRoute"],
         "leapSweepScanNote": sweep["scanNote"],
         "leapSweepYearsScanned": sweep["yearsScanned"],
+        # 语义已失效：改历法查表后没有「扫描天数」这回事。保留键名以兼容下游，
+        # 但一律给 null —— 一个会被读成「扫了 13149 天」的数字比缺键更坏。
         "leapSweepDaysScanned": sweep["daysScanned"],
         "leapSweepYearsWithLeapMonth": sweep["yearsWithLeapMonth"],
         "leapSweepLeapMonthsFound": sweep["leapMonthsFound"],
@@ -390,12 +304,33 @@ class _Comparer:
 
     def run(self, req: dict, index: int) -> dict:
         """排一张盘并比对；返回 {request, ok, five, diffs, lunarDate}。"""
+        return self._run_with(req, index, engines.run(req, engine="node"))
+
+    def run_sweep(self, cases: list[dict], rng: random.Random) -> list[dict]:
+        """
+        闰月穷举的批量跑法：**只把 node 路的子进程合批**，比对口径一字未动。
+
+        每个用例仍然各自排一次 python 路（同进程，便宜），node 路则由 `engines.run_many`
+        一次子进程排完一批 —— 逐张起 node 是每次 ~0.23s 的纯启动开销，
+        96 个用例光启动就要 22s。批量失败时**逐张退回**，不弄丢对拍。
+        """
+        reqs = [_leap_request(c, rng) for c in cases]
+        node_results = engines.run_many(reqs)
+        out: list[dict] = []
+        for i, req in enumerate(reqs):
+            nd = node_results[i] if node_results is not None else engines.run(req, engine="node")
+            out.append(self._run_with(req, i, nd))
+        return out
+
+    def _run_with(self, req: dict, index: int, nd: dict) -> dict:
+        """排 python 路并把两条路的结果记进账本（`nd` 由调用方给）。"""
         py = engines.run(req, engine="python")
-        nd = engines.run(req, engine="node")
         cal = req.get("calendar") or "solar"
         self.calendars[cal] = self.calendars.get(cal, 0) + 1
         if req.get("timeIndex") is not None:
             self.covered_tx.add(req["timeIndex"])
+        if nd is None:
+            nd = {"ok": False, "error": "ENGINE_BATCH_FAILED"}
 
         if not (py.get("ok") and nd.get("ok")):
             item = {"index": index, "request": req, "error": "ENGINE_FAILED",
@@ -438,215 +373,69 @@ class _Comparer:
 # 为什么需要它：`--compare N` 是**随机抽样**，公历生日落在闰月内的概率约 1%，
 # 所以「200 张 0 差异」并不能证明 solar 路的 fixLeap 口径对齐 —— 这正是漏掉
 # 「engine_py solar 路透传 fixLeap」那个整盘平移一宫 bug 的原因。
-# 下面这段按天扫描 A–B 年、把**每一个闰月**的第 1 / 中间 / 最后一天都拉出来，
-# 再对 fixLeap ∈ {true, false} 两取值与早子/午/晚子 × 男女全部对拍。
+#
+# 闰月**怎么发现**：查历法库，不扫日期。`lunar-typescript`（iztro 的历法依赖，已提为
+# 直接依赖）能直接回答「这一年闰几月」：`LunarYear.fromYear(y).getLeapMonth()` 给闰月号
+# （0 = 无闰月），`Lunar.fromYmd(y, -m, d)`（负月号 = 闰月）给该日公历/农历。
+# 于是整个年段只要**一次 node 子进程**就能拿到全部闰月；早先那版按天扫 A–B 年、
+# 拿排盘引擎当日历用（1995–2030 扫 13149 天、27–33 秒），是把简单事做笨了。
+# 拿到闰月后，下面照旧把第 1 / 中间 / 最后一天 × 时辰 × 性别 × fixLeap 全部对拍。
 
 
-def _python_calendar():
+def _sweep_table(lo: int, hi: int, note: list[str]) -> tuple[list[dict] | None, int, None]:
     """
-    取一个同进程的 x-iztro `Astro()` 日历句柄（约 0.25ms/次，扫描首选）。
-    不可用时返回 None，调用方退回 node 路并声明降级。
+    闰月发现：`engines.leap_months` 查历法库（lunar-typescript），返回月度记录。
+
+    返回 `(months, years_queried, None)`；`months` 为 None 表示**查表本身做不到**
+    （node 不可用 / lunar-typescript 缺失），调用方据此报错，**不再退回按天扫描**。
+    `days_scanned` 恒为 None —— 查表不扫日期，沿用旧键名只会给出误导性的数字。
     """
-    try:
-        from ziwei_doushu import engine_py
-    except Exception:  # noqa: BLE001
-        return None
-    mod = engine_py.load_module()
-    if mod is None:
-        return None
-    try:
-        return mod.astro.Astro()
-    except Exception:  # noqa: BLE001
-        return None
-
-
-def _lunar_of_solar(cal, date: str) -> str | None:
-    """公历 → 农历串（含「闰」标记）。路不可用或这一天算不出来时给 None。"""
-    try:
-        return cal.by_solar(str(date), 0, "male").lunar_date
-    except Exception:  # noqa: BLE001 — 单日算不出来不拖垮整轮扫描
-        return None
-
-
-def _lunar_of_solar_node(date: str) -> str | None:
-    """
-    node 路取农历串（降级扫描用）。**每次一个子进程（约 0.24s）**，
-    所以降级时必须把扫描量压到「每月 3 天」，不能按天扫。
-    """
-    res = engines.run({"date": date, "calendar": "solar", "timeIndex": 0,
-                       "gender": "男", "years": [], "fixLeap": True}, engine="node")
-    if not res.get("ok"):
-        return None
-    return (res.get("astrolabe") or {}).get("lunarDate")
-
-
-def _sweep_node(lo: int, hi: int, note: list[str]) -> tuple[list[dict], int, int | None]:
-    """
-    降级扫描（python 路不可用）：每年只抽每月 1 / 15 / 28 日共 36 天。
-    闰月一般 29–30 天，抽到闰月内的概率约 10%；抽到的连续月份串才认。
-    月首/月末可能整月漏掉 —— 这一点会写进输出，不假装是穷举。
-    年段超过 `_NODE_SWEEP_MAX_YEARS` 时只扫最近的那些年（子进程很贵）。
-    """
-    if hi - lo + 1 > _NODE_SWEEP_MAX_YEARS:
-        old_lo = lo
-        lo = hi - _NODE_SWEEP_MAX_YEARS + 1
-        note.append(
-            f"降级扫描代价过高（node 每次一个子进程），年段已由 {old_lo}-{hi} "
-            f"收窄到 {lo}-{hi}（最近 {_NODE_SWEEP_MAX_YEARS} 年）。要看更早的年份请显式传"
-            f"较小年段，或装上 python 路 x-iztro 走按天穷举。"
-        )
+    t0 = _dt.datetime.now()
+    fetched = engines.leap_months(lo, hi)
+    if fetched is None:
+        return None, 0, None
+    elapsed = round((_dt.datetime.now() - t0).total_seconds(), 2)
     note.append(
-        "降级扫描：python 路（x-iztro）不可用，改用 node 路按「每月 1/15/28 日」抽样"
-        f"（每年 36 次子进程，约 0.24s/次，本次扫 {lo}-{hi}）。**这不是穷举**："
-        "闰月的月首/月末可能整体漏掉。"
+        f"闰月发现：历法查表（lunar-typescript 的 LunarYear.getLeapMonth / Lunar.fromYmd），"
+        f"整个 {lo}-{hi} 年段一次 node 子进程问完，**不扫描日期**（{elapsed}s）。"
     )
-    per_year: dict[int, list[tuple[str, dict]]] = {}
-    for y in range(lo, hi + 1):
-        for m in range(1, 13):
-            for d in (1, 15, 28):
-                date = f"{y}-{m:02d}-{d:02d}"
-                txt = _lunar_of_solar_node(date)
-                parsed = _parse_cn_lunar_date(txt)
-                if not parsed:
-                    continue
-                parsed["lunarDate"] = txt
-                per_year.setdefault(y, []).append((date, parsed))
 
-    seen: dict[tuple[int, int], dict] = {}
-    for y, items in per_year.items():
-        for date, p in items:
-            if not p["isLeap"]:
-                continue
-            key = (y, p["month"])
-            rec = seen.setdefault(key, {"year": y, "month": p["month"], "candidates": []})
-            rec["candidates"].append({"date": date, "lunarDate": p["lunarDate"],
-                                      "lunarDay": p["day"]})
     months: list[dict] = []
-    for (y, mnum), rec in sorted(seen.items()):
-        cands = sorted(rec["candidates"], key=lambda c: c["date"])
-        days = [c["lunarDay"] for c in cands]
-        length = max(days) if days else None
-        days_wanted = sorted({1, (length + 1) // 2 if length else None, length} - {None})
-        by_day = {c["lunarDay"]: c for c in cands}
-        sel = []
-        for dd in days_wanted:
-            if dd in by_day:
-                sel.append(by_day[dd])
-            else:
-                later = [c for c in cands if c["lunarDay"] >= dd]
-                if later:
-                    sel.append(later[0])
-        seen_dates = set()
-        sel = [c for c in sel if not (c["date"] in seen_dates or seen_dates.add(c["date"]))]
+    lib_warnings: list[str] = []
+    for rec in fetched:
+        for msg in rec.get("warnings") or []:
+            if msg not in lib_warnings:
+                lib_warnings.append(str(msg))
+        y = rec.get("lunarYear")
+        mnum = rec.get("leapMonth")
+        length = rec.get("lengthDays")
+        cands: list[dict] = []
+        for p in rec.get("picks") or []:
+            cands.append({"date": p.get("solarDate"), "lunarDate": p.get("lunarDate"),
+                          "lunarDay": p.get("lunarDay")})
+        cands = [c for c in cands if c["date"] and c["lunarDay"] is not None]
+        cands.sort(key=lambda c: c["lunarDay"])
+        if not cands:
+            note.append(f"{y} 年闰{mnum}月：历法库没有给出可用的日期，已跳过")
+            continue
+        if length not in (29, 30):
+            note.append(f"{y} 年闰{mnum}月的长度 {length} 不在 29/30 之内，建议人工核对")
         months.append({
             "index": len(months) + 1, "year": y, "month": mnum,
             "monthLabel": f"{y} 闰{mnum}月", "lengthDays": length,
-            "inferredLengthDays": None, "firstDate": cands[0]["date"],
-            "lastDate": cands[-1]["date"], "pickedDays": [c["lunarDay"] for c in sel],
-            "candidates": sel, "candidateCount": len(cands),
-            "scanKind": "monthly-3day-sample (node fallback)",
-            "warnings": ["降级扫描：月末可能在采样点之外，闰月天数取自采样到的最大日"],
+            "inferredLengthDays": length,
+            "firstDate": cands[0]["date"], "lastDate": cands[-1]["date"],
+            "pickedDays": [c["lunarDay"] for c in cands], "candidates": cands,
+            # 旧「按天扫描」口径下这是**扫描到的**天数；查表后全月天数已知，直接用 lengthDays。
+            "candidateCount": length,
+            "scanKind": "calendar-table (lunar-typescript)",
+            "warnings": [],
         })
-    years_scanned = len(per_year)
-    return months, years_scanned, None
-
-
-def _sweep_python(lo: int, hi: int, note: list[str]) -> tuple[list[dict], int, int | None]:
-    """
-    推荐路：用 python 引擎（同进程，约 0.25ms/次）**按天**扫 A–B 年，
-    收集 lunarDate 含「闰」的日期，再把同一 (年, 闰月) 的连续日期段合成一个闰月。
-    """
-    cal = _python_calendar()
-    if cal is None:
-        return [], 0, None
-    note.append("闰月发现：python 引擎（x-iztro）同进程按天扫描，读 lunarDate 的「闰」字"
-                "（不靠猜、不做历法推导）。")
-
-    per_year: dict[int, list[tuple[str, dict]]] = {}
-    days_scanned = 0
-    for y in range(lo, hi + 1):
-        day = _dt.date(y, 1, 1)
-        end = _dt.date(y, 12, 31)
-        items: list[tuple[str, dict]] = []
-        while day <= end:
-            date = day.isoformat()
-            days_scanned += 1
-            txt = _lunar_of_solar(cal, date)
-            parsed = _parse_cn_lunar_date(txt)
-            if parsed:
-                parsed["lunarDate"] = txt
-                items.append((date, parsed))
-            day += _dt.timedelta(days=1)
-        per_year[y] = items
-
-    # 合成闰月：lunarDate 带闰且 (月号) 相同的连续日期为一段
-    months: list[dict] = []
-    ambiguous: list[str] = []
-    for y in sorted(per_year):
-        items = per_year[y]
-        count_by_month: dict[int, int] = {}
-        for _dstr, p in items:
-            count_by_month[p["month"]] = count_by_month.get(p["month"], 0) + 1
-        segments: list[list[tuple[str, dict]]] = []
-        cur: list[tuple[str, dict]] = []
-        prev: _dt.date | None = None
-        for date, p in items:
-            if not p["isLeap"]:
-                continue
-            dd = _dt.date.fromisoformat(date)
-            if prev is not None and (dd - prev).days == 1 and cur and cur[-1][1]["month"] == p["month"]:
-                cur.append((date, p))
-            else:
-                if cur:
-                    segments.append(cur)
-                cur = [(date, p)]
-            prev = dd
-        if cur:
-            segments.append(cur)
-        for seg in segments:
-            mnum = seg[0][1]["month"]
-            # 该农历月号在这一年出现两段 ⇒ 前面那段是正（非闰）月，只有闰月那一段短于全月天数。
-            # 单纯「这个月号只出现一次」说明扫描漏了它前面的非闰段，此时**不猜**，跳过后记录。
-            total = count_by_month.get(mnum, 0)
-            if total <= len(seg):
-                ambiguous.append(
-                    f"{y} 年农历 {mnum} 月的片段不完整（闰月段 {len(seg)} 天，全年该月号共 "
-                    f"{total} 天），无法判定哪一段是闰月，已跳过")
-                continue
-            if len(seg) < 20:
-                ambiguous.append(
-                    f"{y} 年农历 {mnum} 月的闰月段只有 {len(seg)} 天（闰月应为 29/30 天），已跳过")
-                continue
-            first = seg[0]
-            last = seg[-1]
-            cands = [{"date": first[0], "lunarDate": first[1]["lunarDate"],
-                      "lunarDay": first[1]["day"]},
-                     {"date": last[0], "lunarDate": last[1]["lunarDate"],
-                      "lunarDay": last[1]["day"]}]
-            if len(seg) >= 3:
-                mid = seg[len(seg) // 2]
-                cands.insert(1, {"date": mid[0], "lunarDate": mid[1]["lunarDate"],
-                                 "lunarDay": mid[1]["day"]})
-            inferred = last[1]["day"] - first[1]["day"] + 1
-            seen_dates: set[str] = set()
-            cands = [c for c in cands if not (c["date"] in seen_dates or seen_dates.add(c["date"]))]
-            warn: list[str] = []
-            if inferred != last[1]["day"]:
-                warn.append(f"段内天数（{inferred}）与末日名（{last[1]['day']}）不一致")
-            if inferred not in (29, 30):
-                warn.append(f"按段算出的闰月长度 {inferred} 天不在 29/30 之内，建议人工核对")
-            months.append({
-                "index": len(months) + 1, "year": y, "month": mnum,
-                "monthLabel": f"{y} 闰{mnum}月", "lengthDays": inferred,
-                "inferredLengthDays": inferred, "firstDate": first[0], "lastDate": last[0],
-                "pickedDays": [c["lunarDay"] for c in cands], "candidates": cands,
-                "candidateCount": len(seg),
-                "scanKind": "daily (python x-iztro)",
-                "warnings": warn,
-            })
-    for msg in ambiguous:
-        note.append(msg)
-    return months, len(per_year), days_scanned
+    for msg in lib_warnings:
+        note.append(str(msg))
+    if not months:
+        note.append(f"历法库回答 {lo}-{hi} 一个闰月都没有（该年段通常有 13 个左右）。")
+    return months, hi - lo + 1, None
 
 
 def _leap_cases(months: list[dict]) -> tuple[list[dict], int]:
@@ -686,19 +475,15 @@ def _leap_sweep(spec: str, limit: int, seed: int | None = None) -> dict:
     note: list[str] = []
     t0 = _dt.datetime.now()
 
-    months, years_scanned, days_scanned = _sweep_python(lo, hi, note)
-    route = "python"
-    if not months and _python_calendar() is None:
-        months, years_scanned, days_scanned = _sweep_node(lo, hi, note)
-        route = "node-degraded"
-        # 降级时把上限压小，避免几十万次子进程
-        limit = min(limit, 24) if limit else 24
-        note.append(f"降级路比对上限已压到 {limit} 例（node 每次一个子进程，约 0.24s）。")
-    elif not months:
-        note.append(
-            f"{lo}-{hi} 按天扫描没有发现任何闰月（36 年里通常有 13 个左右）。"
-            "若你确信该区间应有闰月，请核对上面的按天扫描是否正常。"
-        )
+    months, years_scanned, days_scanned = _sweep_table(lo, hi, note)
+    route = "calendar-table"
+    error: str | None = None
+    if months is None:
+        # 查表做不到（node / lunar-typescript 缺失）。**不退回首版按天扫描**：
+        # 排盘引擎不是历法库，那条路既慢又只是绕远。
+        months = []
+        error = _LEAP_SWEEP_NEEDS_NODE
+        note.append(error)
 
     cases, requested = _leap_cases(months)
     if limit and len(cases) > limit:
@@ -721,9 +506,11 @@ def _leap_sweep(spec: str, limit: int, seed: int | None = None) -> dict:
     calendar_identity = {"checked": 0, "lunarDateChangedByFixLeap": 0}
     lunar_seen: dict[str, set] = {}
 
-    for i, case in enumerate(cases):
-        req = _leap_request(case, rng)
-        out = cmp.run(req, i)
+    # 用例批量跑：node 路一次子进程排一批（省掉上百次 ~0.23s 的进程启动），
+    # python 路与比对口径一字未动；批量失败会自动逐张退回。
+    results = cmp.run_sweep(cases, rng)
+
+    for case, out in zip(cases, results):
         if out.get("error"):
             continue
         fix_counts["false" if not case["fixLeap"] else "true"] += 1
@@ -745,7 +532,6 @@ def _leap_sweep(spec: str, limit: int, seed: int | None = None) -> dict:
     return {
         "spec": f"{lo}-{hi}",
         "yearsScanned": years_scanned,
-        "daysScanned": days_scanned,
         "yearsWithLeapMonth": len({m["year"] for m in months}),
         "leapMonthsFound": len(months),
         "leapMonths": months,
@@ -764,6 +550,9 @@ def _leap_sweep(spec: str, limit: int, seed: int | None = None) -> dict:
         "identityLock": calendar_identity,
         "scanRoute": route,
         "scanNote": note,
+        # 查表不扫日期 ⇒ 恒为 None（不再给出一个会被读成「扫了 0 天/13149 天」的数字）。
+        "daysScanned": None,
+        "error": error,
         "elapsedSec": round((t1 - t0).total_seconds(), 1),
         "mismatches": len(cmp.mismatches),
         "byPath": dict(sorted(cmp.by_path.items(), key=lambda kv: -kv[1])),
@@ -959,6 +748,10 @@ def _compare(n: int, seed: int | None = None,
         result["leapSweepMismatches"] = sweep["mismatchDetails"]
         result["leapSweepOk"] = sweep["mismatches"] == 0
         result["leapSweepMismatchCount"] = sweep["mismatches"]
+        if sweep.get("error"):
+            # 查表本身没做成（node / lunar-typescript 缺失）：这不是「0 差异」，是没测到。
+            result["leapSweepError"] = sweep["error"]
+            result["leapSweepOk"] = False
         # 总账：随机抽样与闰月穷举的不一致都算进来，别让 0 差异只覆盖随机那部分
         result["mismatches"] = len(cmp.mismatches) + sweep["mismatches"]
         result["randomMismatches"] = len(cmp.mismatches)
@@ -1140,7 +933,8 @@ def build_parser() -> argparse.ArgumentParser:
                     help="随机盘比对张数，如 200（需两条引擎都可用）")
     eg.add_argument("--leap-sweep", nargs="?", const=_LEAP_SWEEP_DEFAULT,
                     default=None, metavar="A-B",
-                    help="确定性闰月穷举：按天扫 A-B 年、找出每个闰月并覆盖其"
+                    help="确定性闰月穷举：从历法库（lunar-typescript）查出 A-B 年里的每个闰月，"
+                         "覆盖其"
                          f"第 1/中间/最后一天 × 早子·午·晚子 × 男·女 × fixLeap 两取值。"
                          f"不带区间用默认 {_LEAP_SWEEP_DEFAULT}；不传该参数则完全不跑。"
                          "可与 --compare 合用")

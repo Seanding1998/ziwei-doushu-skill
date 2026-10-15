@@ -49,7 +49,7 @@ AI 按 `SKILL.md` 的八步工作流调用本仓库的脚本，最后产出一�
 - 十七项常见格局的**构成条件判定**（成不成格由 AI 裁断，脚本只回答条件是否满足）
 - 机器自检：十二宫名唯一、十四主星齐备、禄存与羊陀相邻、行向与限序一致
 - 结构化 JSON / 人读树状盘 / Markdown 表格 / 四柱双口径对照
-- 双引擎逐字段比对：`engines --compare N` 随机盘回归 + `engines --leap-sweep A-B` 确定性闰月穷举，不一致数应为 0
+- 双引擎逐字段比对：`engines --compare N` 随机盘回归 + `engines --leap-sweep A-B` 确定性闰月穷举（闰月查历法库，不扫描），不一致数应为 0
 - AI 填结构化分析 → 脚本渲染 HTML（内嵌 CSS、十二宫方阵、格局表、逐宫、大限流年、结论与建议、技术留痕折叠区）
 - 三道脚本闸门 + 一道独立审查闸门
 
@@ -93,6 +93,10 @@ python scripts/ziwei.py deps
 | `python` | `x-iztro` | 同进程调用，无子进程、不依赖 Node | `pip install x-iztro` |
 | `node` | `iztro@2.6.2` | `node engine.js`，stdin/stdout JSON | `python scripts/ziwei.py deps` |
 
+另有 `lunar-typescript@1.8.6` 作为**直接依赖**（原本只是 iztro 的传递依赖）：
+`--leap-sweep` 用它查闰月（`getLeapMonth`），不排盘、不扫描。**别用 `lunar-lite` 的
+`getLeapMonth`** —— 那个版本取不到 `LUNAR_INFO`，一调用就抛。
+
 **auto 优先级：先 python，再 node。** 两条都没有时报 `NO_ENGINE` 并给出安装指引。
 
 ```bash
@@ -104,8 +108,10 @@ python scripts/ziwei.py engines
 python scripts/ziwei.py engines --compare 200
 
 # 确定性闰月穷举（随机抽样抽到「阳历生日落在闰月内」的概率约 1%，所以它查不出
-# solar 路 fixLeap 写不写死这类口径差）：按天扫 1995–2030，找出**每一个闰月**，
-# 覆盖其第 1/中间/最后一天 × 时辰{早子,午,晚子} × 性别{男,女} × fixLeap{true,false}
+# solar 路 fixLeap 写不写死这类口径差）：闰月**查历法库**——lunar-typescript 的
+# LunarYear.fromYear(y).getLeapMonth() / Lunar.fromYmd(y, -m, d)，整个 1995–2030
+# 一次 node 子进程问完，**不按天扫描日期**；然后覆盖每个闰月的
+# 第 1/中间/最后一天 × 时辰{早子,午,晚子} × 性别{男,女} × fixLeap{true,false}
 # 比对结果与覆盖数见 compare.coverage.leapSweep*，mismatches 必须为 0
 python scripts/ziwei.py engines --leap-sweep 1995-2030
 
@@ -120,9 +126,21 @@ python 路如实返回 `null` 并在 `meta.engineNotes` 写明，**不伪造**�
 
 > **怎么自己验证两条引擎一致**：`--compare 200` 是随机抽样，够快但**覆盖不到闰月**
 > （阳历生日落在闰月内的概率约 1%）；要卡死口径差就跑 `--leap-sweep 1995-2030`，
-> 它按天扫描、把每个闰月的首/中/末日 × 早子·午·晚子 × 男女 × `fixLeap` 两取值全部对拍，
+> 它把每个闰月的首/中/末日 × 早子·午·晚子 × 男女 × `fixLeap` 两取值全部对拍，
 > 输出 `compare.coverage.leapSweep*` 里的覆盖数与 `mismatches`（必须为 0）。
 > 两个参数可以合用：`python scripts/ziwei.py engines --compare 200 --leap-sweep 1995-2030`。
+>
+> 闰月**怎么发现的**：查历法库，不扫日期 —— `lunar-typescript`（iztro 的历法依赖，
+> 已提为直接依赖）的 `LunarYear.getLeapMonth()` 直接回答「这一年闰几月」，
+> `Lunar.fromYmd(y, -m, d)`（负月号 = 闰月）给出该日的公历/农历，于是整个年段
+> **一次 node 子进程**就能拿到全部闰月（1995–2030 共 13 个，约 0.3s）。
+> 早先那版拿排盘引擎当日历用、按天扫 13149 天要 27–33 秒，是把简单事做笨了。
+> 覆盖键随之有两处变化：`leapSweepScanRoute` 由 `"python"` 改为 **`"calendar-table"`**；
+> `leapSweepDaysScanned` 语义已失效（查表不扫日期），现在**恒为 `null`**，
+> 说明写在 `leapSweepScanNote` 里 —— 保留键名只为不打断按名取值的下游脚本。
+> node 不可用时如实报「闰月穷举需要 node 引擎（既做历法查表，也做对照）」，
+> **不再退回按天扫描**。
+
 
 > 注：`node_modules/iztro` 与 `x-iztro` 均遵循各自原始 MIT 许可；本仓库自身许可见 [许可证](#许可证)。
 
@@ -216,7 +234,7 @@ references/
   glossary.md                 排盘公式、术语表、iztro / x-iztro API 备忘、依赖信任说明
 scripts/
   ziwei.py                    统一 CLI：deps / engines / chart / tree / md / pillar
-  engine.js                   iztro 计算引擎（node 路，Python 经 stdin/stdout 调用）
+  engine.js                   iztro 计算引擎（node 路，Python 经 stdin/stdout 调用；另有 leap_months 历法查表与 batch 批量两个模式）
   prepare_template.py         由 chart 生成分析工作单
   generate_report.py          AI 产 JSON → 渲染 HTML + --validate 闸门
   check_report_language.py    成品可读区语言验收（--self-test 自带夹具）
@@ -225,7 +243,7 @@ scripts/
   ziwei_doushu/
     astro.py                  真太阳时、干支纳音、四化、自化、关系、格局条件、岁数表
     chart.py                  编排层 + 跨平台依赖与进程管理
-    engines.py                多引擎调度层：detect() 探测 + run() 统一调用（auto/python/node）
+    engines.py                多引擎调度层：detect() 探测 + run() 调用 + run_many() 批量 + leap_months() 历法查表（auto/python/node）
     engine_py.py              x-iztro 计算引擎（python 路，映射成与 engine.js 逐字段相同的结构）
     render.py                 树状盘面与 Markdown 渲染
 examples/
@@ -344,7 +362,9 @@ preferred by `auto`, in-process, no Node needed) and `iztro` 2.6.2 (Node, the or
 Both emit a byte-for-byte identical `astrolabe` contract; run `python scripts/ziwei.py engines --compare 200`
 to assert it over 200 random charts, and `python scripts/ziwei.py engines --leap-sweep 1995-2030`
 for a **deterministic leap-month sweep** (random sampling hits a leap-month birthday only ~1% of the
-time, so it cannot catch solar-path convention drift). The single field only the Node path can supply
+time, so it cannot catch solar-path convention drift). The sweep finds leap months by **looking them up
+in a calendar library** — `lunar-typescript`'s `LunarYear.getLeapMonth()` / `Lunar.fromYmd(y, -m, d)`,
+one Node process for the whole year range, no day-by-day scanning. The single field only the Node path can supply
 is `jieqiPillar` (solar-term four pillars) — the Python path returns `null` and says so in `meta.engineNotes`.
 
 **Requirements**: Python 3.8+, plus either Node.js 18+ (iztro) or `pip install x-iztro`.

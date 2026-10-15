@@ -2,7 +2,8 @@
   "name": "ziwei-doushu-skill",
   "private": true,
   "dependencies": {
-    "iztro": "2.6.2"
+    "iztro": "2.6.2",
+    "lunar-typescript": "1.8.6"
   },
   "license": "SEE LICENSE IN LICENSE",
   "description": "紫微斗数排盘与解盘 skill：可计算的全部交脚本，AI 只做判断"
